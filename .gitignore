@@ -1,7 +1,8 @@
 # ========================
 # 🌍 Root level
 # ========================
-
+.env
+.env.*      # .env.development, .env.production
 node_modules/
 dist/
 build/
@@ -15,7 +16,7 @@ yarn-error.log*
 # 💻 Backend (Node.js)
 # ========================
 /backend/node_modules/
-
+/backend/.env
 /backend/uploads/
 /backend/logs/
 /backend/coverage/
