@@ -9,11 +9,13 @@ import MainHeader from "../../components/MainHeader";
 import SubMenu from "../../components/SubMenu";
 
 export default function OrderHistory() {
+    
     const navigate = useNavigate();
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [productMap, setProductMap] = useState({});
+    
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -21,16 +23,19 @@ export default function OrderHistory() {
             try {
                 const res = await fetch(`http://localhost:9999/orders?user_id=${currentUser.id}`);
                 const data = await res.json();
+    
+                // Sắp xếp theo thời gian mới nhất trước
+                data.sort((a, b) => new Date(b.order_date) - new Date(a.order_date));
                 setOrders(data);
-
+    
                 const productRes = await fetch("http://localhost:9999/products");
                 const productData = await productRes.json();
-
+    
                 const map = {};
                 productData.forEach(p => {
                     map[p.title] = p;
                 });
-
+    
                 setProductMap(map);
             } catch (error) {
                 console.error("Failed to fetch orders:", error);
@@ -40,6 +45,7 @@ export default function OrderHistory() {
         };
         fetchOrders();
     }, [currentUser]);
+    
 
     if (!currentUser) {
         return (

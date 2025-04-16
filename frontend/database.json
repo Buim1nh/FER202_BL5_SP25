@@ -16,7 +16,26 @@
         "ORD701",
         "ORD855",
         "ORD399",
-        "ORD677"
+        "ORD677",
+        "ORD363",
+        "ORD915",
+        "ORD740",
+        "ORD953",
+        "ORD979",
+        "ORD203",
+        "ORD170",
+        "ORD570",
+        "ORD146",
+        "ORD838",
+        "ORD413",
+        "ORD650",
+        "ORD874",
+        "ORD380",
+        "ORD470",
+        "ORD107",
+        "ORD136",
+        "ORD224",
+        "ORD368"
       ],
       "address": {
         "street": "123 Main St",
@@ -590,6 +609,389 @@
           "price": 18
         }
       ]
+    },
+    {
+      "order_id": "ORD932",
+      "user_id": "1",
+      "order_date": "2025-04-14T04:51:01.337Z",
+      "total_amount": 45,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ],
+      "id": "5mlYei1"
+    },
+    {
+      "order_id": "ORD466",
+      "user_id": "1",
+      "order_date": "2025-04-14T04:51:03.170Z",
+      "total_amount": 45,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ],
+      "id": "dKaoHui"
+    },
+    {
+      "order_id": "ORD457",
+      "user_id": "1",
+      "order_date": "2025-04-14T04:51:03.385Z",
+      "total_amount": 45,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ],
+      "id": "RnRkpEQ"
+    },
+    {
+      "order_id": "ORD363",
+      "user_id": "1",
+      "order_date": "2025-04-14T04:51:08.097Z",
+      "total_amount": 45,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ],
+      "id": "2PbfldR"
+    },
+    {
+      "id": "f409",
+      "order_id": "ORD915",
+      "user_id": "1",
+      "order_date": "2025-04-14T15:36:14.218Z",
+      "total_amount": 49.5,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        },
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        }
+      ]
+    },
+    {
+      "id": "c1f2",
+      "order_id": "ORD740",
+      "user_id": "1",
+      "order_date": "2025-04-14T15:37:21.586Z",
+      "total_amount": 18,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ]
+    },
+    {
+      "id": "08c7",
+      "order_id": "ORD953",
+      "user_id": "1",
+      "order_date": "2025-04-14T15:38:15.748Z",
+      "total_amount": 15,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Athletic Shoes",
+          "quantity": 1,
+          "price": 15
+        }
+      ]
+    },
+    {
+      "id": "1c9e",
+      "order_id": "ORD979",
+      "user_id": "1",
+      "order_date": "2025-04-14T15:38:56.116Z",
+      "total_amount": 7,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Wool Scarf",
+          "quantity": 1,
+          "price": 7
+        }
+      ]
+    },
+    {
+      "id": "eb0c",
+      "order_id": "ORD203",
+      "user_id": "1",
+      "order_date": "2025-04-14T15:40:42.219Z",
+      "total_amount": 48.5,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        },
+        {
+          "product_name": "Ceramic Coffee Mug",
+          "quantity": 1,
+          "price": 3.5
+        }
+      ]
+    },
+    {
+      "id": "9246",
+      "order_id": "ORD516",
+      "user_id": "1",
+      "order_date": "2025-04-15T02:33:40.822Z",
+      "total_amount": 9.5,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Fitness Watch",
+          "quantity": 1,
+          "price": 9.5
+        }
+      ]
+    },
+    {
+      "id": "5219",
+      "order_id": "ORD170",
+      "user_id": "1",
+      "order_date": "2025-04-15T02:33:40.873Z",
+      "total_amount": 9.5,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Fitness Watch",
+          "quantity": 1,
+          "price": 9.5
+        }
+      ]
+    },
+    {
+      "id": "05d2",
+      "order_id": "ORD570",
+      "user_id": "1",
+      "order_date": "2025-04-15T02:42:51.903Z",
+      "total_amount": 12,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Wireless Headphones",
+          "quantity": 1,
+          "price": 12
+        }
+      ]
+    },
+    {
+      "id": "4665",
+      "order_id": "ORD146",
+      "user_id": "1",
+      "order_date": "2025-04-15T02:43:27.544Z",
+      "total_amount": 18,
+      "status": "pending",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ]
+    },
+    {
+      "id": "d363",
+      "order_id": "ORD838",
+      "user_id": "1",
+      "order_date": "2025-04-15T02:57:20.551Z",
+      "total_amount": 12,
+      "status": "paid",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Denim Jacket",
+          "quantity": 1,
+          "price": 12
+        }
+      ]
+    },
+    {
+      "id": "4e93",
+      "order_id": "ORD413",
+      "user_id": "1",
+      "order_date": "2025-04-15T02:58:22.385Z",
+      "total_amount": 12,
+      "status": "paid",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Wireless Headphones",
+          "quantity": 1,
+          "price": 12
+        }
+      ]
+    },
+    {
+      "id": "4b52",
+      "order_id": "ORD650",
+      "user_id": "1",
+      "order_date": "2025-04-15T02:59:08.057Z",
+      "total_amount": 18,
+      "status": "paid",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ]
+    },
+    {
+      "id": "bcc2",
+      "order_id": "ORD874",
+      "user_id": "1",
+      "order_date": "2025-04-15T03:02:44.929Z",
+      "total_amount": 15,
+      "status": "paid",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Athletic Shoes",
+          "quantity": 1,
+          "price": 15
+        }
+      ]
+    },
+    {
+      "id": "284a",
+      "order_id": "ORD380",
+      "user_id": "1",
+      "order_date": "2025-04-15T04:46:27.063Z",
+      "total_amount": 4.5,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        }
+      ]
+    },
+    {
+      "id": "3056",
+      "order_id": "ORD245",
+      "user_id": "1",
+      "order_date": "2025-04-15T04:46:28.343Z",
+      "total_amount": 4.5,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        }
+      ]
+    },
+    {
+      "id": "ce49",
+      "order_id": "ORD470",
+      "user_id": "1",
+      "order_date": "2025-04-15T14:47:51.360Z",
+      "total_amount": 14,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Backpack Cooler",
+          "quantity": 1,
+          "price": 14
+        }
+      ]
+    },
+    {
+      "id": "a545",
+      "order_id": "ORD107",
+      "user_id": "1",
+      "order_date": "2025-04-15T14:48:37.745Z",
+      "total_amount": 18,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ]
+    },
+    {
+      "id": "7878",
+      "order_id": "ORD136",
+      "user_id": "1",
+      "order_date": "2025-04-16T03:19:01.333Z",
+      "total_amount": 12,
+      "status": "paid",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Wireless Headphones",
+          "quantity": 1,
+          "price": 12
+        }
+      ]
+    },
+    {
+      "id": "b718",
+      "order_id": "ORD224",
+      "user_id": "1",
+      "order_date": "2025-04-16T03:21:55.351Z",
+      "total_amount": 4.5,
+      "status": "paid",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        }
+      ]
+    },
+    {
+      "id": "b5cd",
+      "order_id": "ORD368",
+      "user_id": "1",
+      "order_date": "2025-04-16T03:28:11.631Z",
+      "total_amount": 3.5,
+      "status": "paid",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Ceramic Coffee Mug",
+          "quantity": 1,
+          "price": 3.5
+        }
+      ]
     }
   ],
   "categories": [
@@ -650,7 +1052,7 @@
       "categoryId": 2,
       "url": "https://picsum.photos/id/0",
       "status": "available",
-      "quantity": 14
+      "quantity": 16
     },
     {
       "id": "4",
@@ -691,7 +1093,7 @@
       "categoryId": 4,
       "url": "https://picsum.photos/id/719",
       "status": "available",
-      "quantity": 43,
+      "quantity": 44,
       "isAuction": false
     },
     {
@@ -1043,46 +1445,9 @@
       "url": "https://picsum.photos/id/323",
       "status": "available",
       "quantity": 60
-    },
-    {
-      "id": "333",
-      "title": "333",
-      "description": "3333",
-      "price": 3333,
-      "categoryId": 333,
-      "url": "https://picsum.photos/id/33",
-      "status": "available",
-      "quantity": 4
     }
   ],
-  "shoppingCart": [
-    {
-      "id": "3e19",
-      "userId": "27b4",
-      "productId": [
-        {
-          "idProduct": "1",
-          "quantity": "1"
-        },
-        {
-          "idProduct": "2",
-          "quantity": "2"
-        }
-      ],
-      "dateAdded": "2025-03-19T15:30:11.598Z"
-    },
-    {
-      "id": "cd5d",
-      "userId": "3",
-      "productId": [
-        {
-          "idProduct": "2",
-          "quantity": "1"
-        }
-      ],
-      "dateAdded": "2025-03-24T15:59:03.745Z"
-    }
-  ],
+  "shoppingCart": [],
   "paymentMethods": [
     {
       "id": "pm001",
