@@ -9,68 +9,95 @@ export default function TopMenu() {
     const navigate = useNavigate()
     const location = useLocation()
 
+    // Kiểm tra đăng nhập và thời gian login
     useEffect(() => {
-        const user = localStorage.getItem('currentUser')
-        if (user) {
-            setCurrentUser(JSON.parse(user))
-        }
-    }, [])
+        const user = localStorage.getItem('currentUser');
+        const loginTime = localStorage.getItem('loginTime');
 
+        if (user && loginTime) {
+            const now = Date.now();
+            const loggedInAt = parseInt(loginTime, 10);
+            const oneHour = 60 * 60 * 1000; 
+
+            if (now - loggedInAt > oneHour) {
+                console.log("Session expired. Logging out.");
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('loginTime');
+                setCurrentUser(null);
+                setCartCount(0);
+            } else {
+                setCurrentUser(JSON.parse(user));
+            }
+        }
+    }, []);
+
+    // Tự động cập nhật cart mỗi 3s nếu đã đăng nhập
     useEffect(() => {
         const fetchCartCount = async () => {
             if (!currentUser) {
-                setCartCount(0)
-                return
+                setCartCount(0);
+                return;
             }
 
             try {
-                console.log("Fetching cart count for user:", currentUser.id)
-                const response = await fetch(`http://localhost:9999/shoppingCart?userId=${currentUser.id}`)
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch cart: ${response.status}`)
-                }
-                const cartItems = await response.json()
-                console.log("Cart items for count:", cartItems)
-                const totalProducts = cartItems.reduce((sum, item) => sum + item.productId.length, 0)
-                setCartCount(totalProducts)
+                const response = await fetch(`http://localhost:9999/shoppingCart?userId=${currentUser.id}`);
+                if (!response.ok) throw new Error(`Failed to fetch cart: ${response.status}`);
+                const cartItems = await response.json();
+                const totalProducts = cartItems.reduce((sum, item) => sum + item.productId.length, 0);
+                setCartCount(totalProducts);
             } catch (error) {
-                console.error('Error fetching cart count:', error)
-                setCartCount(0)
+                console.error('Error fetching cart count:', error);
+                setCartCount(0);
             }
         }
 
-        fetchCartCount()
-        const interval = setInterval(fetchCartCount, 3000)
-        return () => clearInterval(interval)
-    }, [currentUser])
+        fetchCartCount();
+        const interval = setInterval(fetchCartCount, 3000);
+        return () => clearInterval(interval);
+    }, [currentUser]);
 
+    // Cập nhật cart khi chuyển trang
     useEffect(() => {
         if (currentUser) {
             const fetchCartCount = async () => {
                 try {
-                    console.log("Fetching cart count on route change for user:", currentUser.id)
-                    const response = await fetch(`http://localhost:9999/shoppingCart?userId=${currentUser.id}`)
-                    if (!response.ok) {
-                        throw new Error(`Failed to fetch cart: ${response.status}`)
-                    }
-                    const cartItems = await response.json()
-                    console.log("Cart items on route change:", cartItems)
-                    const totalProducts = cartItems.reduce((sum, item) => sum + item.productId.length, 0)
-                    setCartCount(totalProducts)
+                    const response = await fetch(`http://localhost:9999/shoppingCart?userId=${currentUser.id}`);
+                    if (!response.ok) throw new Error(`Failed to fetch cart: ${response.status}`);
+                    const cartItems = await response.json();
+                    const totalProducts = cartItems.reduce((sum, item) => sum + item.productId.length, 0);
+                    setCartCount(totalProducts);
                 } catch (error) {
-                    console.error('Error fetching cart count:', error)
+                    console.error('Error fetching cart count:', error);
                 }
             }
-            fetchCartCount()
+            fetchCartCount();
         }
-    }, [location.pathname, currentUser])
+    }, [location.pathname, currentUser]);
+
+    // Reset thời gian mỗi khi người dùng thao tác
+    useEffect(() => {
+        const handleActivity = () => {
+            if (currentUser) {
+                localStorage.setItem('loginTime', Date.now().toString());
+            }
+        }
+
+        window.addEventListener('click', handleActivity);
+        window.addEventListener('keydown', handleActivity);
+
+        return () => {
+            window.removeEventListener('click', handleActivity);
+            window.removeEventListener('keydown', handleActivity);
+        }
+    }, [currentUser]);
 
     const handleSignOut = () => {
-        localStorage.removeItem('currentUser')
-        setCurrentUser(null)
-        setCartCount(0)
-        setIsMenu(false)
-        navigate('/')
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('loginTime');
+        setCurrentUser(null);
+        setCartCount(0);
+        setIsMenu(false);
+        navigate('/');
     }
 
     return (
@@ -96,20 +123,15 @@ export default function TopMenu() {
                         {currentUser && (
                             <div
                                 id="AuthDropdown"
-                                className={`
-                                    absolute bg-white w-[200px] text-[#333333] z-40 top-[20px] left-0 border shadow-lg
-                                    ${isMenu ? "visible" : "hidden"}
-                                `}
+                                className={`absolute bg-white w-[200px] text-[#333333] z-40 top-[20px] left-0 border shadow-lg ${isMenu ? "visible" : "hidden"}`}
                             >
-                                <div>
-                                    <div className="flex items-center justify-start gap-1 p-3">
-                                        <img
-                                            src={`https://picsum.photos/id/${currentUser.id}/50`}
-                                            alt="User Avatar"
-                                            className="w-[50px] h-[50px] rounded-full"
-                                        />
-                                        <div className="font-bold text-[13px]">{currentUser.fullname}</div>
-                                    </div>
+                                <div className="flex items-center justify-start gap-1 p-3">
+                                    <img
+                                        src={`https://picsum.photos/id/${currentUser.id}/50`}
+                                        alt="User Avatar"
+                                        className="w-[50px] h-[50px] rounded-full"
+                                    />
+                                    <div className="font-bold text-[13px]">{currentUser.fullname}</div>
                                 </div>
 
                                 <div className="border-b" />
@@ -151,14 +173,12 @@ export default function TopMenu() {
                     </li>
                     <li className="flex items-center gap-2 px-3 hover:underline cursor-pointer">
                         <Link to="/sell" className="flex items-center gap-2">
-                            <img width={32} src="/images/vn.png" alt="UK flag" />
+                            <img width={32} src="/images/vn.png" alt="VN flag" />
                             Ship to
                         </Link>
                     </li>
                     <li className="flex items-center gap-2 px-3 hover:underline cursor-pointer">
-                        <Link to="/wishlist">
-                            Wishlist
-                        </Link>
+                        <Link to="/wishlist">Wishlist</Link>
                     </li>
                     <li className="px-3 hover:underline cursor-pointer">
                         <Link to="/cart" className="relative">
