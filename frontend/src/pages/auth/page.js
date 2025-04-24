@@ -29,6 +29,8 @@ export default function AuthPage() {
                 const users = await response.json()
                 const user = users.find(u => u.email === formData.email && u.password === formData.password)
                 if (user) {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    localStorage.setItem('loginTime', Date.now().toString());
                     localStorage.setItem('currentUser', JSON.stringify(user))
                     // Kiểm tra role của user
                     if (user.role === 'admin') {
