@@ -144,6 +144,13 @@ export default function TopMenu() {
                             </Link>
                         </li>
                     )}
+                    {currentUser?.role === "shipper" && (
+                        <li className="flex items-center gap-2 px-3 hover:underline cursor-pointer">
+                            <Link to="/shipper" className="flex items-center gap-2 text-green-500 font-bold">
+                                Shipper
+                            </Link>
+                        </li>
+                    )}
                     <li className="flex items-center gap-2 px-3 hover:underline cursor-pointer">
                         <Link to="/sell" className="flex items-center gap-2">
                             Sell

@@ -16,7 +16,10 @@
         "ORD701",
         "ORD855",
         "ORD399",
-        "ORD677"
+        "ORD677",
+        "ORD933",
+        "ORD682",
+        "ORD481"
       ],
       "address": {
         "street": "123 Main St",
@@ -118,6 +121,21 @@
       },
       "role": "admin",
       "action": "unlock"
+    },
+    {
+      "id": "user1745384287549",
+      "email": "shipper@gmail.com",
+      "password": "123123",
+      "fullname": "Ta Giang",
+      "order_id": [],
+      "address": {
+        "street": "FPT",
+        "zipcode": "67890",
+        "city": "FPT",
+        "country": "VN"
+      },
+      "role": "shipper",
+      "action": "unlock"
     }
   ],
   "orders": [
@@ -127,6 +145,7 @@
       "order_date": "2024-03-22T15:45:00Z",
       "total_amount": 89.99,
       "status": "shipped",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Bluetooth Headphones",
@@ -141,7 +160,8 @@
       "user_id": "3",
       "order_date": "2024-03-20T08:20:00Z",
       "total_amount": 45,
-      "status": "pending",
+      "status": "shipped",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "USB-C Charger",
@@ -157,6 +177,7 @@
       "order_date": "2024-03-18T12:00:00Z",
       "total_amount": 230,
       "status": "delivered",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Mechanical Keyboard",
@@ -177,6 +198,7 @@
       "order_date": "2024-03-27T17:30:00Z",
       "total_amount": 79.99,
       "status": "delivered",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Wireless Earbuds",
@@ -192,6 +214,7 @@
       "order_date": "2024-03-28T11:20:00Z",
       "total_amount": 120,
       "status": "shipped",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Portable SSD 1TB",
@@ -207,7 +230,8 @@
       "user_id": "1",
       "order_date": "2025-03-24T15:45:46.120Z",
       "total_amount": 343,
-      "status": "pending",
+      "status": "shipped",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Brown Leather Bag",
@@ -227,7 +251,8 @@
       "user_id": "1",
       "order_date": "2025-03-24T15:46:05.866Z",
       "total_amount": 75,
-      "status": "pending",
+      "status": "shipped",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Brown Leather Bag",
@@ -242,7 +267,8 @@
       "user_id": "1",
       "order_date": "2025-03-24T16:07:57.801Z",
       "total_amount": 49.5,
-      "status": "pending",
+      "status": "shipped",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Leather Wallet",
@@ -262,7 +288,8 @@
       "user_id": "1",
       "order_date": "2025-03-24T16:09:11.474Z",
       "total_amount": 15.5,
-      "status": "pending",
+      "status": "delivered",
+      "shipper_id": "user1745384287549",
       "items": [
         {
           "product_name": "Ceramic Coffee Mug",
@@ -282,7 +309,8 @@
       "user_id": "1",
       "order_date": "2025-03-24T16:33:10.455Z",
       "total_amount": 21.8,
-      "status": "pending",
+      "status": "delivered",
+      "shipper_id": "user1745384287549",
       "items": [
         {
           "product_name": "Denim Jacket",
@@ -303,6 +331,7 @@
       "order_date": "2025-03-24T16:51:56.291Z",
       "total_amount": 341.5,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Brown Leather Bag",
@@ -333,6 +362,7 @@
       "order_date": "2025-03-24T17:14:29.395Z",
       "total_amount": 12,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Denim Jacket",
@@ -348,6 +378,7 @@
       "order_date": "2025-03-24T17:45:27.823Z",
       "total_amount": 127.6,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Yoga Kit",
@@ -373,6 +404,7 @@
       "order_date": "2025-03-25T12:29:42.124Z",
       "total_amount": 61.5,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Gaming Mouse",
@@ -393,6 +425,7 @@
       "order_date": "2025-03-25T12:30:06.170Z",
       "total_amount": 11,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Electric Kettle",
@@ -408,6 +441,7 @@
       "order_date": "2025-03-25T12:55:34.763Z",
       "total_amount": 226,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Running Backpack",
@@ -428,6 +462,7 @@
       "order_date": "2025-03-26T12:54:29.492Z",
       "total_amount": 57,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Modern Laptop",
@@ -448,6 +483,7 @@
       "order_date": "2025-03-27T08:41:20.382Z",
       "total_amount": 126,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Brown Leather Bag",
@@ -473,6 +509,7 @@
       "order_date": "2025-03-27T11:35:21.007Z",
       "total_amount": 28,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Camping Tent",
@@ -488,6 +525,7 @@
       "order_date": "2025-03-27T16:29:40.374Z",
       "total_amount": 28.5,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Fitness Watch",
@@ -503,6 +541,7 @@
       "order_date": "2025-03-27T17:05:12.572Z",
       "total_amount": 294.66,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Digital Sketch Pad",
@@ -538,6 +577,7 @@
       "order_date": "2025-03-27T17:05:53.008Z",
       "total_amount": 172.33,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Brown Leather Bag",
@@ -578,6 +618,7 @@
       "order_date": "2025-03-27T17:07:03.958Z",
       "total_amount": 143,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Vinyl Record Player",
@@ -590,6 +631,117 @@
           "price": 18
         }
       ]
+    },
+    {
+      "order_id": "ORD207",
+      "user_id": "1",
+      "order_date": "2025-04-15T04:44:17.573Z",
+      "total_amount": 8.5,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Gaming Mouse",
+          "quantity": 1,
+          "price": 8.5
+        }
+      ],
+      "id": "Ompufm5"
+    },
+    {
+      "order_id": "ORD465",
+      "user_id": "1",
+      "order_date": "2025-04-15T04:44:18.810Z",
+      "total_amount": 8.5,
+      "status": "pending",
+      "shipper_id": null,
+      "items": [
+        {
+          "product_name": "Gaming Mouse",
+          "quantity": 1,
+          "price": 8.5
+        }
+      ],
+      "id": "-M21yMd"
+    },
+    {
+      "order_id": "ORD613",
+      "user_id": "1",
+      "order_date": "2025-04-15T04:44:18.996Z",
+      "total_amount": 8.5,
+      "status": "pending",
+      "shipper_id": null,
+      "items": [
+        {
+          "product_name": "Gaming Mouse",
+          "quantity": 1,
+          "price": 8.5
+        }
+      ],
+      "id": "R_0B5uc"
+    },
+    {
+      "order_id": "ORD914",
+      "user_id": "1",
+      "order_date": "2025-04-15T04:44:19.220Z",
+      "total_amount": 8.5,
+      "status": "pending",
+      "shipper_id": null,
+      "items": [
+        {
+          "product_name": "Gaming Mouse",
+          "quantity": 1,
+          "price": 8.5
+        }
+      ],
+      "id": "EPSIE_w"
+    },
+    {
+      "order_id": "ORD933",
+      "user_id": "1",
+      "order_date": "2025-04-15T04:44:20.480Z",
+      "total_amount": 8.5,
+      "status": "pending",
+      "shipper_id": null,
+      "items": [
+        {
+          "product_name": "Gaming Mouse",
+          "quantity": 1,
+          "price": 8.5
+        }
+      ],
+      "id": "jq8-yu5"
+    },
+    {
+      "order_id": "ORD682",
+      "user_id": "1",
+      "order_date": "2025-04-15T04:44:57.635Z",
+      "total_amount": 4,
+      "status": "pending",
+      "shipper_id": null,
+      "items": [
+        {
+          "product_name": "Winter Gloves",
+          "quantity": 1,
+          "price": 4
+        }
+      ],
+      "id": "Yyg8P1-"
+    },
+    {
+      "order_id": "ORD481",
+      "user_id": "1",
+      "order_date": "2025-04-15T04:53:18.558Z",
+      "total_amount": 7,
+      "status": "pending",
+      "shipper_id": null,
+      "items": [
+        {
+          "product_name": "Wool Scarf",
+          "quantity": 1,
+          "price": 7
+        }
+      ],
+      "id": "zyd8s5U"
     }
   ],
   "categories": [
@@ -1043,46 +1195,9 @@
       "url": "https://picsum.photos/id/323",
       "status": "available",
       "quantity": 60
-    },
-    {
-      "id": "333",
-      "title": "333",
-      "description": "3333",
-      "price": 3333,
-      "categoryId": 333,
-      "url": "https://picsum.photos/id/33",
-      "status": "available",
-      "quantity": 4
     }
   ],
-  "shoppingCart": [
-    {
-      "id": "3e19",
-      "userId": "27b4",
-      "productId": [
-        {
-          "idProduct": "1",
-          "quantity": "1"
-        },
-        {
-          "idProduct": "2",
-          "quantity": "2"
-        }
-      ],
-      "dateAdded": "2025-03-19T15:30:11.598Z"
-    },
-    {
-      "id": "cd5d",
-      "userId": "3",
-      "productId": [
-        {
-          "idProduct": "2",
-          "quantity": "1"
-        }
-      ],
-      "dateAdded": "2025-03-24T15:59:03.745Z"
-    }
-  ],
+  "shoppingCart": [],
   "paymentMethods": [
     {
       "id": "pm001",
@@ -1352,6 +1467,16 @@
       "id": "sp1743076282046",
       "userId": null,
       "products": []
+    },
+    {
+      "id": "sp1744770025315",
+      "userId": "user1744770025285",
+      "products": []
+    },
+    {
+      "id": "sp1745384287582",
+      "userId": "user1745384287549",
+      "products": []
     }
   ],
   "auctionBids": [
@@ -1393,6 +1518,14 @@
       "userId": "3",
       "bidAmount": 20000,
       "bidDate": "2025-03-27T16:35:03.048Z",
+      "isWinningBid": true
+    },
+    {
+      "id": "bid1744690691245",
+      "productId": "1",
+      "userId": "1",
+      "bidAmount": 2600,
+      "bidDate": "2025-04-15T04:18:11.245Z",
       "isWinningBid": true
     }
   ]

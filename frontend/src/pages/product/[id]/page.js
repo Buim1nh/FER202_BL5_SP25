@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { 
-  FiHeart, 
-  FiShoppingCart, 
-  FiClock, 
-  FiTruck, 
-  FiShield, 
-  FiArrowLeft, 
+import {
+  FiHeart,
+  FiShoppingCart,
+  FiClock,
+  FiTruck,
+  FiShield,
+  FiArrowLeft,
   FiChevronRight,
   FiInfo,
   FiStar,
@@ -41,6 +41,16 @@ export default function ProductDetail() {
   const [showPayment, setShowPayment] = useState(false);
   const [showReturns, setShowReturns] = useState(false);
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+
+  //Modal function to handle Buy Now click
+  const handleBuyNowClick = () => {
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
 
   // Mock additional images for the product
   const productImages = [
@@ -82,14 +92,14 @@ export default function ProductDetail() {
         if (data && data[0]) {
           setProduct(data[0]);
         }
-        
+
         // Check cart status
         const inCart = await checkItemInCart();
         setIsItemAdded(inCart);
-        
+
         // Check wishlist status
         setIsWishlist(checkItemInWishlist());
-        
+
         // Fetch bid history for auction items
         if (data[0]?.isAuction) {
           const bidsResponse = await fetch(`http://localhost:9999/auctionBids?productId=${id}`);
@@ -219,7 +229,7 @@ export default function ProductDetail() {
       // Get current bids to check highest
       const bidsResponse = await fetch(`http://localhost:9999/auctionBids?productId=${id}`);
       const existingBids = await bidsResponse.json();
-      
+
       // Create new bid ID
       const newBidId = `bid${Date.now()}`;
 
@@ -268,7 +278,7 @@ export default function ProductDetail() {
 
       // Update bid history
       setBidHistory([newBid, ...bidHistory]);
-      
+
       alert("Bid placed successfully!");
       setBidAmount("");
     } catch (error) {
@@ -280,7 +290,7 @@ export default function ProductDetail() {
   // Toggle wishlist status
   const toggleWishlist = () => {
     const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    
+
     if (isWishlist) {
       const updatedWishlist = wishlist.filter(item => item.id !== id);
       localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
@@ -299,7 +309,7 @@ export default function ProductDetail() {
     const days = 2;
     const hours = 3;
     const minutes = 45;
-    
+
     return (
       <div className="flex items-center text-gray-700">
         <FiClock className="mr-2" />
@@ -351,7 +361,7 @@ export default function ProductDetail() {
       <TopMenu />
       <MainHeader />
       <SubMenu />
-      
+
       <main className="max-w-[1300px] mx-auto px-4 py-4">
         {/* Breadcrumb */}
         <nav className="flex mb-2 text-xs" aria-label="Breadcrumb">
@@ -377,9 +387,9 @@ export default function ProductDetail() {
             {/* Left Column - Images */}
             <div className="lg:w-[40%] p-2 lg:p-4 border-b lg:border-b-0 lg:border-r border-gray-200">
               <div className="relative mb-2">
-                <img 
-                  src={`${productImages[selectedImage].url}/600`} 
-                  alt={product.title} 
+                <img
+                  src={`${productImages[selectedImage].url}/600`}
+                  alt={product.title}
                   className="w-full h-[400px] object-contain"
                 />
                 {product.status !== "available" && (
@@ -388,26 +398,25 @@ export default function ProductDetail() {
                   </div>
                 )}
               </div>
-              
+
               {/* Thumbnail images */}
               <div className="flex space-x-2 overflow-x-auto pb-2">
                 {productImages.map((image, index) => (
                   <button
                     key={image.id}
                     onClick={() => setSelectedImage(index)}
-                    className={`flex-shrink-0 w-16 h-16 overflow-hidden border ${
-                      selectedImage === index ? "border-[#0053A0]" : "border-gray-200"
-                    }`}
+                    className={`flex-shrink-0 w-16 h-16 overflow-hidden border ${selectedImage === index ? "border-[#0053A0]" : "border-gray-200"
+                      }`}
                   >
-                    <img 
-                      src={`${image.url}/100`} 
-                      alt={`Product view ${index + 1}`} 
+                    <img
+                      src={`${image.url}/100`}
+                      alt={`Product view ${index + 1}`}
                       className="w-full h-full object-cover"
                     />
                   </button>
                 ))}
               </div>
-              
+
               {/* Image actions */}
               <div className="flex justify-center mt-4 text-xs text-[#0053A0]">
                 <button className="flex items-center hover:underline mx-2">
@@ -423,7 +432,7 @@ export default function ProductDetail() {
                   Report
                 </button>
               </div>
-              
+
               {/* Seller info (mobile only) */}
               <div className="mt-4 p-3 bg-gray-50 border border-gray-200 lg:hidden">
                 <div className="flex items-center">
@@ -442,7 +451,7 @@ export default function ProductDetail() {
                 </div>
               </div>
             </div>
-            
+
             {/* Right Column - Product Details */}
             <div className="lg:w-[60%] p-2 lg:p-4">
               <div className="border-b border-gray-200 pb-2">
@@ -453,7 +462,7 @@ export default function ProductDetail() {
                   <span>Condition: <span className="font-medium">New</span></span>
                 </div>
               </div>
-              
+
               {/* Auction or Buy Now Section */}
               <div className="py-4 border-b border-gray-200">
                 {product.isAuction ? (
@@ -468,7 +477,7 @@ export default function ProductDetail() {
                           [Approximately US ${((product.price / 100) * 1.25).toFixed(2)}]
                         </div>
                       </div>
-                      
+
                       {product.status === "available" && (
                         <div className="text-right">
                           <div className="text-sm text-gray-500">Time left:</div>
@@ -479,7 +488,7 @@ export default function ProductDetail() {
                         </div>
                       )}
                     </div>
-                    
+
                     {product.status === "available" ? (
                       <div className="space-y-3">
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2">
@@ -503,11 +512,11 @@ export default function ProductDetail() {
                             Place bid
                           </button>
                         </div>
-                        
+
                         <div className="text-xs text-gray-500">
                           [Enter £{(product.price / 100 + 1).toFixed(2)} or more]
                         </div>
-                        
+
                         <div className="flex items-center justify-between pt-3">
                           <div>
                             <div className="text-sm text-gray-500">Buy it now:</div>
@@ -518,13 +527,54 @@ export default function ProductDetail() {
                               [Approximately US ${((product.price * 1.2 / 100) * 1.25).toFixed(2)}]
                             </div>
                           </div>
-                          <button className="bg-[#0053A0] hover:bg-[#00438A] text-white py-2 px-6 font-medium">
+                          <button className="bg-[#0053A0] hover:bg-[#00438A] text-white py-2 px-6 font-medium"
+                            onClick={handleBuyNowClick}>
                             Buy it now
                           </button>
+                          {/* Modal */}
+                          {isModalOpen && (
+                            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                              <div className="bg-white rounded-lg shadow-lg w-96 p-4">
+                                <div className="flex justify-between items-center border-b pb-2">
+                                  <h2 className="text-lg font-medium">Confirm Purchase</h2>
+                                  <button
+                                    onClick={closeModal}
+                                    className="text-gray-500 hover:text-gray-700"
+                                  >
+                                    ✕
+                                  </button>
+                                </div>
+                                <div className="mt-4">
+                                  <img
+                                     src={`${productImages[selectedImage].url}/400`}
+                                     alt={product?.title}
+                                    className="w-full h-40 object-contain mb-4"
+                                  />
+                                  <h3 className="text-sm font-medium">{product?.title}</h3>
+                                  <p className="text-gray-500 text-sm mt-1">
+                                    Price: £{(product.price * 1.2 / 100).toFixed(2)}
+                                  </p>
+                                </div>
+                                <div className="mt-4 flex justify-between">
+                                  <button
+                                    onClick={closeModal}
+                                    className="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded"
+                                  >
+                                    Cancel
+                                  </button>
+                                  <button
+                                    className="bg-[#0053A0] hover:bg-[#00438A] text-white py-2 px-4 rounded"
+                                  >
+                                    Confirm Purchase
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          )}
                         </div>
-                        
+
                         <div className="flex items-center text-xs text-[#0053A0] mt-2">
-                          <button 
+                          <button
                             onClick={() => setShowBidHistory(!showBidHistory)}
                             className="hover:underline flex items-center"
                           >
@@ -535,7 +585,7 @@ export default function ProductDetail() {
                             Add to watchlist
                           </button>
                         </div>
-                        
+
                         {showBidHistory && (
                           <div className="mt-2 border text-xs">
                             <div className="bg-gray-100 p-2 font-medium">
@@ -604,7 +654,7 @@ export default function ProductDetail() {
                         [Approximately US ${((product.price / 100) * 1.25).toFixed(2)}]
                       </div>
                     </div>
-                    
+
                     {product.status === "available" ? (
                       <div className="space-y-3">
                         <div className="flex items-center">
@@ -646,20 +696,19 @@ export default function ProductDetail() {
                             More than 10 available
                           </div>
                         </div>
-                        
+
                         <div className="space-y-2">
                           <button
                             onClick={handleCartAction}
-                            className={`w-full flex items-center justify-center px-6 py-2 text-base font-medium text-white ${
-                              isItemAdded 
-                                ? "bg-[#e43147] hover:bg-[#c52b3d]" 
-                                : "bg-[#0053A0] hover:bg-[#00438A]"
-                            }`}
+                            className={`w-full flex items-center justify-center px-6 py-2 text-base font-medium text-white ${isItemAdded
+                              ? "bg-[#e43147] hover:bg-[#c52b3d]"
+                              : "bg-[#0053A0] hover:bg-[#00438A]"
+                              }`}
                           >
                             <FiShoppingCart className="mr-2 h-5 w-5" />
                             {isItemAdded ? "Remove from basket" : "Add to basket"}
                           </button>
-                          
+
                           <button
                             onClick={toggleWishlist}
                             className="w-full flex items-center justify-center px-6 py-2 border border-gray-300 text-base font-medium text-gray-700 bg-white hover:bg-gray-50"
@@ -680,14 +729,14 @@ export default function ProductDetail() {
                   </div>
                 )}
               </div>
-              
+
               {/* Shipping & Payment */}
               <div className="py-4 border-b border-gray-200">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <div className="flex justify-between items-center mb-2">
                       <h3 className="text-base font-medium">Shipping</h3>
-                      <button 
+                      <button
                         onClick={() => setShowShipping(!showShipping)}
                         className="text-xs text-[#0053A0]"
                       >
@@ -712,7 +761,7 @@ export default function ProductDetail() {
                         <span>Wed, 15 Jun and Mon, 20 Jun</span>
                       </div>
                     </div>
-                    
+
                     {showShipping && (
                       <div className="mt-3 text-xs bg-gray-50 p-3 border border-gray-200">
                         <table className="w-full">
@@ -740,11 +789,11 @@ export default function ProductDetail() {
                       </div>
                     )}
                   </div>
-                  
+
                   <div>
                     <div className="flex justify-between items-center mb-2">
                       <h3 className="text-base font-medium">Payment</h3>
-                      <button 
+                      <button
                         onClick={() => setShowPayment(!showPayment)}
                         className="text-xs text-[#0053A0]"
                       >
@@ -761,7 +810,7 @@ export default function ProductDetail() {
                         *Terms and conditions apply
                       </div>
                     </div>
-                    
+
                     {showPayment && (
                       <div className="mt-3 text-xs bg-gray-50 p-3 border border-gray-200">
                         <p>Payment methods accepted:</p>
@@ -776,12 +825,12 @@ export default function ProductDetail() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Returns */}
               <div className="py-4 border-b border-gray-200">
                 <div className="flex justify-between items-center mb-2">
                   <h3 className="text-base font-medium">Returns</h3>
-                  <button 
+                  <button
                     onClick={() => setShowReturns(!showReturns)}
                     className="text-xs text-[#0053A0]"
                   >
@@ -791,7 +840,7 @@ export default function ProductDetail() {
                 <div className="text-sm">
                   <p>30 day returns. Buyer pays for return shipping.</p>
                 </div>
-                
+
                 {showReturns && (
                   <div className="mt-3 text-xs bg-gray-50 p-3 border border-gray-200">
                     <p className="font-medium">Return policy details:</p>
@@ -803,12 +852,12 @@ export default function ProductDetail() {
                   </div>
                 )}
               </div>
-              
+
               {/* Description */}
               <div className="py-4">
                 <div className="flex justify-between items-center mb-2">
                   <h3 className="text-base font-medium">Description</h3>
-                  <button 
+                  <button
                     onClick={() => setShowDescription(!showDescription)}
                     className="text-xs text-[#0053A0]"
                   >
@@ -818,7 +867,7 @@ export default function ProductDetail() {
                 <div className="text-sm">
                   <p className="line-clamp-3">{product.description}</p>
                 </div>
-                
+
                 {showDescription && (
                   <div className="mt-3 text-sm">
                     <p>{product.description}</p>
@@ -852,7 +901,7 @@ export default function ProductDetail() {
                   </div>
                 )}
               </div>
-              
+
               {/* Seller Information (Desktop) */}
               <div className="hidden lg:block mt-4 p-3 bg-gray-50 border border-gray-200">
                 <div className="flex items-center justify-between">
@@ -875,7 +924,7 @@ export default function ProductDetail() {
                   </div>
                 </div>
               </div>
-              
+
               {!currentUser && (
                 <div className="mt-4 bg-blue-50 border border-blue-200 p-3 text-sm">
                   <p className="text-blue-700">
@@ -890,14 +939,14 @@ export default function ProductDetail() {
             </div>
           </div>
         </div>
-        
+
         {/* Similar Products Section */}
         <div className="mt-6">
           <h2 className="text-lg font-bold text-gray-900 mb-4">Similar sponsored items</h2>
           <SimilarProducts categoryId={product.categoryId} />
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
