@@ -1,17 +1,55 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Footer from "../../components/Footer";
 import SubMenu from "../../components/SubMenu";
 import MainHeader from "../../components/MainHeader";
 import TopMenu from "../../components/TopMenu";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import shippingRules from "../../data/shipping_rules.json";
+
 import axios from "axios";
 
+// Currency map
+const getCurrencyFromCountry = (country) => {
+  switch (country) {
+    case "Vietnam":
+      return "VND";
+    case "United Kingdom":
+      return "GBP";
+    case "United States":
+      return "USD";
+    default:
+      return "USD";
+  }
+};
 
+const exchangeRateMap = {
+  GBP: 1, // base
+  USD: 1.33, // 1 GBP = 1.25 USD
+  VND: 34000, // 1 GBP = 30,000 VND
+};
 
+// Calculate shipping fee from rules
+function calculateShippingFee(address) {
+  const { country, city, district, zipcode } = address || {};
+  const rule = shippingRules.find((r) => r.country === country);
+  if (!rule) return 500;
 
-// Định nghĩa CheckoutItem
-function CheckoutItem({ product }) {
+  if (rule.regions) {
+    const region = rule.regions.find((r) => r.city === city);
+    if (region) {
+      if (region.flatFee) return region.flatFee;
+      if (region.urbanDistricts?.includes(district))
+        return region.urbanFee ?? rule.defaultFee;
+      return region.suburbanFee ?? rule.defaultFee;
+    }
+  }
+
+  if (rule.zipFees?.[zipcode]) return rule.zipFees[zipcode];
+  return rule.defaultFee;
+}
+
+function CheckoutItem({ product, formatCurrency }) {
   return (
     <div className="flex items-center gap-4 p-4 border-b">
       <img
@@ -23,7 +61,7 @@ function CheckoutItem({ product }) {
         <div className="font-semibold">{product.title}</div>
         <div className="text-sm text-gray-500">{product.description}</div>
         <div className="font-bold mt-2">
-          £{(product.price * product.quantity / 100).toFixed(2)}
+          {formatCurrency(product.price * product.quantity)}
         </div>
       </div>
     </div>
@@ -35,11 +73,30 @@ export default function Checkout() {
   const [cartItems, setCartItems] = useState([]);
   const [addressDetails, setAddressDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = useMemo(() => {
+    const stored = localStorage.getItem("currentUser");
+    return stored ? JSON.parse(stored) : null;
+  }, []);
   const [selectedMethod, setSelectedMethod] = useState("cod"); // Default là COD
   const [showPaypalPopup, setShowPaypalPopup] = useState(false);
 
+  const [shippingFee, setShippingFee] = useState(0); // phí giao hàng
+  const [shipmentCode, setShipmentCode] = useState(null); // mã vận đơn
+  const [selectedAddress, setSelectedAddress] = useState(null); // địa chỉ đã chọn
+  const effectiveAddress = selectedAddress || addressDetails;
+  const currentCurrency = useMemo(() => {
+    return getCurrencyFromCountry(effectiveAddress?.country);
+  }, [effectiveAddress]);
 
+  const formatCurrency = (valueGBP, targetCurrency = currentCurrency) => {
+    const rate = exchangeRateMap[targetCurrency] || 1;
+    const convertedValue = valueGBP * rate;
+
+    return new Intl.NumberFormat(undefined, {
+      style: "currency",
+      currency: targetCurrency,
+    }).format(convertedValue / 100); // Vì giá gốc đang chia 100
+  };
 
   const Checkout = () => {
     const [cart, setCart] = useState([]);
@@ -49,19 +106,39 @@ export default function Checkout() {
     const [showPaypalPopup, setShowPaypalPopup] = useState(false);
 
     useEffect(() => {
+      const fetchData = async () => {
+        await Promise.all([fetchCartItems(), fetchAddressDetails()]);
+
+        const stored = localStorage.getItem("selectedAddress");
+        if (stored) {
+          try {
+            const addr = JSON.parse(stored);
+            setSelectedAddress(addr);
+            setShippingFee(calculateShippingFee(addr.city));
+          } catch (e) {
+            console.error("Lỗi khi parse địa chỉ đã chọn:", e);
+          } finally {
+            localStorage.removeItem("selectedAddress");
+          }
+        }
+      };
       const fetchCart = async () => {
         try {
-          const response = await axios.get("http://localhost:3001/cart");
+          const response = await axios.get("http://localhost:9999/cart");
           setCart(response.data);
         } catch (error) {
           console.error("Failed to fetch cart", error);
         }
       };
+      fetchData();
       fetchCart();
-    }, []);
+    }, [currentUser]);
 
     const getCartTotal = () => {
-      return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+      return cart.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
     };
 
     const handleSubmit = async () => {
@@ -91,10 +168,10 @@ export default function Checkout() {
       };
 
       try {
-        await axios.post("http://localhost:3001/orders", newOrder);
+        await axios.post("http://localhost:9999/orders", newOrder);
         await Promise.all(
           cart.map((item) =>
-            axios.delete(`http://localhost:3001/cart/${item.id}`)
+            axios.delete(`http://localhost:9999/cart/${item.id}`)
           )
         );
         alert("Order submitted successfully!");
@@ -111,7 +188,7 @@ export default function Checkout() {
   // Hàm lấy dữ liệu từ API
   const fetchCartItems = async () => {
     if (!currentUser) {
-      console.log("No current user, setting empty cart")
+      console.log("No current user, setting empty cart");
       setCartItems([]);
       setIsLoading(false);
       return;
@@ -137,21 +214,28 @@ export default function Checkout() {
 
       // Lấy chi tiết sản phẩm cho từng mục trong giỏ hàng
       const itemsWithDetails = await Promise.all(
-        cartData.flatMap(cartItem =>
+        cartData.flatMap((cartItem) =>
           cartItem.productId.map(async (product) => {
             console.log(`Fetching product with id: ${product.idProduct}`);
             const productResponse = await fetch(
               `http://localhost:9999/products?id=${product.idProduct}`
             );
             if (!productResponse.ok) {
-              console.warn(`Failed to fetch product with id ${product.idProduct}: ${productResponse.status}`);
+              console.warn(
+                `Failed to fetch product with id ${product.idProduct}: ${productResponse.status}`
+              );
               return null;
             }
             const productData = await productResponse.json();
-            console.log(`Product data for id ${product.idProduct}:`, productData);
+            console.log(
+              `Product data for id ${product.idProduct}:`,
+              productData
+            );
 
             // Xử lý cả trường hợp API trả về mảng hoặc object
-            let productInfo = Array.isArray(productData) ? productData[0] : productData;
+            let productInfo = Array.isArray(productData)
+              ? productData[0]
+              : productData;
             if (productInfo) {
               return {
                 ...productInfo,
@@ -166,10 +250,12 @@ export default function Checkout() {
         )
       );
 
-      const filteredItems = itemsWithDetails.filter(item => item !== null);
+      const filteredItems = itemsWithDetails.filter((item) => item !== null);
       console.log("Filtered cart items:", filteredItems);
       if (filteredItems.length === 0) {
-        console.warn("No valid products found in cart. Check if products exist in the database or if the API response format is correct.");
+        console.warn(
+          "No valid products found in cart. Check if products exist in the database or if the API response format is correct."
+        );
       }
       setCartItems(filteredItems);
     } catch (error) {
@@ -180,28 +266,35 @@ export default function Checkout() {
     }
   };
 
-
   // Hàm lấy thông tin địa chỉ từ API
   const fetchAddressDetails = async () => {
     if (!currentUser) return;
 
     try {
       console.log("Fetching address for user:", currentUser.id);
-      const userResponse = await fetch(`http://localhost:9999/user?id=${currentUser.id}`);
+      const userResponse = await fetch(
+        `http://localhost:9999/user?id=${currentUser.id}`
+      );
       if (!userResponse.ok) {
         throw new Error(`Failed to fetch user: ${userResponse.status}`);
       }
       const userData = await userResponse.json();
       console.log("User data:", userData);
-      const user = userData.find(user => user.id === currentUser.id); // Tìm user theo id
+      const user = userData.find((user) => user.id === currentUser.id);
       if (user) {
-        setAddressDetails({
-          name: user.fullname,
-          address: user.address.street,
-          zipcode: user.address.zipcode,
+        const fullAddress = {
+          fullName: user.fullname,
+          phone: user.phone,
+          street: user.address.street,
+          district: user.address.district,
+          ward: user.address.ward,
           city: user.address.city,
+          state: user.address.state,
           country: user.address.country,
-        });
+          zipcode: user.address.zipcode,
+        };
+        setAddressDetails(fullAddress);
+        setShippingFee(calculateShippingFee(fullAddress)); // ✅ Truyền toàn bộ address
       } else {
         console.warn("User not found");
         setAddressDetails({
@@ -227,9 +320,23 @@ export default function Checkout() {
   useEffect(() => {
     const fetchData = async () => {
       await Promise.all([fetchCartItems(), fetchAddressDetails()]);
+
+      const stored = localStorage.getItem("selectedAddress");
+      if (stored) {
+        try {
+          const addr = JSON.parse(stored);
+          setSelectedAddress(addr);
+          setShippingFee(calculateShippingFee(addr)); // ✅ dùng đúng
+        } catch (e) {
+          console.error("Lỗi khi parse địa chỉ đã chọn:", e);
+        } finally {
+          localStorage.removeItem("selectedAddress");
+        }
+      }
     };
     fetchData();
   }, [currentUser]);
+
   const handleSimulatedPaypal = async () => {
     setShowPaypalPopup(false);
     await handlePayment(true);
@@ -237,7 +344,10 @@ export default function Checkout() {
 
   // Tính tổng tiền
   const getCartTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cartItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
   };
 
   const handlePayment = async (isSimulated = false) => {
@@ -266,11 +376,11 @@ export default function Checkout() {
       status: selectedMethod === "cod" ? "processing" : "paid",
       payment_method: selectedMethod,
 
-      items: cartItems.map(item => ({
+      items: cartItems.map((item) => ({
         product_name: item.title,
         quantity: item.quantity,
         price: parseFloat((item.price / 100).toFixed(2)),
-      }))
+      })),
     };
 
     try {
@@ -287,19 +397,49 @@ export default function Checkout() {
         body: JSON.stringify({ order_id: updatedOrderIds }),
       });
 
-      const cartRes = await fetch(`http://localhost:9999/shoppingCart?userId=${currentUser.id}`);
+      const cartRes = await fetch(
+        `http://localhost:9999/shoppingCart?userId=${currentUser.id}`
+      );
       const cartData = await cartRes.json();
       for (let cart of cartData) {
-        await fetch(`http://localhost:9999/shoppingCart/${cart.id}`, { method: "DELETE" });
+        await fetch(`http://localhost:9999/shoppingCart/${cart.id}`, {
+          method: "DELETE",
+        });
       }
 
-      localStorage.setItem("currentUser", JSON.stringify({ ...currentUser, order_id: updatedOrderIds }));
+      localStorage.setItem(
+        "currentUser",
+        JSON.stringify({ ...currentUser, order_id: updatedOrderIds })
+      );
+
+      const newShipmentCode =
+        "SHIP" + Math.floor(100000 + Math.random() * 900000);
+      setShipmentCode(newShipmentCode);
+
+      await axios.post("http://localhost:9999/shipping", {
+        shipmentCode: newShipmentCode,
+        userId: currentUser.id,
+        orderId,
+        address: {
+          fullName: effectiveAddress.fullName || effectiveAddress.name,
+          phone: effectiveAddress.phone,
+          street: effectiveAddress.street,
+          ward: effectiveAddress.ward,
+          district: effectiveAddress.district,
+          city: effectiveAddress.city,
+        },
+        shippingFee,
+        status: "processing",
+        createdAt: new Date().toISOString(),
+      });
 
       navigate("/success", {
         state: {
           cartItems: cartItems,
-          addressDetails: addressDetails,
+          addressDetails: effectiveAddress,
           orderTotal: getCartTotal(),
+          shippingFee,
+          shipmentCode: newShipmentCode,
         },
       });
     } catch (error) {
@@ -307,8 +447,6 @@ export default function Checkout() {
       alert("Đã xảy ra lỗi khi thanh toán.");
     }
   };
-
-
 
   if (!currentUser) {
     return (
@@ -355,21 +493,40 @@ export default function Checkout() {
                   </div>
                   <div>
                     <a
-                      href="/address"
+                      href="/address?selectMode=true"
                       className="text-blue-500 text-sm underline"
                     >
-                      Update Address
+                      Choose another address
                     </a>
-                    {addressDetails ? (
+
+                    {effectiveAddress ? (
                       <ul className="text-sm mt-2">
-                        <li>Name: {addressDetails.name}</li>
-                        <li>Address: {addressDetails.address}</li>
-                        <li>Zip: {addressDetails.zipcode}</li>
-                        <li>City: {addressDetails.city}</li>
-                        <li>Country: {addressDetails.country}</li>
+                        <li>
+                          <strong>Name:</strong>{" "}
+                          {effectiveAddress.fullName || effectiveAddress.name}
+                        </li>
+                        <li>
+                          <strong>Phone:</strong> {effectiveAddress.phone}
+                        </li>
+                        <li>
+                          <strong>Address:</strong>{" "}
+                          {[
+                            effectiveAddress.street,
+                            effectiveAddress.city,
+                            effectiveAddress.state,
+                            effectiveAddress.country,
+                          ]
+                            .filter(Boolean)
+                            .join(", ")}
+                        </li>
+                        <li>
+                          <strong>Zip:</strong> {effectiveAddress.zipcode}
+                        </li>
                       </ul>
                     ) : (
-                      <div className="text-sm mt-2">No address available</div>
+                      <div className="text-sm mt-2 text-red-500">
+                        No shipping address available!
+                      </div>
                     )}
                   </div>
                 </div>
@@ -382,6 +539,7 @@ export default function Checkout() {
                       <CheckoutItem
                         key={`${product.cartItemId}-${product.idProduct}`}
                         product={product}
+                        formatCurrency={formatCurrency}
                       />
                     ))
                   )}
@@ -398,11 +556,11 @@ export default function Checkout() {
                       Items (
                       {cartItems.reduce((sum, item) => sum + item.quantity, 0)})
                     </div>
-                    <div>£{(getCartTotal() / 100).toFixed(2)}</div>
+                    <div>{formatCurrency(getCartTotal())}</div>
                   </div>
                   <div className="flex items-center justify-between mb-4 text-sm">
                     <div>Shipping:</div>
-                    <div>Free</div>
+                    <div>{formatCurrency(shippingFee)}</div>
                   </div>
 
                   <div className="border-t" />
@@ -410,7 +568,7 @@ export default function Checkout() {
                   <div className="flex items-center justify-between my-4">
                     <div className="font-semibold">Order total</div>
                     <div className="text-2xl font-semibold">
-                      £{(getCartTotal() / 100).toFixed(2)}
+                      {formatCurrency(getCartTotal() + shippingFee)}
                     </div>
                   </div>
 
@@ -469,15 +627,22 @@ export default function Checkout() {
           {showPaypalPopup && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
               <div className="bg-white p-6 rounded-lg shadow-lg text-center max-w-[400px] w-full">
-                <div className="text-lg font-semibold mb-4">PayPal Checkout</div>
+                <div className="text-lg font-semibold mb-4">
+                  PayPal Checkout
+                </div>
                 <PayPalScriptProvider
                   options={{
                     "client-id": "test", // 👉 Dùng sandbox client ID (có thể thay bằng ID thật)
-                    currency: "GBP",     // 👉 hoặc USD nếu cần
+                    currency: "GBP", // 👉 hoặc USD nếu cần
                   }}
                 >
                   <PayPalButtons
-                    style={{ layout: "vertical", color: "blue", shape: "rect", label: "paypal" }}
+                    style={{
+                      layout: "vertical",
+                      color: "blue",
+                      shape: "rect",
+                      label: "paypal",
+                    }}
                     createOrder={(data, actions) => {
                       return actions.order.create({
                         purchase_units: [
@@ -491,7 +656,9 @@ export default function Checkout() {
                     }}
                     onApprove={(data, actions) => {
                       return actions.order.capture().then((details) => {
-                        alert(`Transaction completed by ${details.payer.name.given_name}`);
+                        alert(
+                          `Transaction completed by ${details.payer.name.given_name}`
+                        );
                         setShowPaypalPopup(false);
                         handlePayment(true); // ✅ Fix ở đây
                       });
@@ -500,12 +667,10 @@ export default function Checkout() {
                       setShowPaypalPopup(false);
                     }}
                   />
-
                 </PayPalScriptProvider>
               </div>
             </div>
           )}
-
         </div>
         <div>
           <Footer />
@@ -513,5 +678,4 @@ export default function Checkout() {
       </div>
     </>
   );
-
 }

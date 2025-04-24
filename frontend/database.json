@@ -17,25 +17,8 @@
         "ORD855",
         "ORD399",
         "ORD677",
-        "ORD363",
-        "ORD915",
-        "ORD740",
-        "ORD953",
-        "ORD979",
-        "ORD203",
-        "ORD170",
-        "ORD570",
-        "ORD146",
-        "ORD838",
-        "ORD413",
-        "ORD650",
-        "ORD874",
-        "ORD380",
-        "ORD470",
-        "ORD107",
-        "ORD136",
-        "ORD224",
-        "ORD368"
+        "ORD536",
+        "ORD315"
       ],
       "address": {
         "street": "123 Main St",
@@ -136,6 +119,138 @@
         "country": "Vietnam"
       },
       "role": "admin",
+      "action": "unlock"
+    },
+    {
+      "id": "user1745321530724",
+      "email": "testman@gmail.com",
+      "password": "123123",
+      "fullname": "Testman",
+      "order_id": [
+        "ORD257",
+        "ORD112",
+        "ORD105",
+        "ORD248",
+        "ORD177",
+        "ORD168",
+        "ORD778",
+        "ORD706",
+        "ORD521",
+        "ORD474",
+        "ORD146",
+        "ORD943",
+        "ORD237",
+        "ORD377",
+        "ORD971",
+        "ORD649",
+        "ORD309",
+        "ORD486",
+        "ORD190",
+        "ORD278",
+        "ORD664",
+        "ORD929",
+        "ORD984",
+        "ORD925",
+        "ORD976",
+        "ORD998",
+        "ORD408",
+        "ORD512",
+        "ORD453",
+        "ORD453",
+        "ORD291",
+        "ORD197",
+        "ORD996",
+        "ORD791",
+        "ORD472",
+        "ORD240",
+        "ORD701",
+        "ORD969",
+        "ORD429",
+        "ORD512",
+        "ORD586",
+        "ORD943",
+        "ORD651",
+        "ORD526",
+        "ORD267",
+        "ORD212",
+        "ORD662793",
+        "ORD994819",
+        "ORD636057",
+        "ORD354423",
+        "ORD238354",
+        "ORD786691",
+        "ORD513593",
+        "ORD366223",
+        "ORD377680",
+        "ORD198598",
+        "ORD121699",
+        "ORD975191",
+        "ORD855066",
+        "ORD702111",
+        "ORD972340",
+        "ORD868758",
+        "ORD444679",
+        "ORD831993",
+        "ORD312058",
+        "ORD126839",
+        "ORD707721",
+        "ORD471284",
+        "ORD578277",
+        "ORD187777",
+        "ORD168610",
+        "ORD765182",
+        "ORD335729",
+        "ORD244443",
+        "ORD390718",
+        "ORD112399",
+        "ORD622976",
+        "ORD723397",
+        "ORD604771",
+        "ORD901220",
+        "ORD127056",
+        "ORD590523",
+        "ORD945250",
+        "ORD987314",
+        "ORD636174",
+        "ORD898741",
+        "ORD308401",
+        "ORD854555",
+        "ORD612768",
+        "ORD267259",
+        "ORD976240",
+        "ORD940743",
+        "ORD451700",
+        "ORD613389",
+        "ORD249463",
+        "ORD899157",
+        "ORD845232",
+        "ORD266873",
+        "ORD789917",
+        "ORD222902",
+        "ORD578258",
+        "ORD320",
+        "ORD894",
+        "ORD192",
+        "ORD560",
+        "ORD801",
+        "ORD737",
+        "ORD632",
+        "ORD450",
+        "ORD401",
+        "ORD694",
+        "ORD396",
+        "ORD714",
+        "ORD675",
+        "ORD127",
+        "ORD479"
+      ],
+      "address": {
+        "street": "Robert",
+        "zipcode": "255",
+        "city": "Skibidi",
+        "country": "VN"
+      },
+      "role": "seller",
       "action": "unlock"
     }
   ],
@@ -992,6 +1107,70 @@
           "price": 3.5
         }
       ]
+    },
+    {
+      "order_id": "ORD315",
+      "user_id": "1",
+      "order_date": "2025-04-22T09:43:12.841Z",
+      "total_amount": 8.8,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
+        }
+      ],
+      "id": "9oTMsar"
+    },
+    {
+      "id": "c5ad",
+      "order_id": "ORD675",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T09:24:20.038Z",
+      "total_amount": 8.8,
+      "status": "shipped",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
+        }
+      ]
+    },
+    {
+      "id": "4d55",
+      "order_id": "ORD127",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T09:26:32.795Z",
+      "total_amount": 45,
+      "status": "canceled",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ]
+    },
+    {
+      "id": "4bb7",
+      "order_id": "ORD479",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T09:29:45.841Z",
+      "total_amount": 12,
+      "status": "canceled",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Denim Jacket",
+          "quantity": 1,
+          "price": 12
+        }
+      ]
     }
   ],
   "categories": [
@@ -1052,7 +1231,7 @@
       "categoryId": 2,
       "url": "https://picsum.photos/id/0",
       "status": "available",
-      "quantity": 16
+      "quantity": 17
     },
     {
       "id": "4",
@@ -1447,7 +1626,23 @@
       "quantity": 60
     }
   ],
-  "shoppingCart": [],
+  "shoppingCart": [
+    {
+      "id": "64d2",
+      "userId": "user1745321530724",
+      "productId": [
+        {
+          "idProduct": "10",
+          "quantity": "1"
+        },
+        {
+          "idProduct": "9",
+          "quantity": "1"
+        }
+      ],
+      "dateAdded": "2025-04-24T09:33:05.536Z"
+    }
+  ],
   "paymentMethods": [
     {
       "id": "pm001",
@@ -1717,6 +1912,11 @@
       "id": "sp1743076282046",
       "userId": null,
       "products": []
+    },
+    {
+      "id": "sp1745321530768",
+      "userId": "user1745321530724",
+      "products": []
     }
   ],
   "auctionBids": [
@@ -1759,6 +1959,122 @@
       "bidAmount": 20000,
       "bidDate": "2025-03-27T16:35:03.048Z",
       "isWinningBid": true
+    }
+  ],
+  "address": [
+    {
+      "id": "101",
+      "userId": "user1745321530724",
+      "fullName": "Testman",
+      "phone": "0909090909",
+      "street": "123 Test Street",
+      "ward": "Phường Test",
+      "district": "Quận Skibidi",
+      "city": "Skibidi"
+    },
+    {
+      "id": "102",
+      "userId": "user1745321530724",
+      "fullName": "Testman",
+      "phone": "0908888888",
+      "street": "456 Beta Road",
+      "ward": "Phường ABC",
+      "district": "Quận XYZ",
+      "city": "Hồ Chí Minh"
+    },
+    {
+      "id": "fdad",
+      "fullName": "Tst",
+      "phone": "0120250562",
+      "street": "AA",
+      "country": "Vietnam",
+      "state": "Bà Rịa-Vũng Tàu",
+      "city": "Côn Sơn",
+      "userId": "user1745321530724"
+    },
+    {
+      "id": "573f",
+      "fullName": "BB",
+      "phone": "0123254885",
+      "street": "CC",
+      "zipcode": "212",
+      "country": "Vietnam",
+      "state": "Hồ Chí Minh",
+      "city": "Củ Chi",
+      "userId": "user1745321530724"
+    },
+    {
+      "id": "ea67",
+      "fullName": "Test",
+      "phone": "45216525844",
+      "street": "aa",
+      "zipcode": "131",
+      "country": "Albania",
+      "state": "Berat District",
+      "city": "Bashkia Berat",
+      "userId": "user1745321530724"
+    },
+    {
+      "id": "7de1",
+      "fullName": "King",
+      "phone": "24152365346",
+      "street": "queen",
+      "zipcode": "1234",
+      "country": "United Kingdom",
+      "userId": "user1745321530724"
+    }
+  ],
+  "shipping": [
+    {
+      "id": "d752",
+      "shipmentCode": "SHIP158372",
+      "userId": "user1745321530724",
+      "orderId": "ORD675",
+      "address": {
+        "fullName": "Testman",
+        "phone": "0909090909",
+        "street": "123 Test Street",
+        "ward": "Phường Test",
+        "district": "Quận Skibidi",
+        "city": "Skibidi"
+      },
+      "shippingFee": 250,
+      "status": "shipped",
+      "createdAt": "2025-04-24T09:24:20.094Z"
+    },
+    {
+      "id": "dfc6",
+      "shipmentCode": "SHIP169802",
+      "userId": "user1745321530724",
+      "orderId": "ORD127",
+      "address": {
+        "fullName": "Testman",
+        "phone": "0908888888",
+        "street": "456 Beta Road",
+        "ward": "Phường ABC",
+        "district": "Quận XYZ",
+        "city": "Hồ Chí Minh"
+      },
+      "shippingFee": 200,
+      "status": "canceled",
+      "createdAt": "2025-04-24T09:26:32.853Z"
+    },
+    {
+      "id": "3084",
+      "shipmentCode": "SHIP938396",
+      "userId": "user1745321530724",
+      "orderId": "ORD479",
+      "address": {
+        "fullName": "Testman",
+        "phone": "0909090909",
+        "street": "123 Test Street",
+        "ward": "Phường Test",
+        "district": "Quận Skibidi",
+        "city": "Skibidi"
+      },
+      "shippingFee": 250,
+      "status": "canceled",
+      "createdAt": "2025-04-24T09:29:45.902Z"
     }
   ]
 }
