@@ -242,7 +242,12 @@
         "ORD714",
         "ORD675",
         "ORD127",
-        "ORD479"
+        "ORD479",
+        "ORD508",
+        "ORD920",
+        "ORD285",
+        "ORD767",
+        "ORD238"
       ],
       "address": {
         "street": "Robert",
@@ -1171,6 +1176,91 @@
           "price": 12
         }
       ]
+    },
+    {
+      "id": "b6bc",
+      "order_id": "ORD508",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T14:44:59.735Z",
+      "total_amount": 13.3,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        },
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
+        }
+      ]
+    },
+    {
+      "id": "5eda",
+      "order_id": "ORD920",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T14:46:48.401Z",
+      "total_amount": 4.5,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        }
+      ]
+    },
+    {
+      "id": "da49",
+      "order_id": "ORD285",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T15:21:52.644Z",
+      "total_amount": 4.5,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        }
+      ]
+    },
+    {
+      "id": "fcb6",
+      "order_id": "ORD767",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T17:01:02.690Z",
+      "total_amount": 45,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ]
+    },
+    {
+      "id": "61af",
+      "order_id": "ORD238",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T17:30:47.033Z",
+      "total_amount": 90,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 2,
+          "price": 45
+        }
+      ]
     }
   ],
   "categories": [
@@ -1231,7 +1321,7 @@
       "categoryId": 2,
       "url": "https://picsum.photos/id/0",
       "status": "available",
-      "quantity": 17
+      "quantity": 16
     },
     {
       "id": "4",
@@ -1626,23 +1716,7 @@
       "quantity": 60
     }
   ],
-  "shoppingCart": [
-    {
-      "id": "64d2",
-      "userId": "user1745321530724",
-      "productId": [
-        {
-          "idProduct": "10",
-          "quantity": "1"
-        },
-        {
-          "idProduct": "9",
-          "quantity": "1"
-        }
-      ],
-      "dateAdded": "2025-04-24T09:33:05.536Z"
-    }
-  ],
+  "shoppingCart": [],
   "paymentMethods": [
     {
       "id": "pm001",
@@ -2022,6 +2096,28 @@
       "zipcode": "1234",
       "country": "United Kingdom",
       "userId": "user1745321530724"
+    },
+    {
+      "id": "d22e",
+      "fullName": "Hieu Test",
+      "phone": "45324327",
+      "street": "HK",
+      "zipcode": "12354",
+      "country": "Taiwan",
+      "state": "Chiayi",
+      "city": "Chiayi County",
+      "userId": "user1745321530724"
+    },
+    {
+      "id": "68a3",
+      "fullName": "aa",
+      "phone": "357537",
+      "street": "aa",
+      "zipcode": "2343",
+      "country": "Ukraine",
+      "state": "Cherkaska oblast",
+      "city": "Cherkasy",
+      "userId": "user1745321530724"
     }
   ],
   "shipping": [
@@ -2075,6 +2171,82 @@
       "shippingFee": 250,
       "status": "canceled",
       "createdAt": "2025-04-24T09:29:45.902Z"
+    },
+    {
+      "id": "3664",
+      "shipmentCode": "SHIP408349",
+      "userId": "user1745321530724",
+      "orderId": "ORD508",
+      "address": {
+        "fullName": "King",
+        "phone": "24152365346",
+        "street": "queen"
+      },
+      "shippingFee": 500,
+      "status": "processing",
+      "createdAt": "2025-04-24T14:44:59.803Z"
+    },
+    {
+      "id": "2871",
+      "shipmentCode": "SHIP310430",
+      "userId": "user1745321530724",
+      "orderId": "ORD920",
+      "address": {
+        "fullName": "BB",
+        "phone": "0123254885",
+        "street": "CC",
+        "city": "Củ Chi"
+      },
+      "shippingFee": 300,
+      "status": "processing",
+      "createdAt": "2025-04-24T14:46:48.467Z"
+    },
+    {
+      "id": "7703",
+      "shipmentCode": "SHIP414432",
+      "userId": "user1745321530724",
+      "orderId": "ORD285",
+      "address": {
+        "fullName": "Hieu Test",
+        "phone": "45324327",
+        "street": "HK",
+        "city": "Chiayi County"
+      },
+      "shippingFee": 500,
+      "status": "processing",
+      "createdAt": "2025-04-24T15:21:52.706Z"
+    },
+    {
+      "id": "dddf",
+      "shipmentCode": "SHIP829554",
+      "userId": "user1745321530724",
+      "orderId": "ORD767",
+      "address": {
+        "fullName": "Testman",
+        "phone": "0909090909",
+        "street": "123 Test Street",
+        "ward": "Phường Test",
+        "district": "Quận Skibidi",
+        "city": "Skibidi"
+      },
+      "shippingFee": 500,
+      "status": "processing",
+      "createdAt": "2025-04-24T17:01:02.756Z"
+    },
+    {
+      "id": "2813",
+      "shipmentCode": "SHIP479537",
+      "userId": "user1745321530724",
+      "orderId": "ORD238",
+      "address": {
+        "fullName": "BB",
+        "phone": "0123254885",
+        "street": "CC",
+        "city": "Củ Chi"
+      },
+      "shippingFee": 300,
+      "status": "processing",
+      "createdAt": "2025-04-24T17:30:47.096Z"
     }
   ]
 }

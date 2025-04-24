@@ -5,6 +5,8 @@ import MainHeader from "../../components/MainHeader";
 import SubMenu from "../../components/SubMenu";
 import Footer from "../../components/Footer";
 import SimilarProducts from "../../components/SimilarProducts";
+import { formatCurrency } from "../../utils/formatCurrency";
+import { useRegion } from "../../context/RegionContext";
 
 export default function AuctionProductDetail() {
   const { id } = useParams();
@@ -18,6 +20,7 @@ export default function AuctionProductDetail() {
     const stored = localStorage.getItem("currentUser");
     return stored ? JSON.parse(stored) : null;
   }, []);
+  const { currencyMeta, exchangeRate } = useRegion();
 
   useEffect(() => {
     const fetchProductAndAuctionData = async () => {
@@ -73,10 +76,11 @@ export default function AuctionProductDetail() {
     const bidValue = parseFloat(bidAmount);
     if (isNaN(bidValue) || bidValue <= currentBid) {
       alert(
-        `Your bid must be higher than the current bid (£${currentBid.toFixed(
-          2
-        )})`
+        `Your bid must be higher than the current bid (${
+          currencyMeta.symbol
+        }${currentBid.toFixed(2)})`
       );
+
       return;
     }
 
@@ -198,7 +202,11 @@ export default function AuctionProductDetail() {
                   <div className="flex items-center">
                     Current Bid:
                     <div className="font-bold text-[20px] ml-2">
-                      GBP £{(currentBid / 100).toFixed(2)}
+                      {formatCurrency(
+                        (currentBid / 100) * exchangeRate,
+                        currencyMeta.code,
+                        currencyMeta.symbol
+                      )}
                     </div>
                   </div>
                   <div className="text-sm text-gray-600">
@@ -213,8 +221,10 @@ export default function AuctionProductDetail() {
                       type="number"
                       value={bidAmount}
                       onChange={(e) => setBidAmount(e.target.value)}
-                      placeholder={`Enter bid (> £${(currentBid / 100).toFixed(
-                        2
+                      placeholder={`Enter bid (> ${formatCurrency(
+                        (currentBid / 100) * exchangeRate,
+                        currencyMeta.code,
+                        currencyMeta.symbol
                       )})`}
                       className="border p-2 rounded w-1/2"
                       step="0.01"
@@ -239,7 +249,11 @@ export default function AuctionProductDetail() {
                       <div className="flex items-center">
                         Buy It Now:
                         <div className="font-bold text-[18px] ml-2">
-                          GBP £{(product.buyItNowPrice / 100).toFixed(2)}
+                          {formatCurrency(
+                            (product.buyItNowPrice / 100) * exchangeRate,
+                            currencyMeta.code,
+                            currencyMeta.symbol
+                          )}
                         </div>
                       </div>
                       <button

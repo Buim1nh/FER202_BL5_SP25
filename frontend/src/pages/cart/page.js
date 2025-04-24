@@ -6,7 +6,8 @@ import MainHeader from "../../components/MainHeader";
 import SubMenu from "../../components/SubMenu";
 import SimilarProducts from "../../components/SimilarProducts";
 import Footer from "../../components/Footer";
-
+import { formatCurrency } from "../../utils/formatCurrency";
+import { useRegion } from "../../context/RegionContext";
 function EmptyCart() {
   const navigate = useNavigate();
 
@@ -34,6 +35,7 @@ function CartItem({
   onUpdateQuantity,
   availableStock,
 }) {
+  const { currencyMeta, exchangeRate } = useRegion();
   return (
     <div className="flex items-center justify-between gap-4 border-b p-4">
       <div className="flex items-center gap-4">
@@ -46,7 +48,11 @@ function CartItem({
           <div className="font-semibold">{product.title}</div>
           <div className="text-sm text-gray-500">{product.description}</div>
           <div className="font-bold mt-2">
-            £{(product.price / 100).toFixed(2)}
+            {formatCurrency(
+              (product.price / 100) * exchangeRate,
+              currencyMeta.code,
+              currencyMeta.symbol
+            )}
           </div>
 
           <div className="flex items-center gap-2 mt-2">
@@ -101,7 +107,7 @@ export default function Cart() {
     const stored = localStorage.getItem("currentUser");
     return stored ? JSON.parse(stored) : null;
   }, []);
-
+  const { currencyMeta, exchangeRate } = useRegion();
   const fetchCartItems = async () => {
     if (!currentUser) {
       console.log("No current user, setting empty cart");
@@ -506,18 +512,27 @@ center justify-center bg-blue-600 w-full text-white font-semibold p-3 rounded-fu
 
                   <div className="flex items-center justify-between mt-4 text-sm mb-1">
                     <div>Items ({cartItems.length})</div>
-                    <div>£{(getCartTotal() / 100).toFixed(2)}</div>
-                  </div>
-                  <div className="flex items-center justify-between mb-4 text-sm">
-                    <div>Shipping:</div>
-                    <div>Free</div>
+
+                    <div>
+                      {formatCurrency(
+                        (getCartTotal() / 100) * exchangeRate,
+                        currencyMeta.code,
+                        currencyMeta.symbol
+                      )}
+                    </div>
                   </div>
 
                   <div className="border-b border-gray-300" />
 
                   <div className="flex items-center justify-between mt-4 mb-1 text-lg font-semibold">
                     <div>Subtotal</div>
-                    <div>£{(getCartTotal() / 100).toFixed(2)}</div>
+                    <div>
+                      {formatCurrency(
+                        (getCartTotal() / 100) * exchangeRate,
+                        currencyMeta.code,
+                        currencyMeta.symbol
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

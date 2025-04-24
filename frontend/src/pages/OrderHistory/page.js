@@ -7,7 +7,8 @@ import { FileText } from "lucide-react";
 import TopMenu from "../../components/TopMenu";
 import MainHeader from "../../components/MainHeader";
 import SubMenu from "../../components/SubMenu";
-
+import { formatCurrency } from "../../utils/formatCurrency";
+import { useRegion } from "../../context/RegionContext";
 export default function OrderHistory() {
   const navigate = useNavigate();
   const currentUser = useMemo(() => {
@@ -18,7 +19,7 @@ export default function OrderHistory() {
   const [loading, setLoading] = useState(true);
   const [productMap, setProductMap] = useState({});
   const [shipmentMap, setShipmentMap] = useState({});
-
+  const { currencyMeta, exchangeRate } = useRegion();
   useEffect(() => {
     const fetchOrders = async () => {
       if (!currentUser) return;
@@ -158,7 +159,12 @@ export default function OrderHistory() {
                             Quantity: {item.quantity}
                           </div>
                           <div className="text-sm text-gray-600">
-                            Price: £{item.price}
+                            Price:{" "}
+                            {formatCurrency(
+                              item.price * exchangeRate,
+                              currencyMeta.code,
+                              currencyMeta.symbol
+                            )}
                           </div>
                         </div>
                       );
@@ -179,11 +185,13 @@ export default function OrderHistory() {
                     <div>
                       Total:{" "}
                       <span className="font-semibold">
-                        £
-                        {(
-                          order.total_amount +
-                          (shipment?.shippingFee ?? 0) / 100
-                        ).toFixed(2)}
+                        {formatCurrency(
+                          (order.total_amount +
+                            (shipment?.shippingFee ?? 0) / 100) *
+                            exchangeRate,
+                          currencyMeta.code,
+                          currencyMeta.symbol
+                        )}
                       </span>
                     </div>
                   </div>

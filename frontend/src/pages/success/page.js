@@ -1,6 +1,7 @@
 import { CheckCircle } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { formatCurrency } from "../../utils/formatCurrency";
+import { useRegion } from "../../context/RegionContext";
 export default function Success() {
   // Lấy dữ liệu từ Checkout qua useLocation
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ export default function Success() {
     shipmentCode = "",
   } = useLocation().state || {};
   const totalCost = orderTotal + shippingFee;
+  const { currencyMeta, exchangeRate } = useRegion();
   return (
     <div
       id="SuccessPage"
@@ -27,11 +29,11 @@ export default function Success() {
         <div className="text-lg my-4">
           {" "}
           <p>
-            <strong>Mã vận đơn:</strong> {shipmentCode || "—"}
+            <strong>Shipment code:</strong> {shipmentCode || "—"}
           </p>
           <p>
-            <strong>Phí vận chuyển:</strong> {(shippingFee / 100).toFixed(2)}{" "}
-            GBP
+            <strong>Shipment fee:</strong> {(shippingFee / 100).toFixed(2)}{" "}
+            {currencyMeta?.symbol}
           </p>
         </div>
 
@@ -69,14 +71,22 @@ export default function Success() {
                       </div>
                     </div>
                     <p className="font-semibold text-sm">
-                      £{((item.price * item.quantity) / 100).toFixed(2)}
+                      {formatCurrency(
+                        ((item.price * item.quantity) / 100) * exchangeRate,
+                        currencyMeta?.code,
+                        currencyMeta?.symbol
+                      )}
                     </p>
                   </div>
                 ))}
                 <div className="flex justify-between mt-4 pt-2 border-t">
                   <span className="font-semibold">Total:</span>
                   <span className="font-semibold text-lg">
-                    £{(totalCost / 100).toFixed(2)}
+                    {formatCurrency(
+                      (totalCost / 100) * exchangeRate,
+                      currencyMeta?.code,
+                      currencyMeta?.symbol
+                    )}
                   </span>
                 </div>
               </div>

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-
+import { formatCurrency } from "../utils/formatCurrency";
+import { useRegion } from "../context/RegionContext";
 export default function Product({ product }) {
+  const { currencyMeta, exchangeRate } = useRegion();
   return (
     <>
       <Link
@@ -27,17 +29,25 @@ export default function Product({ product }) {
             {product?.title}
           </div>
           <div className="font-extrabold">
-            £{(product?.price / 100).toFixed(2)}
+            {formatCurrency(
+              (product?.price / 100) * exchangeRate,
+              currencyMeta.code,
+              currencyMeta.symbol
+            )}
           </div>
 
           <div className="relative flex items-center text-[12px] text-gray-500">
             <div className="line-through">
-              £{((product?.price * 1.2) / 100).toFixed(2)}
+              {formatCurrency(
+                ((product?.price * 1.2) / 100) * exchangeRate,
+                currencyMeta.code,
+                currencyMeta.symbol
+              )}
             </div>
             <div className="px-2">-</div>
             <div className="line-through">20%</div>
           </div>
-          
+
           {/* Category badge */}
           <div className="mt-1 inline-block bg-gray-200 rounded-full px-2 py-0.5 text-xs">
             Category: {product.categoryId}

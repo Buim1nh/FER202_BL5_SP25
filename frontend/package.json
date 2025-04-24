@@ -12,6 +12,8 @@
     "autoprefixer": "^10.4.20",
     "axios": "^1.8.4",
     "country-state-city": "^3.2.1",
+    "currency-codes": "^2.2.0",
+    "currency-symbol-map": "^5.1.0",
     "debounce": "^2.2.0",
     "framer-motion": "^12.6.2",
     "lucide-react": "^0.475.0",

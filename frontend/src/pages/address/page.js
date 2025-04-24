@@ -7,6 +7,7 @@ import TopMenu from "../../components/TopMenu";
 import MainHeader from "../../components/MainHeader";
 import SubMenu from "../../components/SubMenu";
 import Footer from "../../components/Footer";
+import { useRegion } from "../../context/RegionContext"; // ✅
 
 export default function AddressPage() {
   const location = useLocation();
@@ -14,6 +15,7 @@ export default function AddressPage() {
   const isSelectMode =
     new URLSearchParams(location.search).get("selectMode") === "true";
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const { country: currentCountry } = useRegion(); // ✅ lấy vùng hiện tại
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -38,6 +40,12 @@ export default function AddressPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    if (formData.country?.name !== currentCountry) {
+      alert(`Please select an address within "${currentCountry}"`);
+      setLoading(false);
+      return;
+    }
 
     const payload = {
       ...formData,
@@ -88,6 +96,10 @@ export default function AddressPage() {
   useEffect(() => {
     fetchAddresses();
   }, []);
+
+  const filteredAddresses = addresses.filter(
+    (addr) => addr.country === currentCountry
+  ); // ✅ chỉ hiển thị địa chỉ của vùng đang chọn
 
   return (
     <div>
@@ -143,18 +155,16 @@ export default function AddressPage() {
           />
           <Select
             className="col-span-2"
-            placeholder="Select Country"
-            options={countryOptions}
-            value={formData.country}
-            onChange={(val) =>
-              setFormData({
-                ...formData,
-                country: val,
-                state: null,
-                city: null,
-              })
-            }
+            value={{
+              label: currentCountry,
+              value: Country.getAllCountries().find(
+                (c) => c.name === currentCountry
+              )?.isoCode,
+              name: currentCountry,
+            }}
+            isDisabled={true}
           />
+
           <Select
             placeholder="Select State/Province"
             options={stateOptions}
@@ -179,10 +189,12 @@ export default function AddressPage() {
         </form>
 
         <h2 className="text-xl font-bold mt-8 mb-4">Saved Addresses</h2>
-        {addresses.length === 0 ? (
-          <p className="text-gray-500">No address found.</p>
+        {filteredAddresses.length === 0 ? (
+          <p className="text-gray-500">
+            No address found for <strong>{currentCountry}</strong>.
+          </p>
         ) : (
-          addresses.map((addr) => (
+          filteredAddresses.map((addr) => (
             <div
               key={addr.id}
               className="p-4 border rounded-lg mb-4 shadow-sm bg-gray-50"

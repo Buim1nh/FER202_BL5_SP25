@@ -20,7 +20,8 @@ import MainHeader from "../../../components/MainHeader";
 import SubMenu from "../../../components/SubMenu";
 import Footer from "../../../components/Footer";
 import SimilarProducts from "../../../components/SimilarProducts";
-
+import { formatCurrency } from "../../../utils/formatCurrency";
+import { useRegion } from "../../../context/RegionContext";
 // Import components
 
 export default function ProductDetail() {
@@ -43,6 +44,7 @@ export default function ProductDetail() {
     const stored = localStorage.getItem("currentUser");
     return stored ? JSON.parse(stored) : null;
   }, []);
+  const { currencyMeta, exchangeRate } = useRegion();
 
   // Mock additional images for the product
   const productImages = [
@@ -238,10 +240,13 @@ export default function ProductDetail() {
     const bidInPennies = Math.round(parseFloat(bidAmount) * 100);
     if (bidInPennies <= product.price) {
       alert(
-        `Your bid must be higher than the current bid of £${(
-          product.price / 100
-        ).toFixed(2)}`
+        `Your bid must be higher than the current bid of ${formatCurrency(
+          (product.price / 100) * exchangeRate,
+          currencyMeta.code,
+          currencyMeta.symbol
+        )}`
       );
+
       return;
     }
 
@@ -527,7 +532,11 @@ export default function ProductDetail() {
                           Current bid:
                         </div>
                         <div className="text-2xl font-medium text-gray-900">
-                          £{(product.price / 100).toFixed(2)}
+                          {formatCurrency(
+                            (product.price / 100) * exchangeRate,
+                            currencyMeta.code,
+                            currencyMeta.symbol
+                          )}
                         </div>
                         <div className="text-xs text-gray-500 mt-1">
                           [Approximately US $
@@ -555,7 +564,9 @@ export default function ProductDetail() {
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                           <div className="relative flex-1">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                              <span className="text-gray-500">£</span>
+                              <span className="text-gray-500">
+                                {currencyMeta.symbol}
+                              </span>
                             </div>
                             <input
                               type="number"
@@ -577,8 +588,13 @@ export default function ProductDetail() {
                         </div>
 
                         <div className="text-xs text-gray-500">
-                          [Enter £{(product.price / 100 + 1).toFixed(2)} or
-                          more]
+                          [Enter{" "}
+                          {formatCurrency(
+                            (product.price / 100) * exchangeRate,
+                            currencyMeta.code,
+                            currencyMeta.symbol
+                          )}{" "}
+                          or more]
                         </div>
 
                         <div className="flex items-center justify-between pt-3">
@@ -587,7 +603,11 @@ export default function ProductDetail() {
                               Buy it now:
                             </div>
                             <div className="text-xl font-medium text-gray-900">
-                              £{((product.price * 1.2) / 100).toFixed(2)}
+                              {formatCurrency(
+                                ((product.price * 1.2) / 100) * exchangeRate,
+                                currencyMeta.code,
+                                currencyMeta.symbol
+                              )}
                             </div>
                             <div className="text-xs text-gray-500 mt-1">
                               [Approximately US $
@@ -640,7 +660,11 @@ export default function ProductDetail() {
                                         u***{bid.userId.substring(0, 2)}
                                       </td>
                                       <td className="px-2 py-1 whitespace-nowrap font-medium">
-                                        £{(bid.bidAmount / 100).toFixed(2)}
+                                        {formatCurrency(
+                                          (bid.bidAmount / 100) * exchangeRate,
+                                          currencyMeta.code,
+                                          currencyMeta.symbol
+                                        )}
                                       </td>
                                       <td className="px-2 py-1 whitespace-nowrap text-gray-500">
                                         {new Date(bid.bidDate).toLocaleString()}
@@ -680,10 +704,18 @@ export default function ProductDetail() {
                       <div className="text-sm text-gray-500">Price:</div>
                       <div className="flex items-baseline">
                         <div className="text-2xl font-medium text-gray-900">
-                          £{(product.price / 100).toFixed(2)}
+                          {formatCurrency(
+                            (product.price / 100) * exchangeRate,
+                            currencyMeta.code,
+                            currencyMeta.symbol
+                          )}
                         </div>
                         <div className="ml-2 text-sm text-gray-500 line-through">
-                          £{((product.price * 1.2) / 100).toFixed(2)}
+                          {formatCurrency(
+                            ((product.price * 1.2) / 100) * exchangeRate,
+                            currencyMeta.code,
+                            currencyMeta.symbol
+                          )}
                         </div>
                         <div className="ml-2 text-sm font-medium text-green-600">
                           Save 20%
@@ -874,7 +906,9 @@ export default function ProductDetail() {
                               <td className="text-right py-1">
                                 1-2 business days
                               </td>
-                              <td className="text-right py-1">£4.99</td>
+                              <td className="text-right py-1">
+                                {currencyMeta.symbol}4.99
+                              </td>
                             </tr>
                           </tbody>
                         </table>

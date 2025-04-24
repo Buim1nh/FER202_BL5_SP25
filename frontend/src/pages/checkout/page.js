@@ -6,28 +6,10 @@ import MainHeader from "../../components/MainHeader";
 import TopMenu from "../../components/TopMenu";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import shippingRules from "../../data/shipping_rules.json";
+import { useRegion } from "../../context/RegionContext";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 import axios from "axios";
-
-// Currency map
-const getCurrencyFromCountry = (country) => {
-  switch (country) {
-    case "Vietnam":
-      return "VND";
-    case "United Kingdom":
-      return "GBP";
-    case "United States":
-      return "USD";
-    default:
-      return "USD";
-  }
-};
-
-const exchangeRateMap = {
-  GBP: 1, // base
-  USD: 1.33, // 1 GBP = 1.25 USD
-  VND: 34000, // 1 GBP = 30,000 VND
-};
 
 // Calculate shipping fee from rules
 function calculateShippingFee(address) {
@@ -84,18 +66,12 @@ export default function Checkout() {
   const [shipmentCode, setShipmentCode] = useState(null); // mã vận đơn
   const [selectedAddress, setSelectedAddress] = useState(null); // địa chỉ đã chọn
   const effectiveAddress = selectedAddress || addressDetails;
-  const currentCurrency = useMemo(() => {
-    return getCurrencyFromCountry(effectiveAddress?.country);
-  }, [effectiveAddress]);
-
-  const formatCurrency = (valueGBP, targetCurrency = currentCurrency) => {
-    const rate = exchangeRateMap[targetCurrency] || 1;
-    const convertedValue = valueGBP * rate;
-
-    return new Intl.NumberFormat(undefined, {
-      style: "currency",
-      currency: targetCurrency,
-    }).format(convertedValue / 100); // Vì giá gốc đang chia 100
+  const { currencyMeta, exchangeRate } = useRegion();
+  const convertPrice = (amountInUSD) => amountInUSD * exchangeRate;
+  const displayPrice = (valueInUSD) => {
+    const valueInMajorUnits = valueInUSD / 100;
+    const converted = convertPrice(valueInMajorUnits);
+    return formatCurrency(converted, currencyMeta.code, currencyMeta.symbol);
   };
 
   const Checkout = () => {
@@ -539,7 +515,7 @@ export default function Checkout() {
                       <CheckoutItem
                         key={`${product.cartItemId}-${product.idProduct}`}
                         product={product}
-                        formatCurrency={formatCurrency}
+                        formatCurrency={displayPrice}
                       />
                     ))
                   )}
@@ -556,11 +532,11 @@ export default function Checkout() {
                       Items (
                       {cartItems.reduce((sum, item) => sum + item.quantity, 0)})
                     </div>
-                    <div>{formatCurrency(getCartTotal())}</div>
+                    <div>{displayPrice(getCartTotal())}</div>
                   </div>
                   <div className="flex items-center justify-between mb-4 text-sm">
                     <div>Shipping:</div>
-                    <div>{formatCurrency(shippingFee)}</div>
+                    <div>{displayPrice(shippingFee)}</div>
                   </div>
 
                   <div className="border-t" />
@@ -568,7 +544,7 @@ export default function Checkout() {
                   <div className="flex items-center justify-between my-4">
                     <div className="font-semibold">Order total</div>
                     <div className="text-2xl font-semibold">
-                      {formatCurrency(getCartTotal() + shippingFee)}
+                      {displayPrice(getCartTotal() + shippingFee)}
                     </div>
                   </div>
 
@@ -633,7 +609,7 @@ export default function Checkout() {
                 <PayPalScriptProvider
                   options={{
                     "client-id": "test", // 👉 Dùng sandbox client ID (có thể thay bằng ID thật)
-                    currency: "GBP", // 👉 hoặc USD nếu cần
+                    urrency: currencyMeta.code,
                   }}
                 >
                   <PayPalButtons
@@ -648,7 +624,9 @@ export default function Checkout() {
                         purchase_units: [
                           {
                             amount: {
-                              value: (getCartTotal() / 100).toFixed(2),
+                              value: (
+                                convertPrice(getCartTotal()) / 100
+                              ).toFixed(2),
                             },
                           },
                         ],
