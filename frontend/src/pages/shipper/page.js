@@ -16,6 +16,8 @@ const ShipperDashboard = () => {
     const [shipperId, setShipperId] = useState(null)
     const [shipperName, setShipperName] = useState("")
     const [users, setUsers] = useState([]);
+    const [filterStatus, setFilterStatus] = useState("all");
+    const [searchText, setSearchText] = useState("");
 
     // Lấy danh sách user (bao gồm shipper)
     useEffect(() => {
@@ -36,6 +38,13 @@ const ShipperDashboard = () => {
         if (!shipperId) return "Chưa lấy";
         const shipper = users.find(u => u.id === shipperId);
         return shipper ? (shipper.fullname || shipper.email || shipper.id) : shipperId;
+    };
+
+    // Hàm lấy tên người đặt từ user_id
+    const getUserName = (userId) => {
+        if (!userId) return "Không xác định";
+        const user = users.find(u => u.id === userId);
+        return user ? (user.fullname || user.email || user.id) : userId;
     };
 
     // Lấy id và tên shipper từ localStorage
@@ -83,6 +92,21 @@ const ShipperDashboard = () => {
     const myOrders = orders.filter(
         order => order.shipper_id === shipperId
     );
+    // Bộ lọc trạng thái cho danh sách
+    const filteredOrders = (activeTab === "allOrders"
+        ? (filterStatus === "all" ? orders : orders.filter(order => order.status === filterStatus))
+        : myOrders
+    ).filter(order => {
+        const userName = getUserName(order.user_id)?.toLowerCase() || "";
+        const phone = order.phone?.toLowerCase() || "";
+        const orderId = String(order.order_id || "").toLowerCase();
+        const search = searchText.toLowerCase();
+        return (
+            userName.includes(search) ||
+            phone.includes(search) ||
+            orderId.includes(search)
+        );
+    });
 
     const handleTakeOrder = async (orderId) => {
         setLoading(true);
@@ -130,6 +154,32 @@ const ShipperDashboard = () => {
             setLoading(false);
         } catch (err) {
             setError("Không thể cập nhật đơn hàng");
+            setLoading(false);
+        }
+    };
+
+    const handleCancel = async (orderId) => {
+        try {
+            // 1. Lấy order theo order_id
+            const res = await fetch(`http://localhost:9999/orders?order_id=${orderId}`);
+            const data = await res.json();
+            if (!data[0]) {
+                setError("Không tìm thấy đơn hàng");
+                setLoading(false);
+                return;
+            }
+            // PATCH qua id hoặc order_id
+            await fetch(`http://localhost:9999/orders/${data[0].id || data[0].order_id}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ status: "failed" }),
+            });
+            const res2 = await fetch("http://localhost:9999/orders");
+            const data2 = await res2.json();
+            setOrders(data2);
+            setLoading(false);
+        } catch (err) {
+            setError("Không thể hủy đơn hàng");
             setLoading(false);
         }
     };
@@ -187,7 +237,36 @@ const ShipperDashboard = () => {
                         {activeTab === "myOrders" && "Đơn hàng của tôi"}
                     </h1>
                 </div>
-
+                {/* Search bar */}
+                <div className="mb-4 flex flex-wrap items-center gap-2">
+                    <input
+                        type="text"
+                        placeholder="Tìm kiếm theo tên khách, SĐT, mã đơn hàng..."
+                        value={searchText}
+                        onChange={e => { setSearchText(e.target.value); setCurrentPage(1); }}
+                        className="border rounded px-3 py-1 text-sm w-72"
+                    />
+                </div>
+                {/* Filter for all orders tab */}
+                <div className="mb-4 flex items-center gap-2">
+                    {activeTab === "allOrders" && (
+                        <>
+                            <span className="font-medium text-gray-700 mr-2">Trạng thái đơn hàng:</span>
+                            <select
+                                value={filterStatus}
+                                onChange={e => { setFilterStatus(e.target.value); setCurrentPage(1); }}
+                                className="border rounded px-2 py-1 text-sm"
+                            >
+                                <option value="all">Tất cả</option>
+                                <option value="pending">Chờ nhận</option>
+                                <option value="shipped">Đang giao</option>
+                                <option value="delivered">Đã giao</option>
+                                <option value="failed">Không thành công</option>
+                            </select>
+                        </>
+                    )}
+                </div>
+                
                 {!showDetail.show && (
                     <div className="bg-white rounded-lg shadow-md overflow-hidden">
                         <div className="overflow-x-auto">
@@ -203,10 +282,11 @@ const ShipperDashboard = () => {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200">
-                                    {paginateData(activeTab === "allOrders" ? orders : myOrders).map((order) => (
+                                    {paginateData(filteredOrders).map((order) => (
                                         <tr key={order.order_id} className="hover:bg-gray-50">
                                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">#{order.order_id}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{order.user_name || order.user_id}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{getUserName(order.user_id)}
+                                            </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${order.total_amount}</td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm">
                                                 {order.status === "pending" && (
@@ -222,6 +302,11 @@ const ShipperDashboard = () => {
                                                 {order.status === "delivered" && (
                                                     <button className="px-3 py-1 rounded bg-green-500 text-white cursor-not-allowed" disabled>
                                                         Đã giao
+                                                    </button>
+                                                )}
+                                                {order.status === "failed" && (
+                                                    <button className="px-3 py-1 rounded bg-red-500 text-white cursor-not-allowed" disabled>
+                                                        Không thành công
                                                     </button>
                                                 )}
                                             </td>
@@ -252,6 +337,16 @@ const ShipperDashboard = () => {
                                                     >
                                                         <FaHandPaper className="w-4 h-4 mr-1" />
                                                         Đã giao
+                                                    </button>
+                                                )}
+                                                {/* Nút hủy đơn cho đơn pending ở tab Đơn hàng của tôi */}
+                                                {activeTab === "myOrders" && order.status === "shipped" && (
+                                                    <button
+                                                        onClick={() => handleCancel(order.order_id)}
+                                                        className="inline-flex items-center px-3 py-1.5 ml-2 bg-red-50 text-red-700 rounded-md hover:bg-red-100"
+                                                    >
+                                                        <FaHandPaper className="w-4 h-4 mr-1" />
+                                                        Giao không thành công
                                                     </button>
                                                 )}
                                             </td>
@@ -323,6 +418,9 @@ const ShipperDashboard = () => {
                                     )}
                                     {showDetail.data.status === "delivered" && (
                                         <span className="px-2 py-1 rounded bg-green-500 text-white text-xs">Đã giao</span>
+                                    )}
+                                    {showDetail.data.status === "failed" && (
+                                        <span className="px-2 py-1 rounded bg-red-500 text-white text-xs">Không thành công</span>
                                     )}
                                 </span>
                             </div>
