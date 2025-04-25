@@ -2137,7 +2137,23 @@
       "userId": "user1745321530724"
     }
   ],
-  "shipping": [],
+  "shipping": [
+    {
+      "shipmentCode": "SHIP535077",
+      "userId": "user1745321530724",
+      "orderId": "ORD686",
+      "address": {
+        "fullName": "BB",
+        "phone": "0123254885",
+        "street": "CC",
+        "city": "Củ Chi"
+      },
+      "shippingFee": 300,
+      "status": "processing",
+      "createdAt": "2025-04-25T02:57:36.828Z",
+      "id": 1
+    }
+  ],
   "similarItems": [
     {
       "id": "1",
