@@ -22,6 +22,7 @@ import Footer from "../../../components/Footer";
 import SimilarProducts from "../../../components/SimilarProducts";
 import { formatCurrency } from "../../../utils/formatCurrency";
 import { useRegion } from "../../../context/RegionContext";
+import ProductReview from "../../../components/ProductReview";
 // Import components
 
 export default function ProductDetail() {
@@ -45,7 +46,8 @@ export default function ProductDetail() {
     return stored ? JSON.parse(stored) : null;
   }, []);
   const { currencyMeta, exchangeRate } = useRegion();
-
+  const [averageRating, setAverageRating] = useState(null);
+  const [ratingCount, setRatingCount] = useState(0);
   // Mock additional images for the product
   const productImages = [
     { id: 0, url: product?.url || "/placeholder.jpg" },
@@ -105,6 +107,23 @@ export default function ProductDetail() {
           setBidHistory(
             bidsData.sort((a, b) => new Date(b.bidDate) - new Date(a.bidDate))
           );
+        }
+
+        // Fetch rating average
+        const ratingResponse = await fetch(
+          `http://localhost:9999/ratings?productId=${id}`
+        );
+        const ratingData = await ratingResponse.json();
+
+        if (ratingData.length > 0) {
+          const avg =
+            ratingData.reduce((sum, r) => sum + (r.score || 0), 0) /
+            ratingData.length;
+          setAverageRating(avg.toFixed(1));
+          setRatingCount(ratingData.length);
+        } else {
+          setAverageRating(null);
+          setRatingCount(0);
         }
       } catch (error) {
         console.error("Error:", error);
@@ -511,6 +530,15 @@ export default function ProductDetail() {
                 <h1 className="text-xl font-medium text-gray-900">
                   {product.title}
                 </h1>
+                {averageRating && (
+                  <div className="flex items-center mt-1 text-sm text-yellow-600 font-medium">
+                    ⭐ {averageRating}
+                    <span className="ml-1 text-gray-500 text-xs">
+                      ({ratingCount} reviews)
+                    </span>
+                  </div>
+                )}
+
                 <div className="flex items-center mt-1 text-xs text-gray-500">
                   <span className="text-[#0053A0] hover:underline cursor-pointer">
                     Brand New
@@ -1093,7 +1121,7 @@ export default function ProductDetail() {
             </div>
           </div>
         </div>
-
+        <ProductReview productId={product.id} currentUser={currentUser} />
         {/* Similar Products Section */}
         <div className="mt-6">
           <h2 className="text-lg font-bold text-gray-900 mb-4">

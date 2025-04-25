@@ -248,7 +248,8 @@
         "ORD285",
         "ORD767",
         "ORD238",
-        "ORD686"
+        "ORD686",
+        "ORD391"
       ],
       "address": {
         "street": "Robert",
@@ -1278,6 +1279,32 @@
         }
       ],
       "id": "RQ-QtnF"
+    },
+    {
+      "order_id": "ORD391",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-25T04:15:48.585Z",
+      "total_amount": 24.3,
+      "status": "shipped",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
+        },
+        {
+          "product_name": "Wireless Headphones",
+          "quantity": 1,
+          "price": 12
+        },
+        {
+          "product_name": "Ceramic Coffee Mug",
+          "quantity": 1,
+          "price": 3.5
+        }
+      ],
+      "id": "8VrwCs2"
     }
   ],
   "categories": [
@@ -1733,7 +1760,19 @@
       "quantity": 60
     }
   ],
-  "shoppingCart": [],
+  "shoppingCart": [
+    {
+      "userId": "user1745321530724",
+      "productId": [
+        {
+          "idProduct": "3",
+          "quantity": "1"
+        }
+      ],
+      "dateAdded": "2025-04-25T04:20:09.367Z",
+      "id": 1
+    }
+  ],
   "paymentMethods": [
     {
       "id": "pm001",
@@ -2137,7 +2176,22 @@
       "userId": "user1745321530724"
     }
   ],
-  "shipping": [],
+  "shipping": [
+    {
+      "shipmentCode": "SHIP990142",
+      "userId": "user1745321530724",
+      "orderId": "ORD391",
+      "address": {
+        "fullName": "Testman",
+        "street": "Robert",
+        "city": "Skibidi"
+      },
+      "shippingFee": 500,
+      "status": "shipped",
+      "createdAt": "2025-04-25T04:15:48.731Z",
+      "id": 1
+    }
+  ],
   "similarItems": [
     {
       "id": "1",
@@ -2548,6 +2602,32 @@
         "9",
         "1"
       ]
+    }
+  ],
+  "ratings": [
+    {
+      "productId": "2",
+      "orderId": null,
+      "userId": "user1745321530724",
+      "score": 5,
+      "comment": "aa",
+      "id": 2
+    },
+    {
+      "productId": "4",
+      "orderId": null,
+      "userId": "user1745321530724",
+      "score": 5,
+      "comment": "OK",
+      "id": 3
+    },
+    {
+      "productId": "9",
+      "orderId": null,
+      "userId": "user1745321530724",
+      "score": 5,
+      "comment": "nice",
+      "id": 4
     }
   ]
 }
