@@ -265,7 +265,9 @@
         "ORD920",
         "ORD285",
         "ORD767",
-        "ORD238"
+        "ORD238",
+        "ORD686",
+        "ORD391"
       ],
       "address": {
         "street": "Robert",
@@ -1302,6 +1304,48 @@
           "price": 45
         }
       ]
+    },
+    {
+      "order_id": "ORD686",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-25T02:57:36.656Z",
+      "total_amount": 18,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ],
+      "id": "RQ-QtnF"
+    },
+    {
+      "order_id": "ORD391",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-25T04:15:48.585Z",
+      "total_amount": 24.3,
+      "status": "shipped",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
+        },
+        {
+          "product_name": "Wireless Headphones",
+          "quantity": 1,
+          "price": 12
+        },
+        {
+          "product_name": "Ceramic Coffee Mug",
+          "quantity": 1,
+          "price": 3.5
+        }
+      ],
+      "id": "8VrwCs2"
     }
   ],
   "categories": [
@@ -1757,7 +1801,19 @@
       "quantity": 60
     }
   ],
-  "shoppingCart": [],
+  "shoppingCart": [
+    {
+      "userId": "user1745321530724",
+      "productId": [
+        {
+          "idProduct": "3",
+          "quantity": "1"
+        }
+      ],
+      "dateAdded": "2025-04-25T04:20:09.367Z",
+      "id": 1
+    }
+  ],
   "paymentMethods": [
     {
       "id": "pm001",
@@ -2398,131 +2454,456 @@
   ],
   "shipping": [
     {
-      "id": "d752",
-      "shipmentCode": "SHIP158372",
+      "shipmentCode": "SHIP990142",
       "userId": "user1745321530724",
-      "orderId": "ORD675",
+      "orderId": "ORD391",
       "address": {
         "fullName": "Testman",
-        "phone": "0909090909",
-        "street": "123 Test Street",
-        "ward": "Phường Test",
-        "district": "Quận Skibidi",
+        "street": "Robert",
         "city": "Skibidi"
       },
-      "shippingFee": 250,
+      "shippingFee": 500,
       "status": "shipped",
-      "createdAt": "2025-04-24T09:24:20.094Z"
+      "createdAt": "2025-04-25T04:15:48.731Z",
+      "id": 1
+    }
+  ],
+  "similarItems": [
+    {
+      "id": "1",
+      "recommendIds": [
+        "10",
+        "18",
+        "45",
+        "11",
+        "26"
+      ]
     },
     {
-      "id": "dfc6",
-      "shipmentCode": "SHIP169802",
-      "userId": "user1745321530724",
-      "orderId": "ORD127",
-      "address": {
-        "fullName": "Testman",
-        "phone": "0908888888",
-        "street": "456 Beta Road",
-        "ward": "Phường ABC",
-        "district": "Quận XYZ",
-        "city": "Hồ Chí Minh"
-      },
-      "shippingFee": 200,
-      "status": "canceled",
-      "createdAt": "2025-04-24T09:26:32.853Z"
+      "id": "2",
+      "recommendIds": [
+        "29",
+        "22",
+        "17",
+        "33",
+        "26"
+      ]
     },
     {
-      "id": "3084",
-      "shipmentCode": "SHIP938396",
-      "userId": "user1745321530724",
-      "orderId": "ORD479",
-      "address": {
-        "fullName": "Testman",
-        "phone": "0909090909",
-        "street": "123 Test Street",
-        "ward": "Phường Test",
-        "district": "Quận Skibidi",
-        "city": "Skibidi"
-      },
-      "shippingFee": 250,
-      "status": "canceled",
-      "createdAt": "2025-04-24T09:29:45.902Z"
+      "id": "3",
+      "recommendIds": [
+        "33",
+        "29",
+        "17",
+        "41",
+        "4"
+      ]
     },
     {
-      "id": "3664",
-      "shipmentCode": "SHIP408349",
-      "userId": "user1745321530724",
-      "orderId": "ORD508",
-      "address": {
-        "fullName": "King",
-        "phone": "24152365346",
-        "street": "queen"
-      },
-      "shippingFee": 500,
-      "status": "processing",
-      "createdAt": "2025-04-24T14:44:59.803Z"
+      "id": "4",
+      "recommendIds": [
+        "39",
+        "33",
+        "29",
+        "17",
+        "12"
+      ]
     },
     {
-      "id": "2871",
-      "shipmentCode": "SHIP310430",
-      "userId": "user1745321530724",
-      "orderId": "ORD920",
-      "address": {
-        "fullName": "BB",
-        "phone": "0123254885",
-        "street": "CC",
-        "city": "Củ Chi"
-      },
-      "shippingFee": 300,
-      "status": "processing",
-      "createdAt": "2025-04-24T14:46:48.467Z"
+      "id": "5",
+      "recommendIds": [
+        "20",
+        "40",
+        "36",
+        "37",
+        "26"
+      ]
     },
     {
-      "id": "7703",
-      "shipmentCode": "SHIP414432",
-      "userId": "user1745321530724",
-      "orderId": "ORD285",
-      "address": {
-        "fullName": "Hieu Test",
-        "phone": "45324327",
-        "street": "HK",
-        "city": "Chiayi County"
-      },
-      "shippingFee": 500,
-      "status": "processing",
-      "createdAt": "2025-04-24T15:21:52.706Z"
+      "id": "7",
+      "recommendIds": [
+        "37",
+        "17",
+        "31",
+        "28",
+        "15"
+      ]
     },
     {
-      "id": "dddf",
-      "shipmentCode": "SHIP829554",
-      "userId": "user1745321530724",
-      "orderId": "ORD767",
-      "address": {
-        "fullName": "Testman",
-        "phone": "0909090909",
-        "street": "123 Test Street",
-        "ward": "Phường Test",
-        "district": "Quận Skibidi",
-        "city": "Skibidi"
-      },
-      "shippingFee": 500,
-      "status": "processing",
-      "createdAt": "2025-04-24T17:01:02.756Z"
+      "id": "8",
+      "recommendIds": [
+        "15",
+        "21",
+        "39",
+        "12",
+        "17"
+      ]
     },
     {
-      "id": "2813",
-      "shipmentCode": "SHIP479537",
+      "id": "9",
+      "recommendIds": [
+        "22",
+        "39",
+        "4",
+        "45",
+        "23"
+      ]
+    },
+    {
+      "id": "10",
+      "recommendIds": [
+        "1",
+        "36",
+        "27",
+        "18",
+        "23"
+      ]
+    },
+    {
+      "id": "11",
+      "recommendIds": [
+        "18",
+        "45",
+        "23",
+        "1",
+        "32"
+      ]
+    },
+    {
+      "id": "12",
+      "recommendIds": [
+        "32",
+        "21",
+        "38",
+        "29",
+        "26"
+      ]
+    },
+    {
+      "id": "13",
+      "recommendIds": [
+        "28",
+        "40",
+        "34",
+        "20",
+        "44"
+      ]
+    },
+    {
+      "id": "15",
+      "recommendIds": [
+        "21",
+        "8",
+        "38",
+        "41",
+        "23"
+      ]
+    },
+    {
+      "id": "17",
+      "recommendIds": [
+        "29",
+        "33",
+        "39",
+        "4",
+        "24"
+      ]
+    },
+    {
+      "id": "18",
+      "recommendIds": [
+        "45",
+        "23",
+        "27",
+        "11",
+        "35"
+      ]
+    },
+    {
+      "id": "20",
+      "recommendIds": [
+        "5",
+        "13",
+        "31",
+        "28",
+        "40"
+      ]
+    },
+    {
+      "id": "21",
+      "recommendIds": [
+        "38",
+        "32",
+        "12",
+        "41",
+        "25"
+      ]
+    },
+    {
+      "id": "22",
+      "recommendIds": [
+        "9",
+        "43",
+        "30",
+        "26",
+        "4"
+      ]
+    },
+    {
+      "id": "23",
+      "recommendIds": [
+        "18",
+        "45",
+        "11",
+        "36",
+        "9"
+      ]
+    },
+    {
+      "id": "24",
+      "recommendIds": [
+        "3",
+        "29",
+        "17",
+        "33",
+        "25"
+      ]
+    },
+    {
+      "id": "25",
+      "recommendIds": [
+        "38",
+        "21",
+        "41",
+        "32",
+        "15"
+      ]
+    },
+    {
+      "id": "26",
+      "recommendIds": [
+        "30",
+        "42",
+        "35",
+        "29",
+        "12"
+      ]
+    },
+    {
+      "id": "27",
+      "recommendIds": [
+        "18",
+        "45",
+        "17",
+        "35",
+        "10"
+      ]
+    },
+    {
+      "id": "28",
+      "recommendIds": [
+        "44",
+        "13",
+        "34",
+        "37",
+        "20"
+      ]
+    },
+    {
+      "id": "29",
+      "recommendIds": [
+        "17",
+        "26",
+        "4",
+        "12",
+        "24"
+      ]
+    },
+    {
+      "id": "30",
+      "recommendIds": [
+        "26",
+        "42",
+        "29",
+        "22",
+        "35"
+      ]
+    },
+    {
+      "id": "31",
+      "recommendIds": [
+        "20",
+        "17",
+        "7",
+        "5",
+        "45"
+      ]
+    },
+    {
+      "id": "32",
+      "recommendIds": [
+        "12",
+        "21",
+        "38",
+        "25",
+        "23"
+      ]
+    },
+    {
+      "id": "33",
+      "recommendIds": [
+        "17",
+        "3",
+        "4",
+        "39",
+        "29"
+      ]
+    },
+    {
+      "id": "34",
+      "recommendIds": [
+        "28",
+        "13",
+        "44",
+        "31",
+        "20"
+      ]
+    },
+    {
+      "id": "35",
+      "recommendIds": [
+        "42",
+        "26",
+        "18",
+        "9",
+        "30"
+      ]
+    },
+    {
+      "id": "36",
+      "recommendIds": [
+        "10",
+        "23",
+        "18",
+        "5",
+        "45"
+      ]
+    },
+    {
+      "id": "37",
+      "recommendIds": [
+        "7",
+        "28",
+        "44",
+        "5",
+        "13"
+      ]
+    },
+    {
+      "id": "38",
+      "recommendIds": [
+        "21",
+        "32",
+        "25",
+        "12",
+        "28"
+      ]
+    },
+    {
+      "id": "39",
+      "recommendIds": [
+        "4",
+        "9",
+        "17",
+        "33",
+        "21"
+      ]
+    },
+    {
+      "id": "40",
+      "recommendIds": [
+        "13",
+        "5",
+        "20",
+        "26",
+        "30"
+      ]
+    },
+    {
+      "id": "41",
+      "recommendIds": [
+        "21",
+        "25",
+        "38",
+        "15",
+        "3"
+      ]
+    },
+    {
+      "id": "42",
+      "recommendIds": [
+        "35",
+        "26",
+        "30",
+        "9",
+        "18"
+      ]
+    },
+    {
+      "id": "43",
+      "recommendIds": [
+        "22",
+        "41",
+        "26",
+        "30",
+        "9"
+      ]
+    },
+    {
+      "id": "44",
+      "recommendIds": [
+        "28",
+        "40",
+        "37",
+        "13",
+        "34"
+      ]
+    },
+    {
+      "id": "45",
+      "recommendIds": [
+        "18",
+        "11",
+        "23",
+        "9",
+        "1"
+      ]
+    }
+  ],
+  "ratings": [
+    {
+      "productId": "2",
+      "orderId": null,
       "userId": "user1745321530724",
-      "orderId": "ORD238",
-      "address": {
-        "fullName": "BB",
-        "phone": "0123254885",
-        "street": "CC",
-        "city": "Củ Chi"
-      },
-      "shippingFee": 300,
-      "status": "processing",
-      "createdAt": "2025-04-24T17:30:47.096Z"
+      "score": 5,
+      "comment": "aa",
+      "id": 2
+    },
+    {
+      "productId": "4",
+      "orderId": null,
+      "userId": "user1745321530724",
+      "score": 5,
+      "comment": "OK",
+      "id": 3
+    },
+    {
+      "productId": "9",
+      "orderId": null,
+      "userId": "user1745321530724",
+      "score": 5,
+      "comment": "nice",
+      "id": 4
     }
   ]
 }
