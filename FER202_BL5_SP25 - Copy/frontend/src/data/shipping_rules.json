@@ -1,0 +1,127 @@
+[
+  {
+    "country": "Vietnam",
+    "defaultFee": 300,
+    "regions": [
+      {
+        "city": "Hà Nội",
+        "urbanDistricts": ["Ba Đình", "Hoàn Kiếm", "Đống Đa", "Cầu Giấy"],
+        "urbanFee": 200,
+        "suburbanFee": 250
+      },
+      {
+        "city": "Hồ Chí Minh",
+        "urbanDistricts": ["Quận 1", "Quận 3", "Phú Nhuận", "Tân Bình"],
+        "urbanFee": 220,
+        "suburbanFee": 270
+      },
+      {
+        "city": "Đà Nẵng",
+        "flatFee": 280
+      },
+      {
+        "city": "Cần Thơ",
+        "flatFee": 290
+      }
+    ],
+    "zipFees": {
+      "700000": 210,
+      "100000": 190,
+      "550000": 300
+    }
+  },
+  {
+    "country": "United Kingdom",
+    "defaultFee": 500,
+    "regions": [
+      {
+        "city": "London",
+        "urbanDistricts": ["Westminster", "Camden", "Kensington"],
+        "urbanFee": 400,
+        "suburbanFee": 450
+      },
+      {
+        "city": "Manchester",
+        "flatFee": 460
+      },
+      {
+        "city": "Birmingham",
+        "urbanDistricts": ["Edgbaston", "Harborne"],
+        "urbanFee": 420,
+        "suburbanFee": 470
+      }
+    ],
+    "zipFees": {
+      "E1": 390,
+      "M1": 420,
+      "B1": 430
+    }
+  },
+  {
+    "country": "United States",
+    "defaultFee": 600,
+    "regions": [
+      {
+        "city": "New York",
+        "urbanDistricts": ["Manhattan", "Brooklyn", "Queens"],
+        "urbanFee": 500,
+        "suburbanFee": 550
+      },
+      {
+        "city": "Los Angeles",
+        "flatFee": 580
+      },
+      {
+        "city": "Chicago",
+        "urbanDistricts": ["Loop", "Hyde Park"],
+        "urbanFee": 520,
+        "suburbanFee": 570
+      }
+    ],
+    "zipFees": {
+      "10001": 480,
+      "90001": 560,
+      "60601": 530
+    }
+  },
+  {
+    "country": "Germany",
+    "defaultFee": 550,
+    "regions": [
+      {
+        "city": "Berlin",
+        "urbanDistricts": ["Mitte", "Kreuzberg"],
+        "urbanFee": 500,
+        "suburbanFee": 530
+      },
+      {
+        "city": "Munich",
+        "flatFee": 540
+      }
+    ],
+    "zipFees": {
+      "10115": 520,
+      "80331": 510
+    }
+  },
+  {
+    "country": "Japan",
+    "defaultFee": 650,
+    "regions": [
+      {
+        "city": "Tokyo",
+        "urbanDistricts": ["Shibuya", "Minato"],
+        "urbanFee": 600,
+        "suburbanFee": 640
+      },
+      {
+        "city": "Osaka",
+        "flatFee": 620
+      }
+    ],
+    "zipFees": {
+      "150-0001": 610,
+      "530-0001": 630
+    }
+  }
+]
