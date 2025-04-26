@@ -14,20 +14,45 @@ import axios from "axios";
 // Calculate shipping fee from rules
 function calculateShippingFee(address) {
   const { country, city, district, zipcode } = address || {};
+
+  // Log for debugging
+  console.log("Calculating shipping fee for address:", {
+    country,
+    city,
+    district,
+    zipcode,
+  });
+
   const rule = shippingRules.find((r) => r.country === country);
-  if (!rule) return 500;
+  if (!rule) {
+    console.log("No shipping rule found for country:", country);
+    return 500;
+  }
 
   if (rule.regions) {
     const region = rule.regions.find((r) => r.city === city);
     if (region) {
-      if (region.flatFee) return region.flatFee;
-      if (region.urbanDistricts?.includes(district))
-        return region.urbanFee ?? rule.defaultFee;
-      return region.suburbanFee ?? rule.defaultFee;
+      if (region.flatFee) {
+        console.log(`Found flat fee ${region.flatFee} for city:`, city);
+        return region.flatFee;
+      }
+      if (region.urbanDistricts?.includes(district)) {
+        const fee = region.urbanFee ?? rule.defaultFee;
+        console.log(`Found urban fee ${fee} for district:`, district);
+        return fee;
+      }
+      const fee = region.suburbanFee ?? rule.defaultFee;
+      console.log(`Found suburban fee ${fee} for region:`, region);
+      return fee;
     }
   }
 
-  if (rule.zipFees?.[zipcode]) return rule.zipFees[zipcode];
+  if (rule.zipFees?.[zipcode]) {
+    console.log(`Found zip fee ${rule.zipFees[zipcode]} for zipcode:`, zipcode);
+    return rule.zipFees[zipcode];
+  }
+
+  console.log(`Using default fee ${rule.defaultFee} for country:`, country);
   return rule.defaultFee;
 }
 
@@ -74,93 +99,6 @@ export default function Checkout() {
     return formatCurrency(converted, currencyMeta.code, currencyMeta.symbol);
   };
 
-  const Checkout = () => {
-    const [cart, setCart] = useState([]);
-    const [shippingAddress, setShippingAddress] = useState("");
-    const [paymentMethod, setPaymentMethod] = useState("cod");
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [showPaypalPopup, setShowPaypalPopup] = useState(false);
-
-    useEffect(() => {
-      const fetchData = async () => {
-        await Promise.all([fetchCartItems(), fetchAddressDetails()]);
-
-        const stored = localStorage.getItem("selectedAddress");
-        if (stored) {
-          try {
-            const addr = JSON.parse(stored);
-            setSelectedAddress(addr);
-            setShippingFee(calculateShippingFee(addr.city));
-          } catch (e) {
-            console.error("Lỗi khi parse địa chỉ đã chọn:", e);
-          } finally {
-            localStorage.removeItem("selectedAddress");
-          }
-        }
-      };
-      const fetchCart = async () => {
-        try {
-          const response = await axios.get("http://localhost:9999/cart");
-          setCart(response.data);
-        } catch (error) {
-          console.error("Failed to fetch cart", error);
-        }
-      };
-      fetchData();
-      fetchCart();
-    }, [currentUser]);
-
-    const getCartTotal = () => {
-      return cart.reduce(
-        (total, item) => total + item.price * item.quantity,
-        0
-      );
-    };
-
-    const handleSubmit = async () => {
-      if (!shippingAddress) {
-        alert("Please enter your shipping address.");
-        return;
-      }
-
-      if (paymentMethod === "paypal") {
-        setShowPaypalPopup(true);
-        return;
-      }
-
-      handlePayment(true); // Thanh toán COD, tự động xử lý
-    };
-
-    const handlePayment = async (isPaid) => {
-      setIsSubmitting(true);
-
-      const newOrder = {
-        items: cart,
-        total: getCartTotal(),
-        shippingAddress,
-        paymentMethod,
-        isPaid,
-        createdAt: new Date().toISOString(),
-      };
-
-      try {
-        await axios.post("http://localhost:9999/orders", newOrder);
-        await Promise.all(
-          cart.map((item) =>
-            axios.delete(`http://localhost:9999/cart/${item.id}`)
-          )
-        );
-        alert("Order submitted successfully!");
-        setCart([]);
-        setShippingAddress("");
-      } catch (error) {
-        console.error("Failed to submit order", error);
-        alert("Failed to submit order.");
-      } finally {
-        setIsSubmitting(false);
-      }
-    };
-  };
   // Hàm lấy dữ liệu từ API
   const fetchCartItems = async () => {
     if (!currentUser) {
@@ -270,7 +208,14 @@ export default function Checkout() {
           zipcode: user.address.zipcode,
         };
         setAddressDetails(fullAddress);
-        setShippingFee(calculateShippingFee(fullAddress)); // ✅ Truyền toàn bộ address
+
+        // Calculate shipping fee for the address
+        const calculatedFee = calculateShippingFee(fullAddress);
+        console.log(
+          "Calculated shipping fee from address details:",
+          calculatedFee
+        );
+        setShippingFee(calculatedFee);
       } else {
         console.warn("User not found");
         setAddressDetails({
@@ -302,7 +247,12 @@ export default function Checkout() {
         try {
           const addr = JSON.parse(stored);
           setSelectedAddress(addr);
-          setShippingFee(calculateShippingFee(addr)); // ✅ dùng đúng
+          const calculatedFee = calculateShippingFee(addr);
+          console.log(
+            "Calculated shipping fee from selected address:",
+            calculatedFee
+          );
+          setShippingFee(calculatedFee);
         } catch (e) {
           console.error("Lỗi khi parse địa chỉ đã chọn:", e);
         } finally {
@@ -313,10 +263,14 @@ export default function Checkout() {
     fetchData();
   }, [currentUser]);
 
-  const handleSimulatedPaypal = async () => {
-    setShowPaypalPopup(false);
-    await handlePayment(true);
-  };
+  // Compute the current shipping fee whenever effectiveAddress changes
+  useEffect(() => {
+    if (effectiveAddress) {
+      const calculatedFee = calculateShippingFee(effectiveAddress);
+      console.log("Calculated shipping fee on address change:", calculatedFee);
+      setShippingFee(calculatedFee);
+    }
+  }, [effectiveAddress]);
 
   // Tính tổng tiền
   const getCartTotal = () => {
@@ -338,10 +292,19 @@ export default function Checkout() {
       return;
     }
 
+    if (!effectiveAddress) {
+      alert("Please select a shipping address");
+      return;
+    }
+
     if (selectedMethod === "paypal" && !isSimulated) {
       setShowPaypalPopup(true); // chỉ mở popup nếu chưa xác nhận
       return;
     }
+
+    // Make sure shipping fee is calculated correctly
+    const currentShippingFee = calculateShippingFee(effectiveAddress);
+    console.log("Current shipping fee before payment:", currentShippingFee);
 
     const orderId = "ORD" + Math.floor(100 + Math.random() * 900);
     const orderData = {
@@ -351,6 +314,7 @@ export default function Checkout() {
       total_amount: parseFloat((getCartTotal() / 100).toFixed(2)),
       status: selectedMethod === "cod" ? "processing" : "paid",
       payment_method: selectedMethod,
+      shipping_fee: currentShippingFee, // Add shipping fee to order
 
       items: cartItems.map((item) => ({
         product_name: item.title,
@@ -392,6 +356,7 @@ export default function Checkout() {
         "SHIP" + Math.floor(100000 + Math.random() * 900000);
       setShipmentCode(newShipmentCode);
 
+      // Create shipping record with the correct shipping fee
       await axios.post("http://localhost:9999/shipping", {
         shipmentCode: newShipmentCode,
         userId: currentUser.id,
@@ -403,8 +368,11 @@ export default function Checkout() {
           ward: effectiveAddress.ward,
           district: effectiveAddress.district,
           city: effectiveAddress.city,
+          state: effectiveAddress.state,
+          country: effectiveAddress.country,
+          zipcode: effectiveAddress.zipcode,
         },
-        shippingFee,
+        shippingFee: currentShippingFee, // Use the calculated fee here
         status: "processing",
         createdAt: new Date().toISOString(),
       });
@@ -414,7 +382,7 @@ export default function Checkout() {
           cartItems: cartItems,
           addressDetails: effectiveAddress,
           orderTotal: getCartTotal(),
-          shippingFee,
+          shippingFee: currentShippingFee, // Pass the correct fee
           shipmentCode: newShipmentCode,
         },
       });
@@ -609,7 +577,7 @@ export default function Checkout() {
                 <PayPalScriptProvider
                   options={{
                     "client-id": "test", // 👉 Dùng sandbox client ID (có thể thay bằng ID thật)
-                    urrency: currencyMeta.code,
+                    currency: currencyMeta.code,
                   }}
                 >
                   <PayPalButtons
@@ -625,7 +593,7 @@ export default function Checkout() {
                           {
                             amount: {
                               value: (
-                                convertPrice(getCartTotal()) / 100
+                                convertPrice(getCartTotal() + shippingFee) / 100
                               ).toFixed(2),
                             },
                           },
@@ -638,7 +606,7 @@ export default function Checkout() {
                           `Transaction completed by ${details.payer.name.given_name}`
                         );
                         setShowPaypalPopup(false);
-                        handlePayment(true); // ✅ Fix ở đây
+                        handlePayment(true);
                       });
                     }}
                     onCancel={() => {

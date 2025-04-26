@@ -115,8 +115,8 @@ export default function OrderHistory() {
                       </div>
                       <div>
                         <span className="font-semibold">Shipping to:</span>{" "}
-                        {shipment.address.street}, {shipment.address.ward},{" "}
-                        {shipment.address.district}, {shipment.address.city}
+                        {shipment.address.street}, {shipment.address.city},{" "}
+                        {shipment.address.state}, {shipment.address.country}{" "}
                       </div>
                       <div>Phone: {shipment.address.phone}</div>
                       <div className="mt-1">

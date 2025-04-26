@@ -7,7 +7,7 @@ import TopMenu from "../../components/TopMenu";
 import MainHeader from "../../components/MainHeader";
 import SubMenu from "../../components/SubMenu";
 import Footer from "../../components/Footer";
-import { useRegion } from "../../context/RegionContext"; // ✅
+import { useRegion } from "../../context/RegionContext";
 
 export default function AddressPage() {
   const location = useLocation();
@@ -15,14 +15,27 @@ export default function AddressPage() {
   const isSelectMode =
     new URLSearchParams(location.search).get("selectMode") === "true";
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  const { country: currentCountry } = useRegion(); // ✅ lấy vùng hiện tại
+  const { country: currentCountry } = useRegion();
+
+  // Get the country object for the current region country
+  const countryObject = Country.getAllCountries().find(
+    (c) => c.name === currentCountry
+  );
+
+  const countryValue = countryObject
+    ? {
+        label: countryObject.name,
+        value: countryObject.isoCode,
+        name: countryObject.name,
+      }
+    : null;
 
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
     street: "",
     zipcode: "",
-    country: null,
+    country: countryValue, // Initialize with the current country
     state: null,
     city: null,
   });
@@ -31,10 +44,16 @@ export default function AddressPage() {
   const [loading, setLoading] = useState(false);
 
   const fetchAddresses = async () => {
-    const res = await axios.get(
-      `http://localhost:9999/address?userId=${currentUser?.id}`
-    );
-    setAddresses(res.data);
+    if (!currentUser?.id) return;
+
+    try {
+      const res = await axios.get(
+        `http://localhost:9999/address?userId=${currentUser.id}`
+      );
+      setAddresses(res.data);
+    } catch (error) {
+      console.error("Error fetching addresses:", error);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -55,26 +74,26 @@ export default function AddressPage() {
       userId: currentUser?.id,
     };
 
-    await axios.post("http://localhost:9999/address", payload);
-    setFormData({
-      fullName: "",
-      phone: "",
-      street: "",
-      zipcode: "",
-      country: null,
-      state: null,
-      city: null,
-    });
-    fetchAddresses();
+    try {
+      await axios.post("http://localhost:9999/address", payload);
+      setFormData({
+        fullName: "",
+        phone: "",
+        street: "",
+        zipcode: "",
+        country: countryValue, // Keep the country value
+        state: null,
+        city: null,
+      });
+      fetchAddresses();
+    } catch (error) {
+      console.error("Error saving address:", error);
+      alert("Failed to save address. Please try again.");
+    }
     setLoading(false);
   };
 
-  const countryOptions = Country.getAllCountries().map((c) => ({
-    label: c.name,
-    value: c.isoCode,
-    name: c.name,
-  }));
-
+  // Get state options based on the selected country
   const stateOptions = formData.country
     ? State.getStatesOfCountry(formData.country.value).map((s) => ({
         label: s.name,
@@ -83,23 +102,32 @@ export default function AddressPage() {
       }))
     : [];
 
-  const cityOptions = formData.state
-    ? City.getCitiesOfState(formData.country.value, formData.state.value).map(
-        (c) => ({
-          label: c.name,
-          value: c.name,
-          name: c.name,
-        })
-      )
-    : [];
+  // Get city options based on the selected state and country
+  const cityOptions =
+    formData.state && formData.country
+      ? City.getCitiesOfState(formData.country.value, formData.state.value).map(
+          (c) => ({
+            label: c.name,
+            value: c.name,
+            name: c.name,
+          })
+        )
+      : [];
 
+  // Initialize addresses and set country when component mounts
   useEffect(() => {
     fetchAddresses();
-  }, []);
+
+    // Update the country value if it changes
+    setFormData((prevData) => ({
+      ...prevData,
+      country: countryValue,
+    }));
+  }, [currentCountry]);
 
   const filteredAddresses = addresses.filter(
     (addr) => addr.country === currentCountry
-  ); // ✅ chỉ hiển thị địa chỉ của vùng đang chọn
+  );
 
   return (
     <div>
@@ -153,18 +181,16 @@ export default function AddressPage() {
             }
             required
           />
+
+          {/* Country dropdown - disabled but properly initialized */}
           <Select
             className="col-span-2"
-            value={{
-              label: currentCountry,
-              value: Country.getAllCountries().find(
-                (c) => c.name === currentCountry
-              )?.isoCode,
-              name: currentCountry,
-            }}
+            value={formData.country}
             isDisabled={true}
+            placeholder={`Country (${currentCountry})`}
           />
 
+          {/* State dropdown */}
           <Select
             placeholder="Select State/Province"
             options={stateOptions}
@@ -172,13 +198,27 @@ export default function AddressPage() {
             onChange={(val) =>
               setFormData({ ...formData, state: val, city: null })
             }
+            isSearchable
+            isClearable
+            noOptionsMessage={() => "No states available for this country"}
           />
+
+          {/* City dropdown */}
           <Select
             placeholder="Select City"
             options={cityOptions}
             value={formData.city}
             onChange={(val) => setFormData({ ...formData, city: val })}
+            isSearchable
+            isClearable
+            isDisabled={!formData.state}
+            noOptionsMessage={() =>
+              formData.state
+                ? "No cities available for this state"
+                : "Please select a state first"
+            }
           />
+
           <button
             type="submit"
             className="col-span-2 bg-blue-600 text-white py-2 rounded hover:bg-blue-700"

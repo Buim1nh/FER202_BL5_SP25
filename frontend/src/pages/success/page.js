@@ -32,8 +32,12 @@ export default function Success() {
             <strong>Shipment code:</strong> {shipmentCode || "—"}
           </p>
           <p>
-            <strong>Shipment fee:</strong> {(shippingFee / 100).toFixed(2)}{" "}
-            {currencyMeta?.symbol}
+            <strong>Shipment fee:</strong>{" "}
+            {formatCurrency(
+              (shippingFee / 100) * exchangeRate,
+              currencyMeta?.code,
+              currencyMeta?.symbol
+            )}
           </p>
         </div>
 
@@ -66,7 +70,7 @@ export default function Success() {
                       <div>
                         <p className="font-semibold text-sm">{item.title}</p>
                         <p className="text-xs text-gray-500">
-                          Qty: {item.quantity}
+                          Quantity: {item.quantity}
                         </p>
                       </div>
                     </div>

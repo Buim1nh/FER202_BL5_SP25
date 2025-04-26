@@ -267,7 +267,16 @@
         "ORD767",
         "ORD238",
         "ORD686",
-        "ORD391"
+        "ORD391",
+        "ORD164",
+        "ORD340",
+        "ORD282",
+        "ORD431",
+        "ORD298",
+        "ORD416",
+        "ORD743",
+        "ORD897",
+        "ORD996"
       ],
       "address": {
         "street": "Robert",
@@ -1346,6 +1355,105 @@
         }
       ],
       "id": "8VrwCs2"
+    },
+    {
+      "id": "ef5a",
+      "order_id": "ORD431",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-26T08:29:07.477Z",
+      "total_amount": 45,
+      "status": "shipped",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ]
+    },
+    {
+      "id": "405d",
+      "order_id": "ORD298",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-26T08:30:14.809Z",
+      "total_amount": 8.8,
+      "status": "shipped",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
+        }
+      ]
+    },
+    {
+      "id": "64eb",
+      "order_id": "ORD416",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-26T08:30:52.043Z",
+      "total_amount": 9.5,
+      "status": "shipped",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Fitness Watch",
+          "quantity": 1,
+          "price": 9.5
+        }
+      ]
+    },
+    {
+      "id": "b251",
+      "order_id": "ORD743",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-26T08:37:36.256Z",
+      "total_amount": 3.5,
+      "status": "shipped",
+      "payment_method": "cod",
+      "shipping_fee": 300,
+      "items": [
+        {
+          "product_name": "Ceramic Coffee Mug",
+          "quantity": 1,
+          "price": 3.5
+        }
+      ]
+    },
+    {
+      "id": "4884",
+      "order_id": "ORD897",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-26T08:39:11.689Z",
+      "total_amount": 3.5,
+      "status": "shipped",
+      "payment_method": "cod",
+      "shipping_fee": 500,
+      "items": [
+        {
+          "product_name": "Ceramic Coffee Mug",
+          "quantity": 1,
+          "price": 3.5
+        }
+      ]
+    },
+    {
+      "id": "eb1f",
+      "order_id": "ORD996",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-26T08:43:17.488Z",
+      "total_amount": 45,
+      "status": "shipped",
+      "payment_method": "cod",
+      "shipping_fee": 500,
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ]
     }
   ],
   "categories": [
@@ -1801,19 +1909,7 @@
       "quantity": 60
     }
   ],
-  "shoppingCart": [
-    {
-      "userId": "user1745321530724",
-      "productId": [
-        {
-          "idProduct": "3",
-          "quantity": "1"
-        }
-      ],
-      "dateAdded": "2025-04-25T04:20:09.367Z",
-      "id": 1
-    }
-  ],
+  "shoppingCart": [],
   "paymentMethods": [
     {
       "id": "pm001",
@@ -2153,220 +2249,6 @@
       "isWinningBid": true
     }
   ],
-"address": [
-    {
-      "id": "101",
-      "userId": "user1745321530724",
-      "fullName": "Testman",
-      "phone": "0909090909",
-      "street": "123 Test Street",
-      "ward": "Phường Test",
-      "district": "Quận Skibidi",
-      "city": "Skibidi"
-    },
-    {
-      "id": "102",
-      "userId": "user1745321530724",
-      "fullName": "Testman",
-      "phone": "0908888888",
-      "street": "456 Beta Road",
-      "ward": "Phường ABC",
-      "district": "Quận XYZ",
-      "city": "Hồ Chí Minh"
-    },
-    {
-      "id": "fdad",
-      "fullName": "Tst",
-      "phone": "0120250562",
-      "street": "AA",
-      "country": "Vietnam",
-      "state": "Bà Rịa-Vũng Tàu",
-      "city": "Côn Sơn",
-      "userId": "user1745321530724"
-    },
-    {
-      "id": "573f",
-      "fullName": "BB",
-      "phone": "0123254885",
-      "street": "CC",
-      "zipcode": "212",
-      "country": "Vietnam",
-      "state": "Hồ Chí Minh",
-      "city": "Củ Chi",
-      "userId": "user1745321530724"
-    },
-    {
-      "id": "ea67",
-      "fullName": "Test",
-      "phone": "45216525844",
-      "street": "aa",
-      "zipcode": "131",
-      "country": "Albania",
-      "state": "Berat District",
-      "city": "Bashkia Berat",
-      "userId": "user1745321530724"
-    },
-    {
-      "id": "7de1",
-      "fullName": "King",
-      "phone": "24152365346",
-      "street": "queen",
-      "zipcode": "1234",
-      "country": "United Kingdom",
-      "userId": "user1745321530724"
-    },
-    {
-      "id": "d22e",
-      "fullName": "Hieu Test",
-      "phone": "45324327",
-      "street": "HK",
-      "zipcode": "12354",
-      "country": "Taiwan",
-      "state": "Chiayi",
-      "city": "Chiayi County",
-      "userId": "user1745321530724"
-    },
-    {
-      "id": "68a3",
-      "fullName": "aa",
-      "phone": "357537",
-      "street": "aa",
-      "zipcode": "2343",
-      "country": "Ukraine",
-      "state": "Cherkaska oblast",
-      "city": "Cherkasy",
-      "userId": "user1745321530724"
-    }
-  ],
-  "shipping": [
-    {
-      "id": "d752",
-      "shipmentCode": "SHIP158372",
-      "userId": "user1745321530724",
-      "orderId": "ORD675",
-      "address": {
-        "fullName": "Testman",
-        "phone": "0909090909",
-        "street": "123 Test Street",
-        "ward": "Phường Test",
-        "district": "Quận Skibidi",
-        "city": "Skibidi"
-      },
-      "shippingFee": 250,
-      "status": "shipped",
-      "createdAt": "2025-04-24T09:24:20.094Z"
-    },
-    {
-      "id": "dfc6",
-      "shipmentCode": "SHIP169802",
-      "userId": "user1745321530724",
-      "orderId": "ORD127",
-      "address": {
-        "fullName": "Testman",
-        "phone": "0908888888",
-        "street": "456 Beta Road",
-        "ward": "Phường ABC",
-        "district": "Quận XYZ",
-        "city": "Hồ Chí Minh"
-      },
-      "shippingFee": 200,
-      "status": "canceled",
-      "createdAt": "2025-04-24T09:26:32.853Z"
-    },
-    {
-      "id": "3084",
-      "shipmentCode": "SHIP938396",
-      "userId": "user1745321530724",
-      "orderId": "ORD479",
-      "address": {
-        "fullName": "Testman",
-        "phone": "0909090909",
-        "street": "123 Test Street",
-        "ward": "Phường Test",
-        "district": "Quận Skibidi",
-        "city": "Skibidi"
-      },
-      "shippingFee": 250,
-      "status": "canceled",
-      "createdAt": "2025-04-24T09:29:45.902Z"
-    },
-    {
-      "id": "3664",
-      "shipmentCode": "SHIP408349",
-      "userId": "user1745321530724",
-      "orderId": "ORD508",
-      "address": {
-        "fullName": "King",
-        "phone": "24152365346",
-        "street": "queen"
-      },
-      "shippingFee": 500,
-      "status": "processing",
-      "createdAt": "2025-04-24T14:44:59.803Z"
-    },
-    {
-      "id": "2871",
-      "shipmentCode": "SHIP310430",
-      "userId": "user1745321530724",
-      "orderId": "ORD920",
-      "address": {
-        "fullName": "BB",
-        "phone": "0123254885",
-        "street": "CC",
-        "city": "Củ Chi"
-      },
-      "shippingFee": 300,
-      "status": "processing",
-      "createdAt": "2025-04-24T14:46:48.467Z"
-    },
-    {
-      "id": "7703",
-      "shipmentCode": "SHIP414432",
-      "userId": "user1745321530724",
-      "orderId": "ORD285",
-      "address": {
-        "fullName": "Hieu Test",
-        "phone": "45324327",
-        "street": "HK",
-        "city": "Chiayi County"
-      },
-      "shippingFee": 500,
-      "status": "processing",
-      "createdAt": "2025-04-24T15:21:52.706Z"
-    },
-    {
-      "id": "dddf",
-      "shipmentCode": "SHIP829554",
-      "userId": "user1745321530724",
-      "orderId": "ORD767",
-      "address": {
-        "fullName": "Testman",
-        "phone": "0909090909",
-        "street": "123 Test Street",
-        "ward": "Phường Test",
-        "district": "Quận Skibidi",
-        "city": "Skibidi"
-      },
-      "shippingFee": 500,
-      "status": "processing",
-      "createdAt": "2025-04-24T17:01:02.756Z"
-    },
-    {
-      "id": "2813",
-      "shipmentCode": "SHIP479537",
-      "userId": "user1745321530724",
-      "orderId": "ORD238",
-      "address": {
-        "fullName": "BB",
-        "phone": "0123254885",
-        "street": "CC",
-        "city": "Củ Chi"
-      },
-      "shippingFee": 300,
-      "status": "processing",
-      "createdAt": "2025-04-24T17:30:47.096Z"
-    }
-  ],
   "address": [
     {
       "id": "101",
@@ -2450,6 +2332,17 @@
       "state": "Cherkaska oblast",
       "city": "Cherkasy",
       "userId": "user1745321530724"
+    },
+    {
+      "id": "6835",
+      "fullName": "testtt",
+      "phone": "5448723267",
+      "street": "tessssss",
+      "zipcode": "11312",
+      "country": "Vietnam",
+      "state": "Bà Rịa-Vũng Tàu",
+      "city": "Huyện Châu Đức",
+      "userId": "user1745321530724"
     }
   ],
   "shipping": [
@@ -2465,7 +2358,100 @@
       "shippingFee": 500,
       "status": "shipped",
       "createdAt": "2025-04-25T04:15:48.731Z",
-      "id": 1
+      "id": "1"
+    },
+    {
+      "id": "1b78",
+      "shipmentCode": "SHIP843000",
+      "userId": "user1745321530724",
+      "orderId": "ORD431",
+      "address": {
+        "fullName": "Hieu Test",
+        "phone": "45324327",
+        "street": "HK",
+        "city": "Chiayi County"
+      },
+      "shippingFee": 500,
+      "status": "shipped",
+      "createdAt": "2025-04-26T08:29:07.535Z"
+    },
+    {
+      "id": "5729",
+      "shipmentCode": "SHIP702507",
+      "userId": "user1745321530724",
+      "orderId": "ORD298",
+      "address": {
+        "fullName": "Testman",
+        "street": "Robert",
+        "city": "Skibidi"
+      },
+      "shippingFee": 500,
+      "status": "shipped",
+      "createdAt": "2025-04-26T08:30:14.872Z"
+    },
+    {
+      "id": "af9e",
+      "shipmentCode": "SHIP529543",
+      "userId": "user1745321530724",
+      "orderId": "ORD416",
+      "address": {
+        "fullName": "Testman",
+        "street": "Robert",
+        "city": "Skibidi"
+      },
+      "shippingFee": 500,
+      "status": "shipped",
+      "createdAt": "2025-04-26T08:30:52.104Z"
+    },
+    {
+      "id": "3839",
+      "shipmentCode": "SHIP614211",
+      "userId": "user1745321530724",
+      "orderId": "ORD743",
+      "address": {
+        "fullName": "testtt",
+        "phone": "5448723267",
+        "street": "tessssss",
+        "city": "Huyện Châu Đức",
+        "state": "Bà Rịa-Vũng Tàu",
+        "country": "Vietnam",
+        "zipcode": "11312"
+      },
+      "shippingFee": 300,
+      "status": "shipped",
+      "createdAt": "2025-04-26T08:37:36.312Z"
+    },
+    {
+      "id": "c766",
+      "shipmentCode": "SHIP781185",
+      "userId": "user1745321530724",
+      "orderId": "ORD897",
+      "address": {
+        "fullName": "Testman",
+        "street": "Robert",
+        "city": "Skibidi",
+        "country": "VN",
+        "zipcode": "255"
+      },
+      "shippingFee": 500,
+      "status": "shipped",
+      "createdAt": "2025-04-26T08:39:11.745Z"
+    },
+    {
+      "id": "1ca9",
+      "shipmentCode": "SHIP941459",
+      "userId": "user1745321530724",
+      "orderId": "ORD996",
+      "address": {
+        "fullName": "Testman",
+        "street": "Robert",
+        "city": "Skibidi",
+        "country": "VN",
+        "zipcode": "255"
+      },
+      "shippingFee": 500,
+      "status": "shipped",
+      "createdAt": "2025-04-26T08:43:17.543Z"
     }
   ],
   "similarItems": [
@@ -2887,15 +2873,7 @@
       "userId": "user1745321530724",
       "score": 5,
       "comment": "aa",
-      "id": 2
-    },
-    {
-      "productId": "4",
-      "orderId": null,
-      "userId": "user1745321530724",
-      "score": 5,
-      "comment": "OK",
-      "id": 3
+      "id": "2"
     },
     {
       "productId": "9",
@@ -2903,7 +2881,15 @@
       "userId": "user1745321530724",
       "score": 5,
       "comment": "nice",
-      "id": 4
+      "id": "4"
+    },
+    {
+      "id": "2044",
+      "productId": "3",
+      "orderId": null,
+      "userId": "user1745321530724",
+      "score": 5,
+      "comment": "ok"
     }
   ]
 }

@@ -24,7 +24,7 @@ import DailyDeals from "./pages/dailyDeal/page";
 import HelpContact from "./pages/help/page";
 import AddressPage from "./pages/address/page";
 import ShippingPage from "./pages/shipping/page";
-
+import ShipperDashboard from "./pages/shipper/page";
 // ⬇️ Import RegionProvider
 import { RegionProvider } from "./context/RegionContext";
 
@@ -55,7 +55,6 @@ root.render(
           <Route path="/address" element={<AddressPage />} />
           <Route path="/shipping" element={<ShippingPage />} />
           <Route path="/shipper" element={<ShipperDashboard />} />
-
         </Routes>
       </BrowserRouter>
     </RegionProvider>
