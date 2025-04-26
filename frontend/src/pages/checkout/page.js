@@ -312,7 +312,7 @@ export default function Checkout() {
       user_id: currentUser.id,
       order_date: new Date().toISOString(),
       total_amount: parseFloat((getCartTotal() / 100).toFixed(2)),
-      status: selectedMethod === "cod" ? "processing" : "paid",
+      status: "pending",
       payment_method: selectedMethod,
       shipping_fee: currentShippingFee, // Add shipping fee to order
 
@@ -373,7 +373,7 @@ export default function Checkout() {
           zipcode: effectiveAddress.zipcode,
         },
         shippingFee: currentShippingFee, // Use the calculated fee here
-        status: "processing",
+        status: "pending",
         createdAt: new Date().toISOString(),
       });
 

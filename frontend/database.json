@@ -21,7 +21,10 @@
         "ORD315",
         "ORD933",
         "ORD682",
-        "ORD481"
+        "ORD481",
+        "ORD958",
+        "ORD881",
+        "ORD121"
       ],
       "address": {
         "street": "123 Main St",
@@ -30,7 +33,7 @@
         "country": "United States"
       },
       "role": "seller",
-      "action": "lock"
+      "action": "unlock"
     },
     {
       "id": "2",
@@ -1454,6 +1457,58 @@
           "price": 45
         }
       ]
+    },
+    {
+      "id": "a442",
+      "order_id": "ORD958",
+      "user_id": "1",
+      "order_date": "2025-04-26T09:20:41.177Z",
+      "total_amount": 8.8,
+      "status": "processing",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
+        }
+      ]
+    },
+    {
+      "id": "be7c",
+      "order_id": "ORD881",
+      "user_id": "1",
+      "order_date": "2025-04-26T14:02:01.852Z",
+      "total_amount": 18,
+      "status": "processing",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ]
+    },
+    {
+      "id": "d96b",
+      "order_id": "ORD121",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:13:05.644Z",
+      "total_amount": 18,
+      "status": "delivered",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ],
+      "shipper_id": "user1745384287549"
     }
   ],
   "categories": [
@@ -2452,6 +2507,54 @@
       "shippingFee": 500,
       "status": "shipped",
       "createdAt": "2025-04-26T08:43:17.543Z"
+    },
+    {
+      "id": "9f4b",
+      "shipmentCode": "SHIP442471",
+      "userId": "1",
+      "orderId": "ORD958",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "processing",
+      "createdAt": "2025-04-26T09:20:41.302Z"
+    },
+    {
+      "id": "f9e8",
+      "shipmentCode": "SHIP685268",
+      "userId": "1",
+      "orderId": "ORD881",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "processing",
+      "createdAt": "2025-04-26T14:02:01.992Z"
+    },
+    {
+      "id": "6b27",
+      "shipmentCode": "SHIP306739",
+      "userId": "1",
+      "orderId": "ORD121",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "pending",
+      "createdAt": "2025-04-26T16:13:05.665Z"
     }
   ],
   "similarItems": [
@@ -2890,6 +2993,403 @@
       "userId": "user1745321530724",
       "score": 5,
       "comment": "ok"
+    }
+  ],
+  "orderConfirmations": [
+    {
+      "id": 1,
+      "order_id": "ORD002",
+      "confirmed": false
+    },
+    {
+      "id": "5dc5",
+      "order_id": "ORD958",
+      "confirmed": true
+    },
+    {
+      "id": "e0d8",
+      "order_id": "ORD958",
+      "confirmed": false
+    },
+    {
+      "id": "1500",
+      "order_id": "ORD315",
+      "confirmed": false
+    },
+    {
+      "id": "0eeb",
+      "order_id": "ORD315",
+      "confirmed": false
+    },
+    {
+      "id": "7c5f",
+      "order_id": "ORD224",
+      "confirmed": false
+    },
+    {
+      "id": "5bdc",
+      "order_id": "ORD224",
+      "confirmed": false
+    },
+    {
+      "id": "2103",
+      "order_id": "ORD136",
+      "confirmed": false
+    },
+    {
+      "id": "3f01",
+      "order_id": "ORD136",
+      "confirmed": false
+    },
+    {
+      "id": "7637",
+      "order_id": "ORD107",
+      "confirmed": false
+    },
+    {
+      "id": "2b07",
+      "order_id": "ORD107",
+      "confirmed": false
+    },
+    {
+      "id": "59d0",
+      "order_id": "ORD470",
+      "confirmed": false
+    },
+    {
+      "id": "5ba7",
+      "order_id": "ORD470",
+      "confirmed": false
+    },
+    {
+      "id": "2402",
+      "order_id": "ORD245",
+      "confirmed": false
+    },
+    {
+      "id": "f039",
+      "order_id": "ORD380",
+      "confirmed": false
+    },
+    {
+      "id": "47db",
+      "order_id": "ORD245",
+      "confirmed": false
+    },
+    {
+      "id": "8206",
+      "order_id": "ORD380",
+      "confirmed": false
+    },
+    {
+      "id": "d32f",
+      "order_id": "ORD874",
+      "confirmed": false
+    },
+    {
+      "id": "bb36",
+      "order_id": "ORD650",
+      "confirmed": false
+    },
+    {
+      "id": "db94",
+      "order_id": "ORD874",
+      "confirmed": false
+    },
+    {
+      "id": "ec99",
+      "order_id": "ORD650",
+      "confirmed": false
+    },
+    {
+      "id": "b9a9",
+      "order_id": "ORD413",
+      "confirmed": false
+    },
+    {
+      "id": "4314",
+      "order_id": "ORD838",
+      "confirmed": false
+    },
+    {
+      "id": "a051",
+      "order_id": "ORD413",
+      "confirmed": false
+    },
+    {
+      "id": "71ea",
+      "order_id": "ORD838",
+      "confirmed": false
+    },
+    {
+      "id": "384b",
+      "order_id": "ORD146",
+      "confirmed": false
+    },
+    {
+      "id": "38e8",
+      "order_id": "ORD146",
+      "confirmed": false
+    },
+    {
+      "id": "82ee",
+      "order_id": "ORD570",
+      "confirmed": false
+    },
+    {
+      "id": "7f19",
+      "order_id": "ORD170",
+      "confirmed": false
+    },
+    {
+      "id": "a0f6",
+      "order_id": "ORD570",
+      "confirmed": false
+    },
+    {
+      "id": "b565",
+      "order_id": "ORD170",
+      "confirmed": false
+    },
+    {
+      "id": "04f3",
+      "order_id": "ORD516",
+      "confirmed": false
+    },
+    {
+      "id": "965c",
+      "order_id": "ORD203",
+      "confirmed": false
+    },
+    {
+      "id": "f758",
+      "order_id": "ORD516",
+      "confirmed": false
+    },
+    {
+      "id": "13e8",
+      "order_id": "ORD203",
+      "confirmed": false
+    },
+    {
+      "id": "e467",
+      "order_id": "ORD979",
+      "confirmed": false
+    },
+    {
+      "id": "f495",
+      "order_id": "ORD953",
+      "confirmed": false
+    },
+    {
+      "id": "4a81",
+      "order_id": "ORD979",
+      "confirmed": false
+    },
+    {
+      "id": "acdf",
+      "order_id": "ORD953",
+      "confirmed": false
+    },
+    {
+      "id": "f8f5",
+      "order_id": "ORD740",
+      "confirmed": false
+    },
+    {
+      "id": "8710",
+      "order_id": "ORD915",
+      "confirmed": false
+    },
+    {
+      "id": "efbd",
+      "order_id": "ORD740",
+      "confirmed": false
+    },
+    {
+      "id": "b3a4",
+      "order_id": "ORD915",
+      "confirmed": false
+    },
+    {
+      "id": "718f",
+      "order_id": "ORD363",
+      "confirmed": false
+    },
+    {
+      "id": "d780",
+      "order_id": "ORD457",
+      "confirmed": false
+    },
+    {
+      "id": "aaca",
+      "order_id": "ORD363",
+      "confirmed": false
+    },
+    {
+      "id": "8169",
+      "order_id": "ORD457",
+      "confirmed": false
+    },
+    {
+      "id": "9848",
+      "order_id": "ORD466",
+      "confirmed": false
+    },
+    {
+      "id": "f8b7",
+      "order_id": "ORD932",
+      "confirmed": false
+    },
+    {
+      "id": "34ec",
+      "order_id": "ORD466",
+      "confirmed": false
+    },
+    {
+      "id": "3da7",
+      "order_id": "ORD932",
+      "confirmed": false
+    },
+    {
+      "id": "8f4b",
+      "order_id": "ORD677",
+      "confirmed": false
+    },
+    {
+      "id": "5940",
+      "order_id": "ORD399",
+      "confirmed": false
+    },
+    {
+      "id": "6b45",
+      "order_id": "ORD677",
+      "confirmed": false
+    },
+    {
+      "id": "28e3",
+      "order_id": "ORD399",
+      "confirmed": false
+    },
+    {
+      "id": "c08b",
+      "order_id": "ORD855",
+      "confirmed": false
+    },
+    {
+      "id": "b10a",
+      "order_id": "ORD701",
+      "confirmed": false
+    },
+    {
+      "id": "d839",
+      "order_id": "ORD855",
+      "confirmed": false
+    },
+    {
+      "id": "ac69",
+      "order_id": "ORD327",
+      "confirmed": false
+    },
+    {
+      "id": "c910",
+      "order_id": "ORD701",
+      "confirmed": false
+    },
+    {
+      "id": "9c67",
+      "order_id": "ORD327",
+      "confirmed": false
+    },
+    {
+      "id": "f878",
+      "order_id": "ORD201",
+      "confirmed": false
+    },
+    {
+      "id": "e0ec",
+      "order_id": "ORD130",
+      "confirmed": false
+    },
+    {
+      "id": "c615",
+      "order_id": "ORD201",
+      "confirmed": false
+    },
+    {
+      "id": "a31d",
+      "order_id": "ORD130",
+      "confirmed": false
+    },
+    {
+      "id": "d42f",
+      "order_id": "ORD960",
+      "confirmed": false
+    },
+    {
+      "id": "f55b",
+      "order_id": "ORD137",
+      "confirmed": false
+    },
+    {
+      "id": "8005",
+      "order_id": "ORD960",
+      "confirmed": false
+    },
+    {
+      "id": "4237",
+      "order_id": "ORD137",
+      "confirmed": false
+    },
+    {
+      "id": "1cde",
+      "order_id": "ORD118",
+      "confirmed": false
+    },
+    {
+      "id": "6435",
+      "order_id": "ORD381",
+      "confirmed": false
+    },
+    {
+      "id": "582b",
+      "order_id": "ORD118",
+      "confirmed": false
+    },
+    {
+      "id": "5232",
+      "order_id": "ORD381",
+      "confirmed": false
+    },
+    {
+      "id": "ddf1",
+      "order_id": "ORD368",
+      "confirmed": false
+    },
+    {
+      "id": "14da",
+      "order_id": "ORD368",
+      "confirmed": false
+    },
+    {
+      "id": "1e19",
+      "order_id": "ORD881",
+      "confirmed": false
+    },
+    {
+      "id": "882c",
+      "order_id": "ORD881",
+      "confirmed": false
+    },
+    {
+      "id": "99cd",
+      "order_id": "ORD121",
+      "confirmed": true
+    },
+    {
+      "id": "d1b8",
+      "order_id": "ORD121",
+      "confirmed": false
     }
   ]
 }
