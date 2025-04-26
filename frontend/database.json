@@ -123,7 +123,7 @@
       },
       "role": "admin",
       "action": "unlock"
-    }
+    },
     {
       "id": "user1745384287549",
       "email": "shipper@gmail.com",
@@ -2088,7 +2088,6 @@
       "bidDate": "2025-04-15T04:18:11.245Z",
       "isWinningBid": true
     },
-    ,
     {
       "id": "bid1744690691245",
       "productId": "1",
@@ -2097,6 +2096,7 @@
       "bidDate": "2025-04-15T04:18:11.245Z",
       "isWinningBid": true
     }
+  ],
 "address": [
     {
       "id": "101",
