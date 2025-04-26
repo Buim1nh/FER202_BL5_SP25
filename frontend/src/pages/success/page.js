@@ -1,19 +1,40 @@
 import { CheckCircle } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { formatCurrency } from "../../utils/formatCurrency";
+import { useRegion } from "../../context/RegionContext";
 export default function Success() {
   // Lấy dữ liệu từ Checkout qua useLocation
   const navigate = useNavigate();
   const location = useLocation();
-  const { cartItems = [], addressDetails = {}, orderTotal = 0 } = location.state || {};
-
+  const {
+    cartItems = [],
+    addressDetails = {},
+    orderTotal = 0,
+    shippingFee = 0,
+    shipmentCode = "",
+  } = useLocation().state || {};
+  const totalCost = orderTotal + shippingFee;
+  const { currencyMeta, exchangeRate } = useRegion();
   return (
-    <div id="SuccessPage" className="mt-12 max-w-[1200px] mx-auto px-2 min-h-[50vh]">
+    <div
+      id="SuccessPage"
+      className="mt-12 max-w-[1200px] mx-auto px-2 min-h-[50vh]"
+    >
       <div className="bg-white w-full p-6 min-h-[150px] flex flex-col items-center">
         {/* Thông báo thành công */}
         <div className="flex items-center text-xl mb-6">
           <CheckCircle className="text-green-500 h-8 w-8" />
           <span className="pl-4 font-semibold">Payment Successful</span>
+        </div>
+        <div className="text-lg my-4">
+          {" "}
+          <p>
+            <strong>Shipment code:</strong> {shipmentCode || "—"}
+          </p>
+          <p>
+            <strong>Shipment fee:</strong> {(shippingFee / 100).toFixed(2)}{" "}
+            {currencyMeta?.symbol}
+          </p>
         </div>
 
         <div className="w-full max-w-[800px]">
@@ -21,7 +42,8 @@ export default function Success() {
           <div className="border-b pb-4 mb-6">
             <h2 className="text-lg font-semibold">Order Confirmation</h2>
             <p className="text-sm text-gray-600">
-              Thank you! We've received your payment. Here are your order details:
+              Thank you! We've received your payment. Here are your order
+              details:
             </p>
           </div>
 
@@ -49,14 +71,22 @@ export default function Success() {
                       </div>
                     </div>
                     <p className="font-semibold text-sm">
-                      £{(item.price * item.quantity / 100).toFixed(2)}
+                      {formatCurrency(
+                        ((item.price * item.quantity) / 100) * exchangeRate,
+                        currencyMeta?.code,
+                        currencyMeta?.symbol
+                      )}
                     </p>
                   </div>
                 ))}
                 <div className="flex justify-between mt-4 pt-2 border-t">
                   <span className="font-semibold">Total:</span>
                   <span className="font-semibold text-lg">
-                    £{(orderTotal / 100).toFixed(2)}
+                    {formatCurrency(
+                      (totalCost / 100) * exchangeRate,
+                      currencyMeta?.code,
+                      currencyMeta?.symbol
+                    )}
                   </span>
                 </div>
               </div>
@@ -70,12 +100,12 @@ export default function Success() {
             <div className="mb-6">
               <h3 className="text-md font-semibold mb-2">Shipping Address</h3>
               <div className="border rounded-lg p-4 text-sm">
-                <p>{addressDetails.name}</p>
-                <p>{addressDetails.address}</p>
+                <p>{addressDetails.phone}</p>
+                <p>{addressDetails.street}</p>
                 <p>
-                  {addressDetails.city}, {addressDetails.zipcode}
+                  {addressDetails.ward}, {addressDetails.district}
                 </p>
-                <p>{addressDetails.country}</p>
+                <p>{addressDetails.city}</p>
               </div>
             </div>
           )}

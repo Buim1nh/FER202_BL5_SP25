@@ -27,7 +27,8 @@ import MainHeader from "../components/MainHeader";
 import SubMenu from "../components/SubMenu";
 import Footer from "../components/Footer";
 import Product from "../components/Product";
-
+import { formatCurrency } from "../utils/formatCurrency";
+import { useRegion } from "../context/RegionContext";
 // Dữ liệu mẫu cho banner quảng cáo
 const BANNER_SLIDES = [
   {
@@ -176,7 +177,7 @@ const MainPage = () => {
   const categoriesRef = useRef(null);
   const filtersRef = useRef(null);
   const intervalRef = useRef(null); // Thêm ref để quản lý interval của banner
-
+  const { currencyMeta, exchangeRate } = useRegion();
   // Fetch dữ liệu từ API
   useEffect(() => {
     const fetchData = async () => {
@@ -672,7 +673,11 @@ const MainPage = () => {
                         <div className="mt-auto flex items-center justify-between">
                           <div>
                             <span className="text-xl font-bold text-gray-900">
-                              £{(product.price / 100).toFixed(2)}
+                              {formatCurrency(
+                                (product?.price / 100) * exchangeRate,
+                                currencyMeta.code,
+                                currencyMeta.symbol
+                              )}
                             </span>
                             <span className="text-xs text-gray-500 ml-2">
                               {product.quantity > 0
