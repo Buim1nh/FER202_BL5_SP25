@@ -8,12 +8,9 @@ import {
   FiShield,
   FiArrowLeft,
   FiChevronRight,
-  FiInfo,
-  FiStar,
-  FiShare2,
-  FiPrinter,
   FiFlag,
-  FiChevronDown,
+  FiPrinter,
+  FiShare2,
 } from "react-icons/fi";
 import TopMenu from "../../../components/TopMenu";
 import MainHeader from "../../../components/MainHeader";
@@ -48,6 +45,17 @@ export default function ProductDetail() {
   const { currencyMeta, exchangeRate } = useRegion();
   const [averageRating, setAverageRating] = useState(null);
   const [ratingCount, setRatingCount] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+
+  //Modal function to handle Buy Now click
+  const handleBuyNowClick = () => {
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
+
   // Mock additional images for the product
   const productImages = [
     { id: 0, url: product?.url || "/placeholder.jpg" },
@@ -645,9 +653,55 @@ export default function ProductDetail() {
                               ]
                             </div>
                           </div>
-                          <button className="bg-[#0053A0] hover:bg-[#00438A] text-white py-2 px-6 font-medium">
+                          <button
+                            className="bg-[#0053A0] hover:bg-[#00438A] text-white py-2 px-6 font-medium"
+                            onClick={handleBuyNowClick}
+                          >
                             Buy it now
                           </button>
+                          {/* Modal */}
+                          {isModalOpen && (
+                            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                              <div className="bg-white rounded-lg shadow-lg w-96 p-4">
+                                <div className="flex justify-between items-center border-b pb-2">
+                                  <h2 className="text-lg font-medium">
+                                    Confirm Purchase
+                                  </h2>
+                                  <button
+                                    onClick={closeModal}
+                                    className="text-gray-500 hover:text-gray-700"
+                                  >
+                                    ✕
+                                  </button>
+                                </div>
+                                <div className="mt-4">
+                                  <img
+                                    src={`${productImages[selectedImage].url}/400`}
+                                    alt={product?.title}
+                                    className="w-full h-40 object-contain mb-4"
+                                  />
+                                  <h3 className="text-sm font-medium">
+                                    {product?.title}
+                                  </h3>
+                                  <p className="text-gray-500 text-sm mt-1">
+                                    Price: £
+                                    {((product.price * 1.2) / 100).toFixed(2)}
+                                  </p>
+                                </div>
+                                <div className="mt-4 flex justify-between">
+                                  <button
+                                    onClick={closeModal}
+                                    className="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded"
+                                  >
+                                    Cancel
+                                  </button>
+                                  <button className="bg-[#0053A0] hover:bg-[#00438A] text-white py-2 px-4 rounded">
+                                    Confirm Purchase
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          )}
                         </div>
 
                         <div className="flex items-center text-xs text-[#0053A0] mt-2">

@@ -27,6 +27,8 @@ import ShippingPage from "./pages/shipping/page";
 
 // ⬇️ Import RegionProvider
 import { RegionProvider } from "./context/RegionContext";
+import "./index.css";
+import ShipperDashboard from "./pages/shipper/page";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -54,6 +56,7 @@ root.render(
           <Route path="/help" element={<HelpContact />} />
           <Route path="/address" element={<AddressPage />} />
           <Route path="/shipping" element={<ShippingPage />} />
+          <Route path="/shipper" element={<ShipperDashboard />} />
         </Routes>
       </BrowserRouter>
     </RegionProvider>
