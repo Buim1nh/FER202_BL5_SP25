@@ -8,6 +8,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import shippingRules from "../../data/shipping_rules.json";
 import { useRegion } from "../../context/RegionContext";
 import { formatCurrency } from "../../utils/formatCurrency";
+import { sendOrderSuccessEmail } from "../../services/emailService";
 
 import axios from "axios";
 
@@ -376,6 +377,24 @@ export default function Checkout() {
         status: "pending",
         createdAt: new Date().toISOString(),
       });
+
+      // Send order confirmation email
+      const orderDetailsForEmail = {
+        order_id: orderId,
+        total_amount: parseFloat((getCartTotal() / 100).toFixed(2)),
+        items: cartItems.map((item) => ({
+          product_name: item.title,
+          quantity: item.quantity,
+          price: parseFloat((item.price / 100).toFixed(2)),
+        })),
+        shipping_address: effectiveAddress,
+      };
+
+      await sendOrderSuccessEmail(
+        currentUser.email,
+        orderDetailsForEmail,
+        selectedMethod
+      );
 
       navigate("/success", {
         state: {

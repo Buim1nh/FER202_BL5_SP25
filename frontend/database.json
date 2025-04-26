@@ -25,7 +25,8 @@
         "ORD958",
         "ORD881",
         "ORD121",
-        "ORD728"
+        "ORD753",
+        "ORD531"
       ],
       "address": {
         "street": "123 Main St",
@@ -287,6 +288,45 @@
         "zipcode": "255",
         "city": "Skibidi",
         "country": "VN"
+      },
+      "role": "seller",
+      "action": "unlock"
+    },
+    {
+      "id": "user1745687190369",
+      "email": "minhbuicyb@gmail.com",
+      "password": "123456",
+      "fullname": "Minh Bùi",
+      "order_id": [
+        "ORD689"
+      ],
+      "address": {
+        "street": "123",
+        "zipcode": "123",
+        "city": "123",
+        "country": "Việt Nam"
+      },
+      "role": "seller",
+      "action": "unlock"
+    },
+    {
+      "id": "user1745687421412",
+      "email": "minhbthe186598@fpt.edu.vn",
+      "password": "123456",
+      "fullname": "bùi minh",
+      "order_id": [
+        "ORD734",
+        "ORD655",
+        "ORD892",
+        "ORD644",
+        "ORD646",
+        "ORD911"
+      ],
+      "address": {
+        "street": "123",
+        "zipcode": "123",
+        "city": "123",
+        "country": "123"
       },
       "role": "seller",
       "action": "unlock"
@@ -1512,10 +1552,28 @@
       "shipper_id": "user1745384287549"
     },
     {
-      "id": "59ef",
-      "order_id": "ORD728",
+      "id": "30fe",
+      "order_id": "ORD753",
       "user_id": "1",
-      "order_date": "2025-04-26T16:33:29.204Z",
+      "order_date": "2025-04-26T16:35:10.272Z",
+      "total_amount": 12,
+      "status": "shipped",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Wireless Headphones",
+          "quantity": 1,
+          "price": 12
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "3edd",
+      "order_id": "ORD531",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:37:27.149Z",
       "total_amount": 18,
       "status": "delivered",
       "payment_method": "cod",
@@ -1525,6 +1583,132 @@
           "product_name": "Rice Cooker",
           "quantity": 1,
           "price": 18
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "f11f",
+      "order_id": "ORD689",
+      "user_id": "user1745687190369",
+      "order_date": "2025-04-26T17:07:13.129Z",
+      "total_amount": 12,
+      "status": "delivered",
+      "payment_method": "cod",
+      "shipping_fee": 500,
+      "items": [
+        {
+          "product_name": "Wireless Headphones",
+          "quantity": 1,
+          "price": 12
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "8060",
+      "order_id": "ORD734",
+      "user_id": "user1745687421412",
+      "order_date": "2025-04-26T17:11:12.009Z",
+      "total_amount": 12,
+      "status": "delivered",
+      "payment_method": "paypal",
+      "shipping_fee": 500,
+      "items": [
+        {
+          "product_name": "Wireless Headphones",
+          "quantity": 1,
+          "price": 12
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "9745",
+      "order_id": "ORD655",
+      "user_id": "user1745687421412",
+      "order_date": "2025-04-26T17:22:11.256Z",
+      "total_amount": 12,
+      "status": "delivered",
+      "payment_method": "cod",
+      "shipping_fee": 500,
+      "items": [
+        {
+          "product_name": "Wireless Headphones",
+          "quantity": 1,
+          "price": 12
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "4429",
+      "order_id": "ORD892",
+      "user_id": "user1745687421412",
+      "order_date": "2025-04-26T17:24:51.975Z",
+      "total_amount": 12,
+      "status": "shipped",
+      "payment_method": "cod",
+      "shipping_fee": 500,
+      "items": [
+        {
+          "product_name": "Denim Jacket",
+          "quantity": 1,
+          "price": 12
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "dc6c",
+      "order_id": "ORD956",
+      "user_id": "user1745687421412",
+      "order_date": "2025-04-26T17:28:59.206Z",
+      "total_amount": 12,
+      "status": "shipped",
+      "payment_method": "cod",
+      "shipping_fee": 500,
+      "items": [
+        {
+          "product_name": "Denim Jacket",
+          "quantity": 1,
+          "price": 12
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "6da8",
+      "order_id": "ORD646",
+      "user_id": "user1745687421412",
+      "order_date": "2025-04-26T17:32:27.698Z",
+      "total_amount": 12,
+      "status": "shipped",
+      "payment_method": "cod",
+      "shipping_fee": 500,
+      "items": [
+        {
+          "product_name": "Denim Jacket",
+          "quantity": 1,
+          "price": 12
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "28ca",
+      "order_id": "ORD911",
+      "user_id": "user1745687421412",
+      "order_date": "2025-04-26T17:34:33.287Z",
+      "total_amount": 12,
+      "status": "shipped",
+      "payment_method": "cod",
+      "shipping_fee": 500,
+      "items": [
+        {
+          "product_name": "Denim Jacket",
+          "quantity": 1,
+          "price": 12
         }
       ],
       "shipper_id": "user1745384287549"
@@ -2263,6 +2447,16 @@
       "id": "sp1745384287582",
       "userId": "user1745384287549",
       "products": []
+    },
+    {
+      "id": "sp1745687190378",
+      "userId": "user1745687190369",
+      "products": []
+    },
+    {
+      "id": "sp1745687421423",
+      "userId": "user1745687421412",
+      "products": []
     }
   ],
   "auctionBids": [
@@ -2576,10 +2770,10 @@
       "createdAt": "2025-04-26T16:13:05.665Z"
     },
     {
-      "id": "2dd9",
-      "shipmentCode": "SHIP127064",
+      "id": "e292",
+      "shipmentCode": "SHIP834280",
       "userId": "1",
-      "orderId": "ORD728",
+      "orderId": "ORD753",
       "address": {
         "fullName": "John Smiths",
         "street": "123 Main St",
@@ -2589,7 +2783,151 @@
       },
       "shippingFee": 550,
       "status": "pending",
-      "createdAt": "2025-04-26T16:33:29.227Z"
+      "createdAt": "2025-04-26T16:35:10.296Z"
+    },
+    {
+      "id": "539e",
+      "shipmentCode": "SHIP354005",
+      "userId": "1",
+      "orderId": "ORD531",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "pending",
+      "createdAt": "2025-04-26T16:37:27.175Z"
+    },
+    {
+      "id": "ee9e",
+      "shipmentCode": "SHIP979990",
+      "userId": "user1745687190369",
+      "orderId": "ORD689",
+      "address": {
+        "fullName": "Minh Bùi",
+        "street": "123",
+        "city": "123",
+        "country": "Việt Nam",
+        "zipcode": "123"
+      },
+      "shippingFee": 500,
+      "status": "pending",
+      "createdAt": "2025-04-26T17:07:13.155Z"
+    },
+    {
+      "id": "ae29",
+      "shipmentCode": "SHIP698205",
+      "userId": "user1745687421412",
+      "orderId": "ORD734",
+      "address": {
+        "fullName": "bùi minh",
+        "street": "123",
+        "city": "123",
+        "country": "123",
+        "zipcode": "123"
+      },
+      "shippingFee": 500,
+      "status": "pending",
+      "createdAt": "2025-04-26T17:11:12.105Z"
+    },
+    {
+      "id": "ba9c",
+      "shipmentCode": "SHIP522133",
+      "userId": "user1745687421412",
+      "orderId": "ORD655",
+      "address": {
+        "fullName": "bùi minh",
+        "street": "123",
+        "city": "123",
+        "country": "123",
+        "zipcode": "123"
+      },
+      "shippingFee": 500,
+      "status": "pending",
+      "createdAt": "2025-04-26T17:22:11.288Z"
+    },
+    {
+      "id": "d202",
+      "shipmentCode": "SHIP925341",
+      "userId": "user1745687421412",
+      "orderId": "ORD892",
+      "address": {
+        "fullName": "bùi minh",
+        "street": "123",
+        "city": "123",
+        "country": "123",
+        "zipcode": "123"
+      },
+      "shippingFee": 500,
+      "status": "pending",
+      "createdAt": "2025-04-26T17:24:52.010Z"
+    },
+    {
+      "id": "4695",
+      "shipmentCode": "SHIP517546",
+      "userId": "user1745687421412",
+      "orderId": "ORD956",
+      "address": {
+        "fullName": "bùi minh",
+        "street": "123",
+        "city": "123",
+        "country": "123",
+        "zipcode": "123"
+      },
+      "shippingFee": 500,
+      "status": "pending",
+      "createdAt": "2025-04-26T17:28:59.250Z"
+    },
+    {
+      "id": "e5d9",
+      "shipmentCode": "SHIP554395",
+      "userId": "user1745687421412",
+      "orderId": "ORD644",
+      "address": {
+        "fullName": "bùi minh",
+        "street": "123",
+        "city": "123",
+        "country": "123",
+        "zipcode": "123"
+      },
+      "shippingFee": 500,
+      "status": "pending",
+      "createdAt": "2025-04-26T17:28:59.295Z"
+    },
+    {
+      "id": "d0db",
+      "shipmentCode": "SHIP388732",
+      "userId": "user1745687421412",
+      "orderId": "ORD646",
+      "address": {
+        "fullName": "bùi minh",
+        "street": "123",
+        "city": "123",
+        "country": "123",
+        "zipcode": "123"
+      },
+      "shippingFee": 500,
+      "status": "pending",
+      "createdAt": "2025-04-26T17:32:27.736Z"
+    },
+    {
+      "id": "24af",
+      "shipmentCode": "SHIP771475",
+      "userId": "user1745687421412",
+      "orderId": "ORD911",
+      "address": {
+        "fullName": "bùi minh",
+        "street": "123",
+        "city": "123",
+        "country": "123",
+        "zipcode": "123"
+      },
+      "shippingFee": 500,
+      "status": "pending",
+      "createdAt": "2025-04-26T17:34:33.324Z"
     }
   ],
   "similarItems": [
@@ -3032,7 +3370,7 @@
   ],
   "orderConfirmations": [
     {
-      "id": 1,
+      "id": "1",
       "order_id": "ORD002",
       "confirmed": false
     },
@@ -3427,13 +3765,93 @@
       "confirmed": false
     },
     {
-      "id": "08dc",
-      "order_id": "ORD728",
+      "id": "978f",
+      "order_id": "ORD753",
+      "confirmed": false
+    },
+    {
+      "id": "e405",
+      "order_id": "ORD753",
+      "confirmed": false
+    },
+    {
+      "id": "726c",
+      "order_id": "ORD531",
       "confirmed": true
     },
     {
-      "id": "640a",
-      "order_id": "ORD728",
+      "id": "5f4e",
+      "order_id": "ORD531",
+      "confirmed": false
+    },
+    {
+      "id": "33b2",
+      "order_id": "ORD689",
+      "confirmed": true
+    },
+    {
+      "id": "baa0",
+      "order_id": "ORD689",
+      "confirmed": false
+    },
+    {
+      "id": "0e28",
+      "order_id": "ORD734",
+      "confirmed": true
+    },
+    {
+      "id": "bc04",
+      "order_id": "ORD734",
+      "confirmed": false
+    },
+    {
+      "id": "100e",
+      "order_id": "ORD911",
+      "confirmed": false
+    },
+    {
+      "id": "e750",
+      "order_id": "ORD911",
+      "confirmed": false
+    },
+    {
+      "id": "ca1f",
+      "order_id": "ORD646",
+      "confirmed": false
+    },
+    {
+      "id": "b6ac",
+      "order_id": "ORD646",
+      "confirmed": false
+    },
+    {
+      "id": "1d74",
+      "order_id": "ORD956",
+      "confirmed": false
+    },
+    {
+      "id": "ba59",
+      "order_id": "ORD956",
+      "confirmed": false
+    },
+    {
+      "id": "08b7",
+      "order_id": "ORD892",
+      "confirmed": false
+    },
+    {
+      "id": "1f1d",
+      "order_id": "ORD892",
+      "confirmed": false
+    },
+    {
+      "id": "43c0",
+      "order_id": "ORD655",
+      "confirmed": true
+    },
+    {
+      "id": "2e79",
+      "order_id": "ORD655",
       "confirmed": false
     }
   ]
