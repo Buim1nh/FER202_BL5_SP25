@@ -24,7 +24,8 @@
         "ORD481",
         "ORD958",
         "ORD881",
-        "ORD121"
+        "ORD121",
+        "ORD728"
       ],
       "address": {
         "street": "123 Main St",
@@ -1509,6 +1510,24 @@
         }
       ],
       "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "59ef",
+      "order_id": "ORD728",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:33:29.204Z",
+      "total_amount": 18,
+      "status": "delivered",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ],
+      "shipper_id": "user1745384287549"
     }
   ],
   "categories": [
@@ -2555,6 +2574,22 @@
       "shippingFee": 550,
       "status": "pending",
       "createdAt": "2025-04-26T16:13:05.665Z"
+    },
+    {
+      "id": "2dd9",
+      "shipmentCode": "SHIP127064",
+      "userId": "1",
+      "orderId": "ORD728",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "pending",
+      "createdAt": "2025-04-26T16:33:29.227Z"
     }
   ],
   "similarItems": [
@@ -3389,6 +3424,16 @@
     {
       "id": "d1b8",
       "order_id": "ORD121",
+      "confirmed": false
+    },
+    {
+      "id": "08dc",
+      "order_id": "ORD728",
+      "confirmed": true
+    },
+    {
+      "id": "640a",
+      "order_id": "ORD728",
       "confirmed": false
     }
   ]
