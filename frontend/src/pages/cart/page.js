@@ -108,6 +108,60 @@ export default function Cart() {
     return stored ? JSON.parse(stored) : null;
   }, []);
   const { currencyMeta, exchangeRate } = useRegion();
+  
+  // Add new state for coupon code functionality
+  const [couponCode, setCouponCode] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
+  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
+  const [couponError, setCouponError] = useState("");
+  
+  // Function to handle coupon code application
+  const handleApplyCoupon = async () => {
+    if (!couponCode.trim()) {
+      setCouponError("Please enter a coupon code");
+      return;
+    }
+    
+    setIsApplyingCoupon(true);
+    setCouponError("");
+    
+    try {
+      // Fetch coupon data from API
+      const couponResponse = await fetch(`http://localhost:9999/coupons?id=${couponCode.toUpperCase()}`);
+      const couponData = await couponResponse.json();
+      
+      if (couponData.length === 0) {
+        setCouponError("Invalid coupon code");
+        setAppliedCoupon(null);
+      } else {
+        const coupon = couponData[0];
+        if (coupon.status === 0) {
+          setCouponError("This coupon has expired");
+          setAppliedCoupon(null);
+        } else {
+          setAppliedCoupon(coupon);
+          setCouponError("");
+        }
+      }
+    } catch (error) {
+      console.error("Error applying coupon:", error);
+      setCouponError("Failed to apply coupon");
+    } finally {
+      setIsApplyingCoupon(false);
+    }
+  };
+  
+  // Calculate discounted amount
+  const getDiscountAmount = () => {
+    if (!appliedCoupon) return 0;
+    return (getCartTotal() * appliedCoupon.discount / 100);
+  };
+  
+  // Calculate final total after discount
+  const getFinalTotal = () => {
+    return getCartTotal() - getDiscountAmount();
+  };
+
   const fetchCartItems = async () => {
     if (!currentUser) {
       console.log("No current user, setting empty cart");
@@ -432,7 +486,16 @@ export default function Cart() {
       alert("Your cart is empty!");
       return;
     }
-    navigate("/checkout");
+    
+    // Pass coupon information to checkout page via navigation state
+    navigate("/checkout", { 
+      state: { 
+        appliedCoupon: appliedCoupon,
+        originalTotal: getCartTotal(),
+        discountAmount: getDiscountAmount(),
+        finalTotal: getFinalTotal()
+      } 
+    });
   };
 
   useEffect(() => {
@@ -502,10 +565,48 @@ export default function Cart() {
             {cartItems.length > 0 && (
               <div className="md:col-span-1">
                 <div className="bg-white p-4 border sticky top-4">
+                  {/* Coupon Code Section */}
+                  <div className="mb-4 border-b pb-4">
+                    <div className="font-medium mb-2">Have a coupon?</div>
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={couponCode}
+                        onChange={(e) => setCouponCode(e.target.value)}
+                        placeholder="Enter coupon code"
+                        className="border p-2 flex-grow rounded text-sm"
+                      />
+                      <button
+                        onClick={handleApplyCoupon}
+                        disabled={isApplyingCoupon}
+                        className={`px-3 py-2 rounded text-white text-sm ${
+                          isApplyingCoupon ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
+                        }`}
+                      >
+                        {isApplyingCoupon ? "Applying..." : "Apply"}
+                      </button>
+                    </div>
+                    {couponError && (
+                      <div className="text-xs text-red-500 mt-1">{couponError}</div>
+                    )}
+                    {appliedCoupon && (
+                      <div className="mt-2 text-sm text-green-600 flex justify-between items-center">
+                        <span>
+                          Coupon applied: {appliedCoupon.name} ({appliedCoupon.discount}% off)
+                        </span>
+                        <button 
+                          onClick={() => setAppliedCoupon(null)}
+                          className="text-xs text-gray-500 hover:text-red-500"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
                   <button
                     onClick={handleCheckout}
-                    className="flex items —
-center justify-center bg-blue-600 w-full text-white font-semibold p-3 rounded-full hover:bg-blue-700"
+                    className="flex items-center justify-center bg-blue-600 w-full text-white font-semibold p-3 rounded-full hover:bg-blue-700"
                   >
                     Go to checkout
                   </button>
@@ -522,13 +623,26 @@ center justify-center bg-blue-600 w-full text-white font-semibold p-3 rounded-fu
                     </div>
                   </div>
 
-                  <div className="border-b border-gray-300" />
+                  {appliedCoupon && (
+                    <div className="flex items-center justify-between mt-2 text-sm text-green-600">
+                      <div>Discount ({appliedCoupon.discount}%)</div>
+                      <div>
+                        -{formatCurrency(
+                          (getDiscountAmount() / 100) * exchangeRate,
+                          currencyMeta.code,
+                          currencyMeta.symbol
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="border-b border-gray-300 mt-2" />
 
                   <div className="flex items-center justify-between mt-4 mb-1 text-lg font-semibold">
                     <div>Subtotal</div>
                     <div>
                       {formatCurrency(
-                        (getCartTotal() / 100) * exchangeRate,
+                        (getFinalTotal() / 100) * exchangeRate,
                         currencyMeta.code,
                         currencyMeta.symbol
                       )}

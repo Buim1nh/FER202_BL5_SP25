@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
 import Footer from "../../components/Footer";
 import SubMenu from "../../components/SubMenu";
@@ -77,6 +77,10 @@ function CheckoutItem({ product, formatCurrency }) {
 
 export default function Checkout() {
   const navigate = useNavigate();
+  const location = useLocation();
+  // Get coupon information from navigation state
+  const { appliedCoupon, originalTotal, discountAmount, finalTotal } = location.state || {};
+  
   const [cartItems, setCartItems] = useState([]);
   const [addressDetails, setAddressDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -272,12 +276,25 @@ export default function Checkout() {
     }
   }, [effectiveAddress]);
 
-  // Tính tổng tiền
+  // Tính tổng tiền - accounting for discount if available
   const getCartTotal = () => {
+    // If we have final total from a coupon discount, use that
+    if (finalTotal !== undefined) {
+      return finalTotal;
+    }
+    // Otherwise calculate normally
     return cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
       0
     );
+  };
+
+  // Get original total before discount
+  const getOriginalTotal = () => {
+    if (originalTotal !== undefined) {
+      return originalTotal;
+    }
+    return getCartTotal();
   };
 
   const handlePayment = async (isSimulated = false) => {
@@ -312,6 +329,9 @@ export default function Checkout() {
       user_id: currentUser.id,
       order_date: new Date().toISOString(),
       total_amount: parseFloat((getCartTotal() / 100).toFixed(2)),
+      original_amount: parseFloat((getOriginalTotal() / 100).toFixed(2)),
+      discount_amount: discountAmount ? parseFloat((discountAmount / 100).toFixed(2)) : 0,
+      coupon_code: appliedCoupon?.id || null,
       status: selectedMethod === "cod" ? "processing" : "paid",
       payment_method: selectedMethod,
       shipping_fee: currentShippingFee, // Add shipping fee to order
@@ -324,12 +344,14 @@ export default function Checkout() {
     };
 
     try {
+      // Create the order
       await fetch("http://localhost:9999/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderData),
       });
 
+      // Update user's order list
       const updatedOrderIds = [...(currentUser.order_id || []), orderId];
       await fetch(`http://localhost:9999/user/${currentUser.id}`, {
         method: "PATCH",
@@ -337,6 +359,30 @@ export default function Checkout() {
         body: JSON.stringify({ order_id: updatedOrderIds }),
       });
 
+      // Mark coupon as used if one was applied
+      if (appliedCoupon) {
+        try {
+          const couponResponse = await fetch(`http://localhost:9999/coupons/${appliedCoupon.id}`);
+          if (couponResponse.ok) {
+            const couponData = await couponResponse.json();
+            await fetch(`http://localhost:9999/coupons/${appliedCoupon.id}`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                ...couponData,
+                status: 0 // Mark as used/expired
+              })
+            });
+          }
+        } catch (error) {
+          console.error("Error updating coupon status:", error);
+          // Continue with checkout even if coupon update fails
+        }
+      }
+
+      // Clear cart
       const cartRes = await fetch(
         `http://localhost:9999/shoppingCart?userId=${currentUser.id}`
       );
@@ -352,11 +398,11 @@ export default function Checkout() {
         JSON.stringify({ ...currentUser, order_id: updatedOrderIds })
       );
 
+      // Create shipment
       const newShipmentCode =
         "SHIP" + Math.floor(100000 + Math.random() * 900000);
       setShipmentCode(newShipmentCode);
 
-      // Create shipping record with the correct shipping fee
       await axios.post("http://localhost:9999/shipping", {
         shipmentCode: newShipmentCode,
         userId: currentUser.id,
@@ -372,7 +418,7 @@ export default function Checkout() {
           country: effectiveAddress.country,
           zipcode: effectiveAddress.zipcode,
         },
-        shippingFee: currentShippingFee, // Use the calculated fee here
+        shippingFee: currentShippingFee,
         status: "processing",
         createdAt: new Date().toISOString(),
       });
@@ -382,7 +428,10 @@ export default function Checkout() {
           cartItems: cartItems,
           addressDetails: effectiveAddress,
           orderTotal: getCartTotal(),
-          shippingFee: currentShippingFee, // Pass the correct fee
+          originalTotal: getOriginalTotal(),
+          discountAmount: discountAmount || 0,
+          couponApplied: appliedCoupon,
+          shippingFee: currentShippingFee,
           shipmentCode: newShipmentCode,
         },
       });
@@ -390,6 +439,11 @@ export default function Checkout() {
       console.error("Payment error:", error);
       alert("Đã xảy ra lỗi khi thanh toán.");
     }
+  };
+
+  // Update the PayPal button amount calculation to include discount
+  const getPayPalAmount = () => {
+    return (convertPrice(getCartTotal() + shippingFee) / 100).toFixed(2);
   };
 
   if (!currentUser) {
@@ -500,8 +554,17 @@ export default function Checkout() {
                       Items (
                       {cartItems.reduce((sum, item) => sum + item.quantity, 0)})
                     </div>
-                    <div>{displayPrice(getCartTotal())}</div>
+                    <div>{displayPrice(getOriginalTotal())}</div>
                   </div>
+                  
+                  {/* Display discount if coupon was applied */}
+                  {appliedCoupon && discountAmount > 0 && (
+                    <div className="flex items-center justify-between mb-1 text-sm text-green-600">
+                      <div>Discount ({appliedCoupon.discount}%):</div>
+                      <div>-{displayPrice(discountAmount)}</div>
+                    </div>
+                  )}
+                  
                   <div className="flex items-center justify-between mb-4 text-sm">
                     <div>Shipping:</div>
                     <div>{displayPrice(shippingFee)}</div>
@@ -576,7 +639,7 @@ export default function Checkout() {
                 </div>
                 <PayPalScriptProvider
                   options={{
-                    "client-id": "test", // 👉 Dùng sandbox client ID (có thể thay bằng ID thật)
+                    "client-id": "test",
                     currency: currencyMeta.code,
                   }}
                 >
@@ -592,9 +655,7 @@ export default function Checkout() {
                         purchase_units: [
                           {
                             amount: {
-                              value: (
-                                convertPrice(getCartTotal() + shippingFee) / 100
-                              ).toFixed(2),
+                              value: getPayPalAmount(),
                             },
                           },
                         ],
