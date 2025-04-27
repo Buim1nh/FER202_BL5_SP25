@@ -24,9 +24,11 @@
         "ORD481",
         "ORD958",
         "ORD881",
-        "ORD121",
-        "ORD753",
-        "ORD531"
+        "ORD902",
+        "ORD794",
+        "ORD963",
+        "ORD546",
+        "ORD424"
       ],
       "address": {
         "street": "123 Main St",
@@ -1588,127 +1590,91 @@
       "shipper_id": "user1745384287549"
     },
     {
-      "id": "f11f",
-      "order_id": "ORD689",
-      "user_id": "user1745687190369",
-      "order_date": "2025-04-26T17:07:13.129Z",
-      "total_amount": 12,
+      "id": "ebda",
+      "order_id": "ORD902",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:37:06.092Z",
+      "total_amount": 15,
       "status": "delivered",
       "payment_method": "cod",
-      "shipping_fee": 500,
+      "shipping_fee": 550,
       "items": [
         {
-          "product_name": "Wireless Headphones",
+          "product_name": "Athletic Shoes",
           "quantity": 1,
-          "price": 12
+          "price": 15
         }
       ],
       "shipper_id": "user1745384287549"
     },
     {
-      "id": "8060",
-      "order_id": "ORD734",
-      "user_id": "user1745687421412",
-      "order_date": "2025-04-26T17:11:12.009Z",
-      "total_amount": 12,
-      "status": "delivered",
-      "payment_method": "paypal",
-      "shipping_fee": 500,
-      "items": [
-        {
-          "product_name": "Wireless Headphones",
-          "quantity": 1,
-          "price": 12
-        }
-      ],
-      "shipper_id": "user1745384287549"
-    },
-    {
-      "id": "9745",
-      "order_id": "ORD655",
-      "user_id": "user1745687421412",
-      "order_date": "2025-04-26T17:22:11.256Z",
-      "total_amount": 12,
+      "id": "131d",
+      "order_id": "ORD794",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:38:24.212Z",
+      "total_amount": 15,
       "status": "delivered",
       "payment_method": "cod",
-      "shipping_fee": 500,
+      "shipping_fee": 550,
       "items": [
         {
-          "product_name": "Wireless Headphones",
+          "product_name": "Athletic Shoes",
           "quantity": 1,
-          "price": 12
+          "price": 15
         }
       ],
       "shipper_id": "user1745384287549"
     },
     {
-      "id": "4429",
-      "order_id": "ORD892",
-      "user_id": "user1745687421412",
-      "order_date": "2025-04-26T17:24:51.975Z",
-      "total_amount": 12,
-      "status": "shipped",
+      "id": "8385",
+      "order_id": "ORD963",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:50:13.500Z",
+      "total_amount": 15,
+      "status": "failed",
       "payment_method": "cod",
-      "shipping_fee": 500,
+      "shipping_fee": 550,
       "items": [
         {
-          "product_name": "Denim Jacket",
+          "product_name": "Athletic Shoes",
           "quantity": 1,
-          "price": 12
+          "price": 15
         }
       ],
       "shipper_id": "user1745384287549"
     },
     {
-      "id": "dc6c",
-      "order_id": "ORD956",
-      "user_id": "user1745687421412",
-      "order_date": "2025-04-26T17:28:59.206Z",
-      "total_amount": 12,
-      "status": "shipped",
+      "id": "a31a",
+      "order_id": "ORD546",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:53:40.477Z",
+      "total_amount": 4.5,
+      "status": "delivered",
       "payment_method": "cod",
-      "shipping_fee": 500,
+      "shipping_fee": 550,
       "items": [
         {
-          "product_name": "Denim Jacket",
+          "product_name": "Leather Wallet",
           "quantity": 1,
-          "price": 12
+          "price": 4.5
         }
       ],
       "shipper_id": "user1745384287549"
     },
     {
-      "id": "6da8",
-      "order_id": "ORD646",
-      "user_id": "user1745687421412",
-      "order_date": "2025-04-26T17:32:27.698Z",
-      "total_amount": 12,
-      "status": "shipped",
+      "id": "90af",
+      "order_id": "ORD424",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:54:44.732Z",
+      "total_amount": 18,
+      "status": "delivered",
       "payment_method": "cod",
-      "shipping_fee": 500,
+      "shipping_fee": 550,
       "items": [
         {
-          "product_name": "Denim Jacket",
+          "product_name": "Rice Cooker",
           "quantity": 1,
-          "price": 12
-        }
-      ],
-      "shipper_id": "user1745384287549"
-    },
-    {
-      "id": "28ca",
-      "order_id": "ORD911",
-      "user_id": "user1745687421412",
-      "order_date": "2025-04-26T17:34:33.287Z",
-      "total_amount": 12,
-      "status": "shipped",
-      "payment_method": "cod",
-      "shipping_fee": 500,
-      "items": [
-        {
-          "product_name": "Denim Jacket",
-          "quantity": 1,
-          "price": 12
+          "price": 18
         }
       ],
       "shipper_id": "user1745384287549"
@@ -2783,13 +2749,13 @@
       },
       "shippingFee": 550,
       "status": "pending",
-      "createdAt": "2025-04-26T16:35:10.296Z"
+      "createdAt": "2025-04-26T16:33:29.227Z"
     },
     {
-      "id": "539e",
-      "shipmentCode": "SHIP354005",
+      "id": "82eb",
+      "shipmentCode": "SHIP595949",
       "userId": "1",
-      "orderId": "ORD531",
+      "orderId": "ORD902",
       "address": {
         "fullName": "John Smiths",
         "street": "123 Main St",
@@ -2799,135 +2765,71 @@
       },
       "shippingFee": 550,
       "status": "pending",
-      "createdAt": "2025-04-26T16:37:27.175Z"
+      "createdAt": "2025-04-26T16:37:06.226Z"
     },
     {
-      "id": "ee9e",
-      "shipmentCode": "SHIP979990",
-      "userId": "user1745687190369",
-      "orderId": "ORD689",
+      "id": "f5de",
+      "shipmentCode": "SHIP140826",
+      "userId": "1",
+      "orderId": "ORD794",
       "address": {
-        "fullName": "Minh Bùi",
-        "street": "123",
-        "city": "123",
-        "country": "Việt Nam",
-        "zipcode": "123"
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
       },
-      "shippingFee": 500,
+      "shippingFee": 550,
       "status": "pending",
-      "createdAt": "2025-04-26T17:07:13.155Z"
+      "createdAt": "2025-04-26T16:38:24.233Z"
     },
     {
-      "id": "ae29",
-      "shipmentCode": "SHIP698205",
-      "userId": "user1745687421412",
-      "orderId": "ORD734",
+      "id": "f807",
+      "shipmentCode": "SHIP110027",
+      "userId": "1",
+      "orderId": "ORD963",
       "address": {
-        "fullName": "bùi minh",
-        "street": "123",
-        "city": "123",
-        "country": "123",
-        "zipcode": "123"
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
       },
-      "shippingFee": 500,
+      "shippingFee": 550,
       "status": "pending",
-      "createdAt": "2025-04-26T17:11:12.105Z"
+      "createdAt": "2025-04-26T16:50:13.529Z"
     },
     {
-      "id": "ba9c",
-      "shipmentCode": "SHIP522133",
-      "userId": "user1745687421412",
-      "orderId": "ORD655",
+      "id": "4e03",
+      "shipmentCode": "SHIP470900",
+      "userId": "1",
+      "orderId": "ORD546",
       "address": {
-        "fullName": "bùi minh",
-        "street": "123",
-        "city": "123",
-        "country": "123",
-        "zipcode": "123"
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
       },
-      "shippingFee": 500,
+      "shippingFee": 550,
       "status": "pending",
-      "createdAt": "2025-04-26T17:22:11.288Z"
+      "createdAt": "2025-04-26T16:53:40.518Z"
     },
     {
-      "id": "d202",
-      "shipmentCode": "SHIP925341",
-      "userId": "user1745687421412",
-      "orderId": "ORD892",
+      "id": "c4a7",
+      "shipmentCode": "SHIP779589",
+      "userId": "1",
+      "orderId": "ORD424",
       "address": {
-        "fullName": "bùi minh",
-        "street": "123",
-        "city": "123",
-        "country": "123",
-        "zipcode": "123"
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
       },
-      "shippingFee": 500,
+      "shippingFee": 550,
       "status": "pending",
-      "createdAt": "2025-04-26T17:24:52.010Z"
-    },
-    {
-      "id": "4695",
-      "shipmentCode": "SHIP517546",
-      "userId": "user1745687421412",
-      "orderId": "ORD956",
-      "address": {
-        "fullName": "bùi minh",
-        "street": "123",
-        "city": "123",
-        "country": "123",
-        "zipcode": "123"
-      },
-      "shippingFee": 500,
-      "status": "pending",
-      "createdAt": "2025-04-26T17:28:59.250Z"
-    },
-    {
-      "id": "e5d9",
-      "shipmentCode": "SHIP554395",
-      "userId": "user1745687421412",
-      "orderId": "ORD644",
-      "address": {
-        "fullName": "bùi minh",
-        "street": "123",
-        "city": "123",
-        "country": "123",
-        "zipcode": "123"
-      },
-      "shippingFee": 500,
-      "status": "pending",
-      "createdAt": "2025-04-26T17:28:59.295Z"
-    },
-    {
-      "id": "d0db",
-      "shipmentCode": "SHIP388732",
-      "userId": "user1745687421412",
-      "orderId": "ORD646",
-      "address": {
-        "fullName": "bùi minh",
-        "street": "123",
-        "city": "123",
-        "country": "123",
-        "zipcode": "123"
-      },
-      "shippingFee": 500,
-      "status": "pending",
-      "createdAt": "2025-04-26T17:32:27.736Z"
-    },
-    {
-      "id": "24af",
-      "shipmentCode": "SHIP771475",
-      "userId": "user1745687421412",
-      "orderId": "ORD911",
-      "address": {
-        "fullName": "bùi minh",
-        "street": "123",
-        "city": "123",
-        "country": "123",
-        "zipcode": "123"
-      },
-      "shippingFee": 500,
-      "status": "pending",
-      "createdAt": "2025-04-26T17:34:33.324Z"
+      "createdAt": "2025-04-26T16:54:44.773Z"
     }
   ],
   "similarItems": [
@@ -3780,78 +3682,58 @@
       "confirmed": true
     },
     {
-      "id": "5f4e",
-      "order_id": "ORD531",
+      "id": "640a",
+      "order_id": "ORD728",
       "confirmed": false
     },
     {
-      "id": "33b2",
-      "order_id": "ORD689",
+      "id": "3fa8",
+      "order_id": "ORD902",
       "confirmed": true
     },
     {
-      "id": "baa0",
-      "order_id": "ORD689",
+      "id": "bbe8",
+      "order_id": "ORD902",
       "confirmed": false
     },
     {
-      "id": "0e28",
-      "order_id": "ORD734",
+      "id": "3ad5",
+      "order_id": "ORD794",
+      "confirmed": false
+    },
+    {
+      "id": "e674",
+      "order_id": "ORD794",
+      "confirmed": false
+    },
+    {
+      "id": "d592",
+      "order_id": "ORD963",
+      "confirmed": false
+    },
+    {
+      "id": "b131",
+      "order_id": "ORD963",
+      "confirmed": false
+    },
+    {
+      "id": "b887",
+      "order_id": "ORD546",
       "confirmed": true
     },
     {
-      "id": "bc04",
-      "order_id": "ORD734",
+      "id": "a1d5",
+      "order_id": "ORD546",
       "confirmed": false
     },
     {
-      "id": "100e",
-      "order_id": "ORD911",
-      "confirmed": false
-    },
-    {
-      "id": "e750",
-      "order_id": "ORD911",
-      "confirmed": false
-    },
-    {
-      "id": "ca1f",
-      "order_id": "ORD646",
-      "confirmed": false
-    },
-    {
-      "id": "b6ac",
-      "order_id": "ORD646",
-      "confirmed": false
-    },
-    {
-      "id": "1d74",
-      "order_id": "ORD956",
-      "confirmed": false
-    },
-    {
-      "id": "ba59",
-      "order_id": "ORD956",
-      "confirmed": false
-    },
-    {
-      "id": "08b7",
-      "order_id": "ORD892",
-      "confirmed": false
-    },
-    {
-      "id": "1f1d",
-      "order_id": "ORD892",
-      "confirmed": false
-    },
-    {
-      "id": "43c0",
-      "order_id": "ORD655",
+      "id": "6c66",
+      "order_id": "ORD424",
       "confirmed": true
     },
     {
-      "id": "2e79",
-      "order_id": "ORD655",
+      "id": "aab3",
+      "order_id": "ORD424",
       "confirmed": false
     }
   ]
