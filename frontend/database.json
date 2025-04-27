@@ -17,11 +17,13 @@
         "ORD855",
         "ORD399",
         "ORD677",
-        "ORD536",
-        "ORD315",
-        "ORD933",
-        "ORD682",
-        "ORD481",
+        "ORD478",
+        "ORD146",
+        "ORD366",
+        "ORD143",
+        "ORD813",
+        "ORD654",
+        "ORD545",
         "ORD958",
         "ORD881",
         "ORD902",
@@ -994,7 +996,7 @@
       "user_id": "1",
       "order_date": "2025-04-15T02:33:40.873Z",
       "total_amount": 9.5,
-      "status": "pending",
+      "status": "canceled",
       "items": [
         {
           "product_name": "Fitness Watch",
@@ -1009,7 +1011,7 @@
       "user_id": "1",
       "order_date": "2025-04-15T02:42:51.903Z",
       "total_amount": 12,
-      "status": "processing",
+      "status": "canceled",
       "payment_method": "cod",
       "items": [
         {
@@ -1025,7 +1027,7 @@
       "user_id": "1",
       "order_date": "2025-04-15T02:43:27.544Z",
       "total_amount": 18,
-      "status": "pending",
+      "status": "canceled",
       "payment_method": "paypal",
       "items": [
         {
@@ -1105,7 +1107,7 @@
       "user_id": "1",
       "order_date": "2025-04-15T04:46:27.063Z",
       "total_amount": 4.5,
-      "status": "processing",
+      "status": "canceled",
       "payment_method": "cod",
       "items": [
         {
@@ -1121,7 +1123,7 @@
       "user_id": "1",
       "order_date": "2025-04-15T04:46:28.343Z",
       "total_amount": 4.5,
-      "status": "processing",
+      "status": "canceled",
       "payment_method": "cod",
       "items": [
         {
@@ -1137,7 +1139,7 @@
       "user_id": "1",
       "order_date": "2025-04-15T14:47:51.360Z",
       "total_amount": 14,
-      "status": "processing",
+      "status": "canceled",
       "payment_method": "cod",
       "items": [
         {
@@ -1153,7 +1155,7 @@
       "user_id": "1",
       "order_date": "2025-04-15T14:48:37.745Z",
       "total_amount": 18,
-      "status": "processing",
+      "status": "canceled",
       "payment_method": "cod",
       "items": [
         {
@@ -1216,7 +1218,7 @@
       "user_id": "1",
       "order_date": "2025-04-22T09:43:12.841Z",
       "total_amount": 8.8,
-      "status": "processing",
+      "status": "canceled",
       "payment_method": "cod",
       "items": [
         {
@@ -1678,6 +1680,46 @@
         }
       ],
       "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "bd4a",
+      "order_id": "ORD965",
+      "user_id": "1",
+      "order_date": "2025-04-26T20:16:34.153Z",
+      "total_amount": 16.2,
+      "original_amount": 18,
+      "discount_amount": 1.8,
+      "coupon_code": "CP001",
+      "status": "canceled",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ]
+    },
+    {
+      "id": "d9c0",
+      "order_id": "ORD545",
+      "user_id": "1",
+      "order_date": "2025-04-26T23:54:25.754Z",
+      "total_amount": 8.8,
+      "original_amount": 8.8,
+      "discount_amount": 0,
+      "coupon_code": null,
+      "status": "canceled",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
+        }
+      ]
     }
   ],
   "categories": [
@@ -2830,6 +2872,54 @@
       "shippingFee": 550,
       "status": "pending",
       "createdAt": "2025-04-26T16:54:44.773Z"
+    },
+    {
+      "id": "8326",
+      "shipmentCode": "SHIP807585",
+      "userId": "1",
+      "orderId": "ORD151",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "processing",
+      "createdAt": "2025-04-26T17:20:24.435Z"
+    },
+    {
+      "id": "542d",
+      "shipmentCode": "SHIP456775",
+      "userId": "1",
+      "orderId": "ORD965",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "processing",
+      "createdAt": "2025-04-26T20:16:34.343Z"
+    },
+    {
+      "id": "ec1e",
+      "shipmentCode": "SHIP148701",
+      "userId": "1",
+      "orderId": "ORD545",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "processing",
+      "createdAt": "2025-04-26T23:54:25.792Z"
     }
   ],
   "similarItems": [
@@ -3735,6 +3825,38 @@
       "id": "aab3",
       "order_id": "ORD424",
       "confirmed": false
+    }
+  ],
+  "coupons": [
+    {
+      "id": "CP001",
+      "name": "Giảm 10% cho đơn đầu tiên",
+      "discount": 10,
+      "status": 0
+    },
+    {
+      "id": "CP002",
+      "name": "Giảm 15% cuối tuần",
+      "discount": 15,
+      "status": 1
+    },
+    {
+      "id": "CP003",
+      "name": "Giảm 20% cho đơn trên 500K",
+      "discount": 20,
+      "status": 1
+    },
+    {
+      "id": "CP004",
+      "name": "Giảm 5% mọi đơn hàng",
+      "discount": 5,
+      "status": 1
+    },
+    {
+      "id": "CP005",
+      "name": "Ưu đãi 25% khách VIP",
+      "discount": 25,
+      "status": 1
     }
   ]
 }
