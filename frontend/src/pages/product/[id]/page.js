@@ -1178,7 +1178,7 @@ export default function ProductDetail() {
           <h2 className="text-lg font-bold text-gray-900 mb-4">
             Similar sponsored items
           </h2>
-          <SimilarProducts categoryId={product.categoryId} />
+          <SimilarProducts productId={String(product.id)} />
         </div>
       </main>
 
