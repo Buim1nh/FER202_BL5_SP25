@@ -33,7 +33,9 @@ export default function AuthPage() {
                     // Kiểm tra role của user
                     if (user.role === 'admin') {
                         navigate('/adminDashboard') // Điều hướng đến trang admin nếu role là admin
-                    } else {
+                    }else if (user.role === 'shipper') {
+                        navigate('/shipper') // Điều hướng đến trang shipper nếu role là shipper
+                    }else {
                         navigate('/') // Điều hướng về trang chính nếu không phải admin
                     }
                 } else {
@@ -134,6 +136,16 @@ export default function AuthPage() {
         setFormData({
             ...formData,
             email: 'user4@gmail.com',
+            password: '123123',
+        });
+        setIsLogin(true); // Chuyển sang tab đăng nhập
+    };
+
+    // Hàm tự động điền tài khoản shipper
+    const fillShipperCredentials = () => {
+        setFormData({
+            ...formData,
+            email: 'shipper@gmail.com',
             password: '123123',
         });
         setIsLogin(true); // Chuyển sang tab đăng nhập
@@ -290,6 +302,13 @@ export default function AuthPage() {
                                 className="p-2 bg-purple-500 text-white rounded-md hover:bg-purple-600"
                             >
                                 Tự Điền Admin
+                            </button>
+                            <button
+                                type="button"
+                                onClick={fillShipperCredentials}
+                                className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                            >
+                                Tự Điền Shipper
                             </button>
                         </div>
                     )}

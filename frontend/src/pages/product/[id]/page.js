@@ -1,28 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { 
-  FiHeart, 
-  FiShoppingCart, 
-  FiClock, 
-  FiTruck, 
-  FiShield, 
-  FiArrowLeft, 
+import {
+  FiHeart,
+  FiShoppingCart,
+  FiClock,
   FiChevronRight,
-  FiInfo,
-  FiStar,
   FiShare2,
   FiPrinter,
   FiFlag,
-  FiChevronDown
 } from "react-icons/fi";
 import TopMenu from "../../../components/TopMenu";
 import MainHeader from "../../../components/MainHeader";
 import SubMenu from "../../../components/SubMenu";
 import Footer from "../../../components/Footer";
 import SimilarProducts from "../../../components/SimilarProducts";
-
+import { formatCurrency } from "../../../utils/formatCurrency";
+import { useRegion } from "../../../context/RegionContext";
+import ProductReview from "../../../components/ProductReview";
 // Import components
-
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -40,21 +35,39 @@ export default function ProductDetail() {
   const [showShipping, setShowShipping] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
   const [showReturns, setShowReturns] = useState(false);
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = useMemo(() => {
+    const stored = localStorage.getItem("currentUser");
+    return stored ? JSON.parse(stored) : null;
+  }, []);
+  const { currencyMeta, exchangeRate } = useRegion();
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
 
+  //Modal function to handle Buy Now click
+  const handleBuyNowClick = () => {
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
+
+  const [averageRating, setAverageRating] = useState(null);
+  const [ratingCount, setRatingCount] = useState(0);
   // Mock additional images for the product
   const productImages = [
     { id: 0, url: product?.url || "/placeholder.jpg" },
     { id: 1, url: "https://picsum.photos/id/1/400" },
     { id: 2, url: "https://picsum.photos/id/20/400" },
-    { id: 3, url: "https://picsum.photos/id/30/400" }
+    { id: 3, url: "https://picsum.photos/id/30/400" },
   ];
 
   // Check if product is in cart
   const checkItemInCart = async () => {
     if (!currentUser) return false;
     try {
-      const response = await fetch(`http://localhost:9999/shoppingCart?userId=${currentUser.id}`);
+      const response = await fetch(
+        `http://localhost:9999/shoppingCart?userId=${currentUser.id}`
+      );
       const cartData = await response.json();
       const cartWithProduct = cartData.find((cart) =>
         cart.productId.some((p) => p.idProduct === id)
@@ -69,7 +82,7 @@ export default function ProductDetail() {
   // Check if product is in wishlist
   const checkItemInWishlist = () => {
     const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    return wishlist.some(item => item.id === id);
+    return wishlist.some((item) => item.id === id);
   };
 
   // Fetch product data, cart status, and bid history
@@ -82,19 +95,40 @@ export default function ProductDetail() {
         if (data && data[0]) {
           setProduct(data[0]);
         }
-        
+
         // Check cart status
         const inCart = await checkItemInCart();
         setIsItemAdded(inCart);
-        
+
         // Check wishlist status
         setIsWishlist(checkItemInWishlist());
-        
+
         // Fetch bid history for auction items
         if (data[0]?.isAuction) {
-          const bidsResponse = await fetch(`http://localhost:9999/auctionBids?productId=${id}`);
+          const bidsResponse = await fetch(
+            `http://localhost:9999/auctionBids?productId=${id}`
+          );
           const bidsData = await bidsResponse.json();
-          setBidHistory(bidsData.sort((a, b) => new Date(b.bidDate) - new Date(a.bidDate)));
+          setBidHistory(
+            bidsData.sort((a, b) => new Date(b.bidDate) - new Date(a.bidDate))
+          );
+        }
+
+        // Fetch rating average
+        const ratingResponse = await fetch(
+          `http://localhost:9999/ratings?productId=${id}`
+        );
+        const ratingData = await ratingResponse.json();
+
+        if (ratingData.length > 0) {
+          const avg =
+            ratingData.reduce((sum, r) => sum + (r.score || 0), 0) /
+            ratingData.length;
+          setAverageRating(avg.toFixed(1));
+          setRatingCount(ratingData.length);
+        } else {
+          setAverageRating(null);
+          setRatingCount(0);
         }
       } catch (error) {
         console.error("Error:", error);
@@ -115,7 +149,9 @@ export default function ProductDetail() {
     }
 
     try {
-      const cartResponse = await fetch(`http://localhost:9999/shoppingCart?userId=${currentUser.id}`);
+      const cartResponse = await fetch(
+        `http://localhost:9999/shoppingCart?userId=${currentUser.id}`
+      );
       const cartData = await cartResponse.json();
 
       if (isItemAdded) {
@@ -124,34 +160,47 @@ export default function ProductDetail() {
         );
 
         if (cartWithProduct) {
-          const updatedProducts = cartWithProduct.productId.filter((p) => p.idProduct !== id);
+          const updatedProducts = cartWithProduct.productId.filter(
+            (p) => p.idProduct !== id
+          );
 
           if (updatedProducts.length === 0) {
-            await fetch(`http://localhost:9999/shoppingCart/${cartWithProduct.id}`, {
-              method: "DELETE",
-            });
+            await fetch(
+              `http://localhost:9999/shoppingCart/${cartWithProduct.id}`,
+              {
+                method: "DELETE",
+              }
+            );
           } else {
-            await fetch(`http://localhost:9999/shoppingCart/${cartWithProduct.id}`, {
-              method: "PATCH",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                productId: updatedProducts,
-              }),
-            });
+            await fetch(
+              `http://localhost:9999/shoppingCart/${cartWithProduct.id}`,
+              {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  productId: updatedProducts,
+                }),
+              }
+            );
           }
           setIsItemAdded(false);
         }
       } else {
         if (cartData.length > 0) {
           const cartItem = cartData[0];
-          const existingProduct = cartItem.productId.find((p) => p.idProduct === id);
+          const existingProduct = cartItem.productId.find(
+            (p) => p.idProduct === id
+          );
 
           if (existingProduct) {
             const updatedProducts = cartItem.productId.map((p) =>
               p.idProduct === id
-                ? { ...p, quantity: (parseInt(p.quantity) + quantity).toString() }
+                ? {
+                    ...p,
+                    quantity: (parseInt(p.quantity) + quantity).toString(),
+                  }
                 : p
             );
 
@@ -171,7 +220,10 @@ export default function ProductDetail() {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                productId: [...cartItem.productId, { idProduct: id, quantity: quantity.toString() }],
+                productId: [
+                  ...cartItem.productId,
+                  { idProduct: id, quantity: quantity.toString() },
+                ],
               }),
             });
           }
@@ -211,22 +263,32 @@ export default function ProductDetail() {
 
     const bidInPennies = Math.round(parseFloat(bidAmount) * 100);
     if (bidInPennies <= product.price) {
-      alert(`Your bid must be higher than the current bid of £${(product.price / 100).toFixed(2)}`);
+      alert(
+        `Your bid must be higher than the current bid of ${formatCurrency(
+          (product.price / 100) * exchangeRate,
+          currencyMeta.code,
+          currencyMeta.symbol
+        )}`
+      );
+
       return;
     }
 
     try {
       // Get current bids to check highest
-      const bidsResponse = await fetch(`http://localhost:9999/auctionBids?productId=${id}`);
+      const bidsResponse = await fetch(
+        `http://localhost:9999/auctionBids?productId=${id}`
+      );
       const existingBids = await bidsResponse.json();
-      
+
       // Create new bid ID
       const newBidId = `bid${Date.now()}`;
 
       // Determine if this is winning bid
-      const highestBid = existingBids.length > 0
-        ? Math.max(...existingBids.map((bid) => bid.bidAmount))
-        : product.price;
+      const highestBid =
+        existingBids.length > 0
+          ? Math.max(...existingBids.map((bid) => bid.bidAmount))
+          : product.price;
       const isWinning = bidInPennies > highestBid;
 
       // Create new bid record
@@ -268,7 +330,7 @@ export default function ProductDetail() {
 
       // Update bid history
       setBidHistory([newBid, ...bidHistory]);
-      
+
       alert("Bid placed successfully!");
       setBidAmount("");
     } catch (error) {
@@ -280,14 +342,17 @@ export default function ProductDetail() {
   // Toggle wishlist status
   const toggleWishlist = () => {
     const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    
+
     if (isWishlist) {
-      const updatedWishlist = wishlist.filter(item => item.id !== id);
+      const updatedWishlist = wishlist.filter((item) => item.id !== id);
       localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
       setIsWishlist(false);
     } else {
       if (product) {
-        localStorage.setItem("wishlist", JSON.stringify([...wishlist, product]));
+        localStorage.setItem(
+          "wishlist",
+          JSON.stringify([...wishlist, product])
+        );
         setIsWishlist(true);
       }
     }
@@ -299,11 +364,13 @@ export default function ProductDetail() {
     const days = 2;
     const hours = 3;
     const minutes = 45;
-    
+
     return (
       <div className="flex items-center text-gray-700">
         <FiClock className="mr-2" />
-        <span className="font-medium">{days}d {hours}h {minutes}m</span>
+        <span className="font-medium">
+          {days}d {hours}h {minutes}m
+        </span>
       </div>
     );
   };
@@ -334,9 +401,16 @@ export default function ProductDetail() {
         <SubMenu />
         <div className="max-w-[1300px] mx-auto px-4 py-16">
           <div className="bg-white p-8 text-center">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Product Not Found</h2>
-            <p className="text-gray-600 mb-6">The product you're looking for doesn't exist or has been removed.</p>
-            <Link to="/" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-sm text-white bg-[#0053A0] hover:bg-[#00438A]">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              Product Not Found
+            </h2>
+            <p className="text-gray-600 mb-6">
+              The product you're looking for doesn't exist or has been removed.
+            </p>
+            <Link
+              to="/"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-sm text-white bg-[#0053A0] hover:bg-[#00438A]"
+            >
               Return to Home
             </Link>
           </div>
@@ -351,17 +425,25 @@ export default function ProductDetail() {
       <TopMenu />
       <MainHeader />
       <SubMenu />
-      
+
       <main className="max-w-[1300px] mx-auto px-4 py-4">
         {/* Breadcrumb */}
         <nav className="flex mb-2 text-xs" aria-label="Breadcrumb">
           <ol className="flex items-center space-x-1">
             <li>
-              <Link to="/" className="text-[#555555] hover:text-[#0053A0] hover:underline">Home</Link>
+              <Link
+                to="/"
+                className="text-[#555555] hover:text-[#0053A0] hover:underline"
+              >
+                Home
+              </Link>
             </li>
             <li className="flex items-center">
               <FiChevronRight className="h-3 w-3 text-gray-400 mx-1" />
-              <Link to={`/list-category/${product.categoryId}`} className="text-[#555555] hover:text-[#0053A0] hover:underline">
+              <Link
+                to={`/list-category/${product.categoryId}`}
+                className="text-[#555555] hover:text-[#0053A0] hover:underline"
+              >
                 {product.categoryName || "Category"}
               </Link>
             </li>
@@ -377,9 +459,9 @@ export default function ProductDetail() {
             {/* Left Column - Images */}
             <div className="lg:w-[40%] p-2 lg:p-4 border-b lg:border-b-0 lg:border-r border-gray-200">
               <div className="relative mb-2">
-                <img 
-                  src={`${productImages[selectedImage].url}/600`} 
-                  alt={product.title} 
+                <img
+                  src={`${productImages[selectedImage].url}/600`}
+                  alt={product.title}
                   className="w-full h-[400px] object-contain"
                 />
                 {product.status !== "available" && (
@@ -388,7 +470,7 @@ export default function ProductDetail() {
                   </div>
                 )}
               </div>
-              
+
               {/* Thumbnail images */}
               <div className="flex space-x-2 overflow-x-auto pb-2">
                 {productImages.map((image, index) => (
@@ -396,18 +478,20 @@ export default function ProductDetail() {
                     key={image.id}
                     onClick={() => setSelectedImage(index)}
                     className={`flex-shrink-0 w-16 h-16 overflow-hidden border ${
-                      selectedImage === index ? "border-[#0053A0]" : "border-gray-200"
+                      selectedImage === index
+                        ? "border-[#0053A0]"
+                        : "border-gray-200"
                     }`}
                   >
-                    <img 
-                      src={`${image.url}/100`} 
-                      alt={`Product view ${index + 1}`} 
+                    <img
+                      src={`${image.url}/100`}
+                      alt={`Product view ${index + 1}`}
                       className="w-full h-full object-cover"
                     />
                   </button>
                 ))}
               </div>
-              
+
               {/* Image actions */}
               <div className="flex justify-center mt-4 text-xs text-[#0053A0]">
                 <button className="flex items-center hover:underline mx-2">
@@ -423,13 +507,15 @@ export default function ProductDetail() {
                   Report
                 </button>
               </div>
-              
+
               {/* Seller info (mobile only) */}
               <div className="mt-4 p-3 bg-gray-50 border border-gray-200 lg:hidden">
                 <div className="flex items-center">
                   <div className="text-sm">
                     <p className="font-medium">Seller information</p>
-                    <p className="text-[#0053A0] hover:underline cursor-pointer">seller123 (254)</p>
+                    <p className="text-[#0053A0] hover:underline cursor-pointer">
+                      seller123 (254)
+                    </p>
                     <div className="flex items-center text-xs mt-1">
                       <div className="flex items-center text-[#0053A0]">
                         98.7% Positive feedback
@@ -442,57 +528,87 @@ export default function ProductDetail() {
                 </div>
               </div>
             </div>
-            
+
             {/* Right Column - Product Details */}
             <div className="lg:w-[60%] p-2 lg:p-4">
               <div className="border-b border-gray-200 pb-2">
-                <h1 className="text-xl font-medium text-gray-900">{product.title}</h1>
+                <h1 className="text-xl font-medium text-gray-900">
+                  {product.title}
+                </h1>
+                {averageRating && (
+                  <div className="flex items-center mt-1 text-sm text-yellow-600 font-medium">
+                    ⭐ {averageRating}
+                    <span className="ml-1 text-gray-500 text-xs">
+                      ({ratingCount} reviews)
+                    </span>
+                  </div>
+                )}
+
                 <div className="flex items-center mt-1 text-xs text-gray-500">
-                  <span className="text-[#0053A0] hover:underline cursor-pointer">Brand New</span>
+                  <span className="text-[#0053A0] hover:underline cursor-pointer">
+                    Brand New
+                  </span>
                   <span className="mx-1">|</span>
-                  <span>Condition: <span className="font-medium">New</span></span>
+                  <span>
+                    Condition: <span className="font-medium">New</span>
+                  </span>
                 </div>
               </div>
-              
+
               {/* Auction or Buy Now Section */}
               <div className="py-4 border-b border-gray-200">
                 {product.isAuction ? (
                   <div className="space-y-3">
                     <div className="flex justify-between items-start">
                       <div>
-                        <div className="text-sm text-gray-500">Current bid:</div>
+                        <div className="text-sm text-gray-500">
+                          Current bid:
+                        </div>
                         <div className="text-2xl font-medium text-gray-900">
-                          £{(product.price / 100).toFixed(2)}
+                          {formatCurrency(
+                            (product.price / 100) * exchangeRate,
+                            currencyMeta.code,
+                            currencyMeta.symbol
+                          )}
                         </div>
                         <div className="text-xs text-gray-500 mt-1">
-                          [Approximately US ${((product.price / 100) * 1.25).toFixed(2)}]
+                          [Approximately US $
+                          {((product.price / 100) * 1.25).toFixed(2)}]
                         </div>
                       </div>
-                      
+
                       {product.status === "available" && (
                         <div className="text-right">
-                          <div className="text-sm text-gray-500">Time left:</div>
-                          <div className="text-[#e43147] font-medium">2d 3h 45m</div>
+                          <div className="text-sm text-gray-500">
+                            Time left:
+                          </div>
+                          <div className="text-[#e43147] font-medium">
+                            2d 3h 45m
+                          </div>
                           <div className="text-xs text-gray-500 mt-1">
                             Sunday, 21:45 BST
                           </div>
                         </div>
                       )}
                     </div>
-                    
+
                     {product.status === "available" ? (
                       <div className="space-y-3">
                         <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                           <div className="relative flex-1">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                              <span className="text-gray-500">£</span>
+                              <span className="text-gray-500">
+                                {currencyMeta.symbol}
+                              </span>
                             </div>
                             <input
                               type="number"
                               step="0.01"
                               value={bidAmount}
                               onChange={(e) => setBidAmount(e.target.value)}
-                              placeholder={`${(product.price / 100 + 1).toFixed(2)} or more`}
+                              placeholder={`${(product.price / 100 + 1).toFixed(
+                                2
+                              )} or more`}
                               className="block w-full pl-7 pr-12 py-2 border border-gray-300 focus:ring-[#0053A0] focus:border-[#0053A0]"
                             />
                           </div>
@@ -503,28 +619,90 @@ export default function ProductDetail() {
                             Place bid
                           </button>
                         </div>
-                        
+
                         <div className="text-xs text-gray-500">
-                          [Enter £{(product.price / 100 + 1).toFixed(2)} or more]
+                          [Enter{" "}
+                          {formatCurrency(
+                            (product.price / 100) * exchangeRate,
+                            currencyMeta.code,
+                            currencyMeta.symbol
+                          )}{" "}
+                          or more]
                         </div>
-                        
+
                         <div className="flex items-center justify-between pt-3">
                           <div>
-                            <div className="text-sm text-gray-500">Buy it now:</div>
+                            <div className="text-sm text-gray-500">
+                              Buy it now:
+                            </div>
                             <div className="text-xl font-medium text-gray-900">
-                              £{(product.price * 1.2 / 100).toFixed(2)}
+                              {formatCurrency(
+                                ((product.price * 1.2) / 100) * exchangeRate,
+                                currencyMeta.code,
+                                currencyMeta.symbol
+                              )}
                             </div>
                             <div className="text-xs text-gray-500 mt-1">
-                              [Approximately US ${((product.price * 1.2 / 100) * 1.25).toFixed(2)}]
+                              [Approximately US $
+                              {(((product.price * 1.2) / 100) * 1.25).toFixed(
+                                2
+                              )}
+                              ]
                             </div>
                           </div>
-                          <button className="bg-[#0053A0] hover:bg-[#00438A] text-white py-2 px-6 font-medium">
+                          <button
+                            className="bg-[#0053A0] hover:bg-[#00438A] text-white py-2 px-6 font-medium"
+                            onClick={handleBuyNowClick}
+                          >
                             Buy it now
                           </button>
+                          {/* Modal */}
+                          {isModalOpen && (
+                            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                              <div className="bg-white rounded-lg shadow-lg w-96 p-4">
+                                <div className="flex justify-between items-center border-b pb-2">
+                                  <h2 className="text-lg font-medium">
+                                    Confirm Purchase
+                                  </h2>
+                                  <button
+                                    onClick={closeModal}
+                                    className="text-gray-500 hover:text-gray-700"
+                                  >
+                                    ✕
+                                  </button>
+                                </div>
+                                <div className="mt-4">
+                                  <img
+                                    src={`${productImages[selectedImage].url}/400`}
+                                    alt={product?.title}
+                                    className="w-full h-40 object-contain mb-4"
+                                  />
+                                  <h3 className="text-sm font-medium">
+                                    {product?.title}
+                                  </h3>
+                                  <p className="text-gray-500 text-sm mt-1">
+                                    Price: £
+                                    {((product.price * 1.2) / 100).toFixed(2)}
+                                  </p>
+                                </div>
+                                <div className="mt-4 flex justify-between">
+                                  <button
+                                    onClick={closeModal}
+                                    className="bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 px-4 rounded"
+                                  >
+                                    Cancel
+                                  </button>
+                                  <button className="bg-[#0053A0] hover:bg-[#00438A] text-white py-2 px-4 rounded">
+                                    Confirm Purchase
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          )}
                         </div>
-                        
+
                         <div className="flex items-center text-xs text-[#0053A0] mt-2">
-                          <button 
+                          <button
                             onClick={() => setShowBidHistory(!showBidHistory)}
                             className="hover:underline flex items-center"
                           >
@@ -535,7 +713,7 @@ export default function ProductDetail() {
                             Add to watchlist
                           </button>
                         </div>
-                        
+
                         {showBidHistory && (
                           <div className="mt-2 border text-xs">
                             <div className="bg-gray-100 p-2 font-medium">
@@ -544,8 +722,12 @@ export default function ProductDetail() {
                             <table className="min-w-full">
                               <thead className="bg-gray-50 text-gray-500">
                                 <tr>
-                                  <th className="px-2 py-1 text-left">Bidder</th>
-                                  <th className="px-2 py-1 text-left">Bid Amount</th>
+                                  <th className="px-2 py-1 text-left">
+                                    Bidder
+                                  </th>
+                                  <th className="px-2 py-1 text-left">
+                                    Bid Amount
+                                  </th>
                                   <th className="px-2 py-1 text-left">Date</th>
                                 </tr>
                               </thead>
@@ -557,7 +739,11 @@ export default function ProductDetail() {
                                         u***{bid.userId.substring(0, 2)}
                                       </td>
                                       <td className="px-2 py-1 whitespace-nowrap font-medium">
-                                        £{(bid.bidAmount / 100).toFixed(2)}
+                                        {formatCurrency(
+                                          (bid.bidAmount / 100) * exchangeRate,
+                                          currencyMeta.code,
+                                          currencyMeta.symbol
+                                        )}
                                       </td>
                                       <td className="px-2 py-1 whitespace-nowrap text-gray-500">
                                         {new Date(bid.bidDate).toLocaleString()}
@@ -566,7 +752,10 @@ export default function ProductDetail() {
                                   ))
                                 ) : (
                                   <tr>
-                                    <td colSpan={3} className="px-2 py-2 text-center text-gray-500">
+                                    <td
+                                      colSpan={3}
+                                      className="px-2 py-2 text-center text-gray-500"
+                                    >
                                       No bids yet. Be the first to bid!
                                     </td>
                                   </tr>
@@ -578,9 +767,12 @@ export default function ProductDetail() {
                       </div>
                     ) : (
                       <div className="bg-red-50 border border-red-200 p-3 text-sm">
-                        <div className="font-medium text-red-800">This auction has ended</div>
+                        <div className="font-medium text-red-800">
+                          This auction has ended
+                        </div>
                         <p className="mt-1 text-red-700">
-                          The auction for this item has ended. Check out similar products below.
+                          The auction for this item has ended. Check out similar
+                          products below.
                         </p>
                       </div>
                     )}
@@ -591,35 +783,60 @@ export default function ProductDetail() {
                       <div className="text-sm text-gray-500">Price:</div>
                       <div className="flex items-baseline">
                         <div className="text-2xl font-medium text-gray-900">
-                          £{(product.price / 100).toFixed(2)}
+                          {formatCurrency(
+                            (product.price / 100) * exchangeRate,
+                            currencyMeta.code,
+                            currencyMeta.symbol
+                          )}
                         </div>
                         <div className="ml-2 text-sm text-gray-500 line-through">
-                          £{(product.price * 1.2 / 100).toFixed(2)}
+                          {formatCurrency(
+                            ((product.price * 1.2) / 100) * exchangeRate,
+                            currencyMeta.code,
+                            currencyMeta.symbol
+                          )}
                         </div>
                         <div className="ml-2 text-sm font-medium text-green-600">
                           Save 20%
                         </div>
                       </div>
                       <div className="text-xs text-gray-500 mt-1">
-                        [Approximately US ${((product.price / 100) * 1.25).toFixed(2)}]
+                        [Approximately US $
+                        {((product.price / 100) * 1.25).toFixed(2)}]
                       </div>
                     </div>
-                    
+
                     {product.status === "available" ? (
                       <div className="space-y-3">
                         <div className="flex items-center">
-                          <label htmlFor="quantity" className="block text-sm text-gray-700 mr-4">
+                          <label
+                            htmlFor="quantity"
+                            className="block text-sm text-gray-700 mr-4"
+                          >
                             Quantity:
                           </label>
                           <div className="flex items-center border border-gray-300">
                             <button
                               type="button"
                               className="p-1 text-gray-500 hover:text-gray-600"
-                              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                              onClick={() =>
+                                setQuantity(Math.max(1, quantity - 1))
+                              }
                             >
                               <span className="sr-only">Decrease</span>
-                              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                              <svg
+                                className="h-4 w-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M20 12H4"
+                                />
                               </svg>
                             </button>
                             <input
@@ -628,7 +845,11 @@ export default function ProductDetail() {
                               name="quantity"
                               min="1"
                               value={quantity}
-                              onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                              onChange={(e) =>
+                                setQuantity(
+                                  Math.max(1, parseInt(e.target.value) || 1)
+                                )
+                              }
                               className="w-12 text-center border-0 focus:ring-0"
                             />
                             <button
@@ -637,8 +858,19 @@ export default function ProductDetail() {
                               onClick={() => setQuantity(quantity + 1)}
                             >
                               <span className="sr-only">Increase</span>
-                              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                              <svg
+                                className="h-4 w-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M12 4v16m8-8H4"
+                                />
                               </svg>
                             </button>
                           </div>
@@ -646,48 +878,61 @@ export default function ProductDetail() {
                             More than 10 available
                           </div>
                         </div>
-                        
+
                         <div className="space-y-2">
                           <button
                             onClick={handleCartAction}
                             className={`w-full flex items-center justify-center px-6 py-2 text-base font-medium text-white ${
-                              isItemAdded 
-                                ? "bg-[#e43147] hover:bg-[#c52b3d]" 
+                              isItemAdded
+                                ? "bg-[#e43147] hover:bg-[#c52b3d]"
                                 : "bg-[#0053A0] hover:bg-[#00438A]"
                             }`}
                           >
                             <FiShoppingCart className="mr-2 h-5 w-5" />
-                            {isItemAdded ? "Remove from basket" : "Add to basket"}
+                            {isItemAdded
+                              ? "Remove from basket"
+                              : "Add to basket"}
                           </button>
-                          
+
                           <button
                             onClick={toggleWishlist}
                             className="w-full flex items-center justify-center px-6 py-2 border border-gray-300 text-base font-medium text-gray-700 bg-white hover:bg-gray-50"
                           >
-                            <FiHeart className={`mr-2 h-5 w-5 ${isWishlist ? "text-[#e43147] fill-[#e43147]" : ""}`} />
-                            {isWishlist ? "Remove from watchlist" : "Add to watchlist"}
+                            <FiHeart
+                              className={`mr-2 h-5 w-5 ${
+                                isWishlist
+                                  ? "text-[#e43147] fill-[#e43147]"
+                                  : ""
+                              }`}
+                            />
+                            {isWishlist
+                              ? "Remove from watchlist"
+                              : "Add to watchlist"}
                           </button>
                         </div>
                       </div>
                     ) : (
                       <div className="bg-red-50 border border-red-200 p-3 text-sm">
-                        <div className="font-medium text-red-800">Out of Stock</div>
+                        <div className="font-medium text-red-800">
+                          Out of Stock
+                        </div>
                         <p className="mt-1 text-red-700">
-                          This item is currently out of stock. Please check back later or browse similar products below.
+                          This item is currently out of stock. Please check back
+                          later or browse similar products below.
                         </p>
                       </div>
                     )}
                   </div>
                 )}
               </div>
-              
+
               {/* Shipping & Payment */}
               <div className="py-4 border-b border-gray-200">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <div className="flex justify-between items-center mb-2">
                       <h3 className="text-base font-medium">Shipping</h3>
-                      <button 
+                      <button
                         onClick={() => setShowShipping(!showShipping)}
                         className="text-xs text-[#0053A0]"
                       >
@@ -705,14 +950,16 @@ export default function ProductDetail() {
                       </div>
                       <div className="flex justify-between mt-1">
                         <span>Delivery:</span>
-                        <span className="text-green-600 font-medium">Free Standard Delivery</span>
+                        <span className="text-green-600 font-medium">
+                          Free Standard Delivery
+                        </span>
                       </div>
                       <div className="flex justify-between mt-1">
                         <span>Estimated between:</span>
                         <span>Wed, 15 Jun and Mon, 20 Jun</span>
                       </div>
                     </div>
-                    
+
                     {showShipping && (
                       <div className="mt-3 text-xs bg-gray-50 p-3 border border-gray-200">
                         <table className="w-full">
@@ -726,13 +973,21 @@ export default function ProductDetail() {
                           <tbody>
                             <tr>
                               <td className="py-1">Standard Delivery</td>
-                              <td className="text-right py-1">3-5 business days</td>
-                              <td className="text-right py-1 font-medium">Free</td>
+                              <td className="text-right py-1">
+                                3-5 business days
+                              </td>
+                              <td className="text-right py-1 font-medium">
+                                Free
+                              </td>
                             </tr>
                             <tr>
                               <td className="py-1">Express Delivery</td>
-                              <td className="text-right py-1">1-2 business days</td>
-                              <td className="text-right py-1">£4.99</td>
+                              <td className="text-right py-1">
+                                1-2 business days
+                              </td>
+                              <td className="text-right py-1">
+                                {currencyMeta.symbol}4.99
+                              </td>
                             </tr>
                           </tbody>
                         </table>
@@ -740,11 +995,11 @@ export default function ProductDetail() {
                       </div>
                     )}
                   </div>
-                  
+
                   <div>
                     <div className="flex justify-between items-center mb-2">
                       <h3 className="text-base font-medium">Payment</h3>
-                      <button 
+                      <button
                         onClick={() => setShowPayment(!showPayment)}
                         className="text-xs text-[#0053A0]"
                       >
@@ -753,15 +1008,27 @@ export default function ProductDetail() {
                     </div>
                     <div className="text-sm">
                       <div className="flex items-center gap-1 mb-1">
-                        <img src="https://ir.ebaystatic.com/cr/v/c1/payment-icons/visa.svg" alt="Visa" className="h-6" />
-                        <img src="https://ir.ebaystatic.com/cr/v/c1/payment-icons/mastercard.svg" alt="Mastercard" className="h-6" />
-                        <img src="https://ir.ebaystatic.com/cr/v/c1/payment-icons/paypal.svg" alt="PayPal" className="h-6" />
+                        <img
+                          src="https://ir.ebaystatic.com/cr/v/c1/payment-icons/visa.svg"
+                          alt="Visa"
+                          className="h-6"
+                        />
+                        <img
+                          src="https://ir.ebaystatic.com/cr/v/c1/payment-icons/mastercard.svg"
+                          alt="Mastercard"
+                          className="h-6"
+                        />
+                        <img
+                          src="https://ir.ebaystatic.com/cr/v/c1/payment-icons/paypal.svg"
+                          alt="PayPal"
+                          className="h-6"
+                        />
                       </div>
                       <div className="text-xs text-gray-500">
                         *Terms and conditions apply
                       </div>
                     </div>
-                    
+
                     {showPayment && (
                       <div className="mt-3 text-xs bg-gray-50 p-3 border border-gray-200">
                         <p>Payment methods accepted:</p>
@@ -776,12 +1043,12 @@ export default function ProductDetail() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Returns */}
               <div className="py-4 border-b border-gray-200">
                 <div className="flex justify-between items-center mb-2">
                   <h3 className="text-base font-medium">Returns</h3>
-                  <button 
+                  <button
                     onClick={() => setShowReturns(!showReturns)}
                     className="text-xs text-[#0053A0]"
                   >
@@ -791,24 +1058,27 @@ export default function ProductDetail() {
                 <div className="text-sm">
                   <p>30 day returns. Buyer pays for return shipping.</p>
                 </div>
-                
+
                 {showReturns && (
                   <div className="mt-3 text-xs bg-gray-50 p-3 border border-gray-200">
                     <p className="font-medium">Return policy details:</p>
                     <ul className="list-disc list-inside mt-1">
-                      <li>Returns accepted within 30 days after the buyer receives the item</li>
+                      <li>
+                        Returns accepted within 30 days after the buyer receives
+                        the item
+                      </li>
                       <li>Buyer pays for return shipping</li>
                       <li>Item must be returned in original condition</li>
                     </ul>
                   </div>
                 )}
               </div>
-              
+
               {/* Description */}
               <div className="py-4">
                 <div className="flex justify-between items-center mb-2">
                   <h3 className="text-base font-medium">Description</h3>
-                  <button 
+                  <button
                     onClick={() => setShowDescription(!showDescription)}
                     className="text-xs text-[#0053A0]"
                   >
@@ -818,7 +1088,7 @@ export default function ProductDetail() {
                 <div className="text-sm">
                   <p className="line-clamp-3">{product.description}</p>
                 </div>
-                
+
                 {showDescription && (
                   <div className="mt-3 text-sm">
                     <p>{product.description}</p>
@@ -839,11 +1109,15 @@ export default function ProductDetail() {
                             <td className="py-2">Black</td>
                           </tr>
                           <tr className="border-t border-gray-200">
-                            <td className="py-2 w-1/3 text-gray-500">Material</td>
+                            <td className="py-2 w-1/3 text-gray-500">
+                              Material
+                            </td>
                             <td className="py-2">Premium Quality</td>
                           </tr>
                           <tr className="border-t border-gray-200">
-                            <td className="py-2 w-1/3 text-gray-500">Dimensions</td>
+                            <td className="py-2 w-1/3 text-gray-500">
+                              Dimensions
+                            </td>
                             <td className="py-2">30 x 20 x 10 cm</td>
                           </tr>
                         </tbody>
@@ -852,13 +1126,15 @@ export default function ProductDetail() {
                   </div>
                 )}
               </div>
-              
+
               {/* Seller Information (Desktop) */}
               <div className="hidden lg:block mt-4 p-3 bg-gray-50 border border-gray-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium text-sm">Seller information</p>
-                    <p className="text-[#0053A0] hover:underline cursor-pointer text-sm">seller123 (254)</p>
+                    <p className="text-[#0053A0] hover:underline cursor-pointer text-sm">
+                      seller123 (254)
+                    </p>
                     <div className="flex items-center text-xs mt-1">
                       <div className="flex items-center text-[#0053A0]">
                         98.7% Positive feedback
@@ -875,29 +1151,37 @@ export default function ProductDetail() {
                   </div>
                 </div>
               </div>
-              
+
               {!currentUser && (
                 <div className="mt-4 bg-blue-50 border border-blue-200 p-3 text-sm">
                   <p className="text-blue-700">
                     Please{" "}
-                    <button onClick={() => navigate("/auth")} className="font-medium text-[#0053A0] underline">
+                    <button
+                      onClick={() => navigate("/auth")}
+                      className="font-medium text-[#0053A0] underline"
+                    >
                       sign in
                     </button>{" "}
-                    to {product.isAuction ? "place a bid or buy" : "add items to basket"}
+                    to{" "}
+                    {product.isAuction
+                      ? "place a bid or buy"
+                      : "add items to basket"}
                   </p>
                 </div>
               )}
             </div>
           </div>
         </div>
-        
+        <ProductReview productId={product.id} currentUser={currentUser} />
         {/* Similar Products Section */}
         <div className="mt-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Similar sponsored items</h2>
-          <SimilarProducts categoryId={product.categoryId} />
+          <h2 className="text-lg font-bold text-gray-900 mb-4">
+            Similar sponsored items
+          </h2>
+          <SimilarProducts productId={String(product.id)} />
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );

@@ -16,7 +16,21 @@
         "ORD701",
         "ORD855",
         "ORD399",
-        "ORD677"
+        "ORD677",
+        "ORD478",
+        "ORD146",
+        "ORD366",
+        "ORD143",
+        "ORD813",
+        "ORD654",
+        "ORD545",
+        "ORD958",
+        "ORD881",
+        "ORD902",
+        "ORD794",
+        "ORD963",
+        "ORD546",
+        "ORD424"
       ],
       "address": {
         "street": "123 Main St",
@@ -25,7 +39,7 @@
         "country": "United States"
       },
       "role": "seller",
-      "action": "lock"
+      "action": "unlock"
     },
     {
       "id": "2",
@@ -118,6 +132,208 @@
       },
       "role": "admin",
       "action": "unlock"
+    },
+    {
+      "id": "user1745384287549",
+      "email": "shipper@gmail.com",
+      "password": "123123",
+      "fullname": "Ta Giang",
+      "order_id": [],
+      "address": {
+        "street": "FPT",
+        "zipcode": "67890",
+        "city": "FPT",
+        "country": "VN"
+      },
+      "role": "shipper",
+      "action": "unlock"
+    },
+    {
+      "id": "user1745321530724",
+      "email": "testman@gmail.com",
+      "password": "123123",
+      "fullname": "Testman",
+      "order_id": [
+        "ORD257",
+        "ORD112",
+        "ORD105",
+        "ORD248",
+        "ORD177",
+        "ORD168",
+        "ORD778",
+        "ORD706",
+        "ORD521",
+        "ORD474",
+        "ORD146",
+        "ORD943",
+        "ORD237",
+        "ORD377",
+        "ORD971",
+        "ORD649",
+        "ORD309",
+        "ORD486",
+        "ORD190",
+        "ORD278",
+        "ORD664",
+        "ORD929",
+        "ORD984",
+        "ORD925",
+        "ORD976",
+        "ORD998",
+        "ORD408",
+        "ORD512",
+        "ORD453",
+        "ORD453",
+        "ORD291",
+        "ORD197",
+        "ORD996",
+        "ORD791",
+        "ORD472",
+        "ORD240",
+        "ORD701",
+        "ORD969",
+        "ORD429",
+        "ORD512",
+        "ORD586",
+        "ORD943",
+        "ORD651",
+        "ORD526",
+        "ORD267",
+        "ORD212",
+        "ORD662793",
+        "ORD994819",
+        "ORD636057",
+        "ORD354423",
+        "ORD238354",
+        "ORD786691",
+        "ORD513593",
+        "ORD366223",
+        "ORD377680",
+        "ORD198598",
+        "ORD121699",
+        "ORD975191",
+        "ORD855066",
+        "ORD702111",
+        "ORD972340",
+        "ORD868758",
+        "ORD444679",
+        "ORD831993",
+        "ORD312058",
+        "ORD126839",
+        "ORD707721",
+        "ORD471284",
+        "ORD578277",
+        "ORD187777",
+        "ORD168610",
+        "ORD765182",
+        "ORD335729",
+        "ORD244443",
+        "ORD390718",
+        "ORD112399",
+        "ORD622976",
+        "ORD723397",
+        "ORD604771",
+        "ORD901220",
+        "ORD127056",
+        "ORD590523",
+        "ORD945250",
+        "ORD987314",
+        "ORD636174",
+        "ORD898741",
+        "ORD308401",
+        "ORD854555",
+        "ORD612768",
+        "ORD267259",
+        "ORD976240",
+        "ORD940743",
+        "ORD451700",
+        "ORD613389",
+        "ORD249463",
+        "ORD899157",
+        "ORD845232",
+        "ORD266873",
+        "ORD789917",
+        "ORD222902",
+        "ORD578258",
+        "ORD320",
+        "ORD894",
+        "ORD192",
+        "ORD560",
+        "ORD801",
+        "ORD737",
+        "ORD632",
+        "ORD450",
+        "ORD401",
+        "ORD694",
+        "ORD396",
+        "ORD714",
+        "ORD675",
+        "ORD127",
+        "ORD479",
+        "ORD508",
+        "ORD920",
+        "ORD285",
+        "ORD767",
+        "ORD238",
+        "ORD686",
+        "ORD391",
+        "ORD164",
+        "ORD340",
+        "ORD282",
+        "ORD431",
+        "ORD298",
+        "ORD416",
+        "ORD743",
+        "ORD897",
+        "ORD996"
+      ],
+      "address": {
+        "street": "Robert",
+        "zipcode": "255",
+        "city": "Skibidi",
+        "country": "VN"
+      },
+      "role": "seller",
+      "action": "unlock"
+    },
+    {
+      "id": "user1745687190369",
+      "email": "minhbuicyb@gmail.com",
+      "password": "123456",
+      "fullname": "Minh Bùi",
+      "order_id": [
+        "ORD689"
+      ],
+      "address": {
+        "street": "123",
+        "zipcode": "123",
+        "city": "123",
+        "country": "Việt Nam"
+      },
+      "role": "seller",
+      "action": "unlock"
+    },
+    {
+      "id": "user1745687421412",
+      "email": "minhbthe186598@fpt.edu.vn",
+      "password": "123456",
+      "fullname": "bùi minh",
+      "order_id": [
+        "ORD734",
+        "ORD655",
+        "ORD892",
+        "ORD644",
+        "ORD646",
+        "ORD911"
+      ],
+      "address": {
+        "street": "123",
+        "zipcode": "123",
+        "city": "123",
+        "country": "123"
+      },
+      "role": "seller",
+      "action": "unlock"
     }
   ],
   "orders": [
@@ -127,6 +343,7 @@
       "order_date": "2024-03-22T15:45:00Z",
       "total_amount": 89.99,
       "status": "shipped",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Bluetooth Headphones",
@@ -141,7 +358,8 @@
       "user_id": "3",
       "order_date": "2024-03-20T08:20:00Z",
       "total_amount": 45,
-      "status": "pending",
+      "status": "shipped",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "USB-C Charger",
@@ -157,6 +375,7 @@
       "order_date": "2024-03-18T12:00:00Z",
       "total_amount": 230,
       "status": "delivered",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Mechanical Keyboard",
@@ -177,6 +396,7 @@
       "order_date": "2024-03-27T17:30:00Z",
       "total_amount": 79.99,
       "status": "delivered",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Wireless Earbuds",
@@ -192,6 +412,7 @@
       "order_date": "2024-03-28T11:20:00Z",
       "total_amount": 120,
       "status": "shipped",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Portable SSD 1TB",
@@ -207,7 +428,8 @@
       "user_id": "1",
       "order_date": "2025-03-24T15:45:46.120Z",
       "total_amount": 343,
-      "status": "pending",
+      "status": "shipped",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Brown Leather Bag",
@@ -227,7 +449,8 @@
       "user_id": "1",
       "order_date": "2025-03-24T15:46:05.866Z",
       "total_amount": 75,
-      "status": "pending",
+      "status": "shipped",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Brown Leather Bag",
@@ -242,7 +465,8 @@
       "user_id": "1",
       "order_date": "2025-03-24T16:07:57.801Z",
       "total_amount": 49.5,
-      "status": "pending",
+      "status": "shipped",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Leather Wallet",
@@ -262,7 +486,8 @@
       "user_id": "1",
       "order_date": "2025-03-24T16:09:11.474Z",
       "total_amount": 15.5,
-      "status": "pending",
+      "status": "delivered",
+      "shipper_id": "user1745384287549",
       "items": [
         {
           "product_name": "Ceramic Coffee Mug",
@@ -282,7 +507,8 @@
       "user_id": "1",
       "order_date": "2025-03-24T16:33:10.455Z",
       "total_amount": 21.8,
-      "status": "pending",
+      "status": "delivered",
+      "shipper_id": "user1745384287549",
       "items": [
         {
           "product_name": "Denim Jacket",
@@ -302,7 +528,8 @@
       "user_id": "1",
       "order_date": "2025-03-24T16:51:56.291Z",
       "total_amount": 341.5,
-      "status": "pending",
+      "status": "failed",
+      "shipper_id": "user1745384287549",
       "items": [
         {
           "product_name": "Brown Leather Bag",
@@ -332,7 +559,8 @@
       "user_id": "user1742836430004",
       "order_date": "2025-03-24T17:14:29.395Z",
       "total_amount": 12,
-      "status": "pending",
+      "status": "delivered",
+      "shipper_id": "user1745384287549",
       "items": [
         {
           "product_name": "Denim Jacket",
@@ -347,7 +575,8 @@
       "user_id": "1",
       "order_date": "2025-03-24T17:45:27.823Z",
       "total_amount": 127.6,
-      "status": "pending",
+      "status": "failed",
+      "shipper_id": "user1745384287549",
       "items": [
         {
           "product_name": "Yoga Kit",
@@ -372,7 +601,8 @@
       "user_id": "1",
       "order_date": "2025-03-25T12:29:42.124Z",
       "total_amount": 61.5,
-      "status": "pending",
+      "status": "delivered",
+      "shipper_id": "user1745384287549",
       "items": [
         {
           "product_name": "Gaming Mouse",
@@ -393,6 +623,7 @@
       "order_date": "2025-03-25T12:30:06.170Z",
       "total_amount": 11,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Electric Kettle",
@@ -408,6 +639,7 @@
       "order_date": "2025-03-25T12:55:34.763Z",
       "total_amount": 226,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Running Backpack",
@@ -428,6 +660,7 @@
       "order_date": "2025-03-26T12:54:29.492Z",
       "total_amount": 57,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Modern Laptop",
@@ -448,6 +681,7 @@
       "order_date": "2025-03-27T08:41:20.382Z",
       "total_amount": 126,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Brown Leather Bag",
@@ -473,6 +707,7 @@
       "order_date": "2025-03-27T11:35:21.007Z",
       "total_amount": 28,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Camping Tent",
@@ -488,6 +723,7 @@
       "order_date": "2025-03-27T16:29:40.374Z",
       "total_amount": 28.5,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Fitness Watch",
@@ -503,6 +739,7 @@
       "order_date": "2025-03-27T17:05:12.572Z",
       "total_amount": 294.66,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Digital Sketch Pad",
@@ -538,6 +775,7 @@
       "order_date": "2025-03-27T17:05:53.008Z",
       "total_amount": 172.33,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Brown Leather Bag",
@@ -578,6 +816,7 @@
       "order_date": "2025-03-27T17:07:03.958Z",
       "total_amount": 143,
       "status": "pending",
+      "shipper_id": null,
       "items": [
         {
           "product_name": "Vinyl Record Player",
@@ -588,6 +827,897 @@
           "product_name": "Vintage Camera",
           "quantity": 1,
           "price": 18
+        }
+      ]
+    },
+    {
+      "order_id": "ORD932",
+      "user_id": "1",
+      "order_date": "2025-04-14T04:51:01.337Z",
+      "total_amount": 45,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ],
+      "id": "5mlYei1"
+    },
+    {
+      "order_id": "ORD466",
+      "user_id": "1",
+      "order_date": "2025-04-14T04:51:03.170Z",
+      "total_amount": 45,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ],
+      "id": "dKaoHui"
+    },
+    {
+      "order_id": "ORD457",
+      "user_id": "1",
+      "order_date": "2025-04-14T04:51:03.385Z",
+      "total_amount": 45,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ],
+      "id": "RnRkpEQ"
+    },
+    {
+      "order_id": "ORD363",
+      "user_id": "1",
+      "order_date": "2025-04-14T04:51:08.097Z",
+      "total_amount": 45,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ],
+      "id": "2PbfldR"
+    },
+    {
+      "id": "f409",
+      "order_id": "ORD915",
+      "user_id": "1",
+      "order_date": "2025-04-14T15:36:14.218Z",
+      "total_amount": 49.5,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        },
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        }
+      ]
+    },
+    {
+      "id": "c1f2",
+      "order_id": "ORD740",
+      "user_id": "1",
+      "order_date": "2025-04-14T15:37:21.586Z",
+      "total_amount": 18,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ]
+    },
+    {
+      "id": "08c7",
+      "order_id": "ORD953",
+      "user_id": "1",
+      "order_date": "2025-04-14T15:38:15.748Z",
+      "total_amount": 15,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Athletic Shoes",
+          "quantity": 1,
+          "price": 15
+        }
+      ]
+    },
+    {
+      "id": "1c9e",
+      "order_id": "ORD979",
+      "user_id": "1",
+      "order_date": "2025-04-14T15:38:56.116Z",
+      "total_amount": 7,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Wool Scarf",
+          "quantity": 1,
+          "price": 7
+        }
+      ]
+    },
+    {
+      "id": "eb0c",
+      "order_id": "ORD203",
+      "user_id": "1",
+      "order_date": "2025-04-14T15:40:42.219Z",
+      "total_amount": 48.5,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        },
+        {
+          "product_name": "Ceramic Coffee Mug",
+          "quantity": 1,
+          "price": 3.5
+        }
+      ]
+    },
+    {
+      "id": "9246",
+      "order_id": "ORD516",
+      "user_id": "1",
+      "order_date": "2025-04-15T02:33:40.822Z",
+      "total_amount": 9.5,
+      "status": "pending",
+      "items": [
+        {
+          "product_name": "Fitness Watch",
+          "quantity": 1,
+          "price": 9.5
+        }
+      ]
+    },
+    {
+      "id": "5219",
+      "order_id": "ORD170",
+      "user_id": "1",
+      "order_date": "2025-04-15T02:33:40.873Z",
+      "total_amount": 9.5,
+      "status": "canceled",
+      "items": [
+        {
+          "product_name": "Fitness Watch",
+          "quantity": 1,
+          "price": 9.5
+        }
+      ]
+    },
+    {
+      "id": "05d2",
+      "order_id": "ORD570",
+      "user_id": "1",
+      "order_date": "2025-04-15T02:42:51.903Z",
+      "total_amount": 12,
+      "status": "canceled",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Wireless Headphones",
+          "quantity": 1,
+          "price": 12
+        }
+      ]
+    },
+    {
+      "id": "4665",
+      "order_id": "ORD146",
+      "user_id": "1",
+      "order_date": "2025-04-15T02:43:27.544Z",
+      "total_amount": 18,
+      "status": "canceled",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ]
+    },
+    {
+      "id": "d363",
+      "order_id": "ORD838",
+      "user_id": "1",
+      "order_date": "2025-04-15T02:57:20.551Z",
+      "total_amount": 12,
+      "status": "paid",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Denim Jacket",
+          "quantity": 1,
+          "price": 12
+        }
+      ]
+    },
+    {
+      "id": "4e93",
+      "order_id": "ORD413",
+      "user_id": "1",
+      "order_date": "2025-04-15T02:58:22.385Z",
+      "total_amount": 12,
+      "status": "paid",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Wireless Headphones",
+          "quantity": 1,
+          "price": 12
+        }
+      ]
+    },
+    {
+      "id": "4b52",
+      "order_id": "ORD650",
+      "user_id": "1",
+      "order_date": "2025-04-15T02:59:08.057Z",
+      "total_amount": 18,
+      "status": "paid",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ]
+    },
+    {
+      "id": "bcc2",
+      "order_id": "ORD874",
+      "user_id": "1",
+      "order_date": "2025-04-15T03:02:44.929Z",
+      "total_amount": 15,
+      "status": "paid",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Athletic Shoes",
+          "quantity": 1,
+          "price": 15
+        }
+      ]
+    },
+    {
+      "id": "284a",
+      "order_id": "ORD380",
+      "user_id": "1",
+      "order_date": "2025-04-15T04:46:27.063Z",
+      "total_amount": 4.5,
+      "status": "canceled",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        }
+      ]
+    },
+    {
+      "id": "3056",
+      "order_id": "ORD245",
+      "user_id": "1",
+      "order_date": "2025-04-15T04:46:28.343Z",
+      "total_amount": 4.5,
+      "status": "canceled",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        }
+      ]
+    },
+    {
+      "id": "ce49",
+      "order_id": "ORD470",
+      "user_id": "1",
+      "order_date": "2025-04-15T14:47:51.360Z",
+      "total_amount": 14,
+      "status": "canceled",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Backpack Cooler",
+          "quantity": 1,
+          "price": 14
+        }
+      ]
+    },
+    {
+      "id": "a545",
+      "order_id": "ORD107",
+      "user_id": "1",
+      "order_date": "2025-04-15T14:48:37.745Z",
+      "total_amount": 18,
+      "status": "canceled",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ]
+    },
+    {
+      "id": "7878",
+      "order_id": "ORD136",
+      "user_id": "1",
+      "order_date": "2025-04-16T03:19:01.333Z",
+      "total_amount": 12,
+      "status": "paid",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Wireless Headphones",
+          "quantity": 1,
+          "price": 12
+        }
+      ]
+    },
+    {
+      "id": "b718",
+      "order_id": "ORD224",
+      "user_id": "1",
+      "order_date": "2025-04-16T03:21:55.351Z",
+      "total_amount": 4.5,
+      "status": "paid",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        }
+      ]
+    },
+    {
+      "id": "b5cd",
+      "order_id": "ORD368",
+      "user_id": "1",
+      "order_date": "2025-04-16T03:28:11.631Z",
+      "total_amount": 3.5,
+      "status": "paid",
+      "payment_method": "paypal",
+      "items": [
+        {
+          "product_name": "Ceramic Coffee Mug",
+          "quantity": 1,
+          "price": 3.5
+        }
+      ]
+    },
+    {
+      "order_id": "ORD315",
+      "user_id": "1",
+      "order_date": "2025-04-22T09:43:12.841Z",
+      "total_amount": 8.8,
+      "status": "canceled",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
+        }
+      ],
+      "id": "9oTMsar"
+    },
+    {
+      "id": "c5ad",
+      "order_id": "ORD675",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T09:24:20.038Z",
+      "total_amount": 8.8,
+      "status": "shipped",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
+        }
+      ]
+    },
+    {
+      "id": "4d55",
+      "order_id": "ORD127",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T09:26:32.795Z",
+      "total_amount": 45,
+      "status": "canceled",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ]
+    },
+    {
+      "id": "4bb7",
+      "order_id": "ORD479",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T09:29:45.841Z",
+      "total_amount": 12,
+      "status": "canceled",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Denim Jacket",
+          "quantity": 1,
+          "price": 12
+        }
+      ]
+    },
+    {
+      "id": "b6bc",
+      "order_id": "ORD508",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T14:44:59.735Z",
+      "total_amount": 13.3,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        },
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
+        }
+      ]
+    },
+    {
+      "id": "5eda",
+      "order_id": "ORD920",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T14:46:48.401Z",
+      "total_amount": 4.5,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        }
+      ]
+    },
+    {
+      "id": "da49",
+      "order_id": "ORD285",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T15:21:52.644Z",
+      "total_amount": 4.5,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        }
+      ]
+    },
+    {
+      "id": "fcb6",
+      "order_id": "ORD767",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T17:01:02.690Z",
+      "total_amount": 45,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ]
+    },
+    {
+      "id": "61af",
+      "order_id": "ORD238",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-24T17:30:47.033Z",
+      "total_amount": 90,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 2,
+          "price": 45
+        }
+      ]
+    },
+    {
+      "order_id": "ORD686",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-25T02:57:36.656Z",
+      "total_amount": 18,
+      "status": "processing",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ],
+      "id": "RQ-QtnF"
+    },
+    {
+      "order_id": "ORD391",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-25T04:15:48.585Z",
+      "total_amount": 24.3,
+      "status": "shipped",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
+        },
+        {
+          "product_name": "Wireless Headphones",
+          "quantity": 1,
+          "price": 12
+        },
+        {
+          "product_name": "Ceramic Coffee Mug",
+          "quantity": 1,
+          "price": 3.5
+        }
+      ],
+      "id": "8VrwCs2"
+    },
+    {
+      "id": "ef5a",
+      "order_id": "ORD431",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-26T08:29:07.477Z",
+      "total_amount": 45,
+      "status": "shipped",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ]
+    },
+    {
+      "id": "405d",
+      "order_id": "ORD298",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-26T08:30:14.809Z",
+      "total_amount": 8.8,
+      "status": "shipped",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
+        }
+      ]
+    },
+    {
+      "id": "64eb",
+      "order_id": "ORD416",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-26T08:30:52.043Z",
+      "total_amount": 9.5,
+      "status": "shipped",
+      "payment_method": "cod",
+      "items": [
+        {
+          "product_name": "Fitness Watch",
+          "quantity": 1,
+          "price": 9.5
+        }
+      ]
+    },
+    {
+      "id": "b251",
+      "order_id": "ORD743",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-26T08:37:36.256Z",
+      "total_amount": 3.5,
+      "status": "shipped",
+      "payment_method": "cod",
+      "shipping_fee": 300,
+      "items": [
+        {
+          "product_name": "Ceramic Coffee Mug",
+          "quantity": 1,
+          "price": 3.5
+        }
+      ]
+    },
+    {
+      "id": "4884",
+      "order_id": "ORD897",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-26T08:39:11.689Z",
+      "total_amount": 3.5,
+      "status": "shipped",
+      "payment_method": "cod",
+      "shipping_fee": 500,
+      "items": [
+        {
+          "product_name": "Ceramic Coffee Mug",
+          "quantity": 1,
+          "price": 3.5
+        }
+      ]
+    },
+    {
+      "id": "eb1f",
+      "order_id": "ORD996",
+      "user_id": "user1745321530724",
+      "order_date": "2025-04-26T08:43:17.488Z",
+      "total_amount": 45,
+      "status": "shipped",
+      "payment_method": "cod",
+      "shipping_fee": 500,
+      "items": [
+        {
+          "product_name": "Modern Laptop",
+          "quantity": 1,
+          "price": 45
+        }
+      ]
+    },
+    {
+      "id": "a442",
+      "order_id": "ORD958",
+      "user_id": "1",
+      "order_date": "2025-04-26T09:20:41.177Z",
+      "total_amount": 8.8,
+      "status": "processing",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
+        }
+      ]
+    },
+    {
+      "id": "be7c",
+      "order_id": "ORD881",
+      "user_id": "1",
+      "order_date": "2025-04-26T14:02:01.852Z",
+      "total_amount": 18,
+      "status": "processing",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ]
+    },
+    {
+      "id": "d96b",
+      "order_id": "ORD121",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:13:05.644Z",
+      "total_amount": 18,
+      "status": "delivered",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "30fe",
+      "order_id": "ORD753",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:35:10.272Z",
+      "total_amount": 12,
+      "status": "shipped",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Wireless Headphones",
+          "quantity": 1,
+          "price": 12
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "3edd",
+      "order_id": "ORD531",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:37:27.149Z",
+      "total_amount": 18,
+      "status": "delivered",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "ebda",
+      "order_id": "ORD902",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:37:06.092Z",
+      "total_amount": 15,
+      "status": "delivered",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Athletic Shoes",
+          "quantity": 1,
+          "price": 15
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "131d",
+      "order_id": "ORD794",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:38:24.212Z",
+      "total_amount": 15,
+      "status": "delivered",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Athletic Shoes",
+          "quantity": 1,
+          "price": 15
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "8385",
+      "order_id": "ORD963",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:50:13.500Z",
+      "total_amount": 15,
+      "status": "failed",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Athletic Shoes",
+          "quantity": 1,
+          "price": 15
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "a31a",
+      "order_id": "ORD546",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:53:40.477Z",
+      "total_amount": 4.5,
+      "status": "delivered",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Leather Wallet",
+          "quantity": 1,
+          "price": 4.5
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "90af",
+      "order_id": "ORD424",
+      "user_id": "1",
+      "order_date": "2025-04-26T16:54:44.732Z",
+      "total_amount": 18,
+      "status": "delivered",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ],
+      "shipper_id": "user1745384287549"
+    },
+    {
+      "id": "bd4a",
+      "order_id": "ORD965",
+      "user_id": "1",
+      "order_date": "2025-04-26T20:16:34.153Z",
+      "total_amount": 16.2,
+      "original_amount": 18,
+      "discount_amount": 1.8,
+      "coupon_code": "CP001",
+      "status": "canceled",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Rice Cooker",
+          "quantity": 1,
+          "price": 18
+        }
+      ]
+    },
+    {
+      "id": "d9c0",
+      "order_id": "ORD545",
+      "user_id": "1",
+      "order_date": "2025-04-26T23:54:25.754Z",
+      "total_amount": 8.8,
+      "original_amount": 8.8,
+      "discount_amount": 0,
+      "coupon_code": null,
+      "status": "canceled",
+      "payment_method": "cod",
+      "shipping_fee": 550,
+      "items": [
+        {
+          "product_name": "Portable Speaker",
+          "quantity": 1,
+          "price": 8.8
         }
       ]
     }
@@ -650,7 +1780,7 @@
       "categoryId": 2,
       "url": "https://picsum.photos/id/0",
       "status": "available",
-      "quantity": 14
+      "quantity": 16
     },
     {
       "id": "4",
@@ -691,7 +1821,7 @@
       "categoryId": 4,
       "url": "https://picsum.photos/id/719",
       "status": "available",
-      "quantity": 43,
+      "quantity": 44,
       "isAuction": false
     },
     {
@@ -1043,46 +2173,9 @@
       "url": "https://picsum.photos/id/323",
       "status": "available",
       "quantity": 60
-    },
-    {
-      "id": "333",
-      "title": "333",
-      "description": "3333",
-      "price": 3333,
-      "categoryId": 333,
-      "url": "https://picsum.photos/id/33",
-      "status": "available",
-      "quantity": 4
     }
   ],
-  "shoppingCart": [
-    {
-      "id": "3e19",
-      "userId": "27b4",
-      "productId": [
-        {
-          "idProduct": "1",
-          "quantity": "1"
-        },
-        {
-          "idProduct": "2",
-          "quantity": "2"
-        }
-      ],
-      "dateAdded": "2025-03-19T15:30:11.598Z"
-    },
-    {
-      "id": "cd5d",
-      "userId": "3",
-      "productId": [
-        {
-          "idProduct": "2",
-          "quantity": "1"
-        }
-      ],
-      "dateAdded": "2025-03-24T15:59:03.745Z"
-    }
-  ],
+  "shoppingCart": [],
   "paymentMethods": [
     {
       "id": "pm001",
@@ -1352,6 +2445,26 @@
       "id": "sp1743076282046",
       "userId": null,
       "products": []
+    },
+    {
+      "id": "sp1745321530768",
+      "userId": "user1745321530724",
+      "products": []
+    },
+    {
+      "id": "sp1745384287582",
+      "userId": "user1745384287549",
+      "products": []
+    },
+    {
+      "id": "sp1745687190378",
+      "userId": "user1745687190369",
+      "products": []
+    },
+    {
+      "id": "sp1745687421423",
+      "userId": "user1745687421412",
+      "products": []
     }
   ],
   "auctionBids": [
@@ -1394,6 +2507,1356 @@
       "bidAmount": 20000,
       "bidDate": "2025-03-27T16:35:03.048Z",
       "isWinningBid": true
+    },
+    {
+      "id": "bid1744690691245",
+      "productId": "1",
+      "userId": "1",
+      "bidAmount": 2600,
+      "bidDate": "2025-04-15T04:18:11.245Z",
+      "isWinningBid": true
+    },
+    {
+      "id": "bid1744690691245",
+      "productId": "1",
+      "userId": "1",
+      "bidAmount": 2600,
+      "bidDate": "2025-04-15T04:18:11.245Z",
+      "isWinningBid": true
+    }
+  ],
+  "address": [
+    {
+      "id": "101",
+      "userId": "user1745321530724",
+      "fullName": "Testman",
+      "phone": "0909090909",
+      "street": "123 Test Street",
+      "ward": "Phường Test",
+      "district": "Quận Skibidi",
+      "city": "Skibidi"
+    },
+    {
+      "id": "102",
+      "userId": "user1745321530724",
+      "fullName": "Testman",
+      "phone": "0908888888",
+      "street": "456 Beta Road",
+      "ward": "Phường ABC",
+      "district": "Quận XYZ",
+      "city": "Hồ Chí Minh"
+    },
+    {
+      "id": "fdad",
+      "fullName": "Tst",
+      "phone": "0120250562",
+      "street": "AA",
+      "country": "Vietnam",
+      "state": "Bà Rịa-Vũng Tàu",
+      "city": "Côn Sơn",
+      "userId": "user1745321530724"
+    },
+    {
+      "id": "573f",
+      "fullName": "BB",
+      "phone": "0123254885",
+      "street": "CC",
+      "zipcode": "212",
+      "country": "Vietnam",
+      "state": "Hồ Chí Minh",
+      "city": "Củ Chi",
+      "userId": "user1745321530724"
+    },
+    {
+      "id": "ea67",
+      "fullName": "Test",
+      "phone": "45216525844",
+      "street": "aa",
+      "zipcode": "131",
+      "country": "Albania",
+      "state": "Berat District",
+      "city": "Bashkia Berat",
+      "userId": "user1745321530724"
+    },
+    {
+      "id": "7de1",
+      "fullName": "King",
+      "phone": "24152365346",
+      "street": "queen",
+      "zipcode": "1234",
+      "country": "United Kingdom",
+      "userId": "user1745321530724"
+    },
+    {
+      "id": "d22e",
+      "fullName": "Hieu Test",
+      "phone": "45324327",
+      "street": "HK",
+      "zipcode": "12354",
+      "country": "Taiwan",
+      "state": "Chiayi",
+      "city": "Chiayi County",
+      "userId": "user1745321530724"
+    },
+    {
+      "id": "68a3",
+      "fullName": "aa",
+      "phone": "357537",
+      "street": "aa",
+      "zipcode": "2343",
+      "country": "Ukraine",
+      "state": "Cherkaska oblast",
+      "city": "Cherkasy",
+      "userId": "user1745321530724"
+    },
+    {
+      "id": "6835",
+      "fullName": "testtt",
+      "phone": "5448723267",
+      "street": "tessssss",
+      "zipcode": "11312",
+      "country": "Vietnam",
+      "state": "Bà Rịa-Vũng Tàu",
+      "city": "Huyện Châu Đức",
+      "userId": "user1745321530724"
+    }
+  ],
+  "shipping": [
+    {
+      "shipmentCode": "SHIP990142",
+      "userId": "user1745321530724",
+      "orderId": "ORD391",
+      "address": {
+        "fullName": "Testman",
+        "street": "Robert",
+        "city": "Skibidi"
+      },
+      "shippingFee": 500,
+      "status": "shipped",
+      "createdAt": "2025-04-25T04:15:48.731Z",
+      "id": "1"
+    },
+    {
+      "id": "1b78",
+      "shipmentCode": "SHIP843000",
+      "userId": "user1745321530724",
+      "orderId": "ORD431",
+      "address": {
+        "fullName": "Hieu Test",
+        "phone": "45324327",
+        "street": "HK",
+        "city": "Chiayi County"
+      },
+      "shippingFee": 500,
+      "status": "shipped",
+      "createdAt": "2025-04-26T08:29:07.535Z"
+    },
+    {
+      "id": "5729",
+      "shipmentCode": "SHIP702507",
+      "userId": "user1745321530724",
+      "orderId": "ORD298",
+      "address": {
+        "fullName": "Testman",
+        "street": "Robert",
+        "city": "Skibidi"
+      },
+      "shippingFee": 500,
+      "status": "shipped",
+      "createdAt": "2025-04-26T08:30:14.872Z"
+    },
+    {
+      "id": "af9e",
+      "shipmentCode": "SHIP529543",
+      "userId": "user1745321530724",
+      "orderId": "ORD416",
+      "address": {
+        "fullName": "Testman",
+        "street": "Robert",
+        "city": "Skibidi"
+      },
+      "shippingFee": 500,
+      "status": "shipped",
+      "createdAt": "2025-04-26T08:30:52.104Z"
+    },
+    {
+      "id": "3839",
+      "shipmentCode": "SHIP614211",
+      "userId": "user1745321530724",
+      "orderId": "ORD743",
+      "address": {
+        "fullName": "testtt",
+        "phone": "5448723267",
+        "street": "tessssss",
+        "city": "Huyện Châu Đức",
+        "state": "Bà Rịa-Vũng Tàu",
+        "country": "Vietnam",
+        "zipcode": "11312"
+      },
+      "shippingFee": 300,
+      "status": "shipped",
+      "createdAt": "2025-04-26T08:37:36.312Z"
+    },
+    {
+      "id": "c766",
+      "shipmentCode": "SHIP781185",
+      "userId": "user1745321530724",
+      "orderId": "ORD897",
+      "address": {
+        "fullName": "Testman",
+        "street": "Robert",
+        "city": "Skibidi",
+        "country": "VN",
+        "zipcode": "255"
+      },
+      "shippingFee": 500,
+      "status": "shipped",
+      "createdAt": "2025-04-26T08:39:11.745Z"
+    },
+    {
+      "id": "1ca9",
+      "shipmentCode": "SHIP941459",
+      "userId": "user1745321530724",
+      "orderId": "ORD996",
+      "address": {
+        "fullName": "Testman",
+        "street": "Robert",
+        "city": "Skibidi",
+        "country": "VN",
+        "zipcode": "255"
+      },
+      "shippingFee": 500,
+      "status": "shipped",
+      "createdAt": "2025-04-26T08:43:17.543Z"
+    },
+    {
+      "id": "9f4b",
+      "shipmentCode": "SHIP442471",
+      "userId": "1",
+      "orderId": "ORD958",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "processing",
+      "createdAt": "2025-04-26T09:20:41.302Z"
+    },
+    {
+      "id": "f9e8",
+      "shipmentCode": "SHIP685268",
+      "userId": "1",
+      "orderId": "ORD881",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "processing",
+      "createdAt": "2025-04-26T14:02:01.992Z"
+    },
+    {
+      "id": "6b27",
+      "shipmentCode": "SHIP306739",
+      "userId": "1",
+      "orderId": "ORD121",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "pending",
+      "createdAt": "2025-04-26T16:13:05.665Z"
+    },
+    {
+      "id": "e292",
+      "shipmentCode": "SHIP834280",
+      "userId": "1",
+      "orderId": "ORD753",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "pending",
+      "createdAt": "2025-04-26T16:33:29.227Z"
+    },
+    {
+      "id": "82eb",
+      "shipmentCode": "SHIP595949",
+      "userId": "1",
+      "orderId": "ORD902",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "pending",
+      "createdAt": "2025-04-26T16:37:06.226Z"
+    },
+    {
+      "id": "f5de",
+      "shipmentCode": "SHIP140826",
+      "userId": "1",
+      "orderId": "ORD794",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "pending",
+      "createdAt": "2025-04-26T16:38:24.233Z"
+    },
+    {
+      "id": "f807",
+      "shipmentCode": "SHIP110027",
+      "userId": "1",
+      "orderId": "ORD963",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "pending",
+      "createdAt": "2025-04-26T16:50:13.529Z"
+    },
+    {
+      "id": "4e03",
+      "shipmentCode": "SHIP470900",
+      "userId": "1",
+      "orderId": "ORD546",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "pending",
+      "createdAt": "2025-04-26T16:53:40.518Z"
+    },
+    {
+      "id": "c4a7",
+      "shipmentCode": "SHIP779589",
+      "userId": "1",
+      "orderId": "ORD424",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "pending",
+      "createdAt": "2025-04-26T16:54:44.773Z"
+    },
+    {
+      "id": "8326",
+      "shipmentCode": "SHIP807585",
+      "userId": "1",
+      "orderId": "ORD151",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "processing",
+      "createdAt": "2025-04-26T17:20:24.435Z"
+    },
+    {
+      "id": "542d",
+      "shipmentCode": "SHIP456775",
+      "userId": "1",
+      "orderId": "ORD965",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "processing",
+      "createdAt": "2025-04-26T20:16:34.343Z"
+    },
+    {
+      "id": "ec1e",
+      "shipmentCode": "SHIP148701",
+      "userId": "1",
+      "orderId": "ORD545",
+      "address": {
+        "fullName": "John Smiths",
+        "street": "123 Main St",
+        "city": "New York",
+        "country": "United States",
+        "zipcode": "12345"
+      },
+      "shippingFee": 550,
+      "status": "processing",
+      "createdAt": "2025-04-26T23:54:25.792Z"
+    }
+  ],
+  "similarItems": [
+    {
+      "id": "1",
+      "recommendIds": [
+        "10",
+        "18",
+        "45",
+        "11",
+        "26"
+      ]
+    },
+    {
+      "id": "2",
+      "recommendIds": [
+        "29",
+        "22",
+        "17",
+        "33",
+        "26"
+      ]
+    },
+    {
+      "id": "3",
+      "recommendIds": [
+        "33",
+        "29",
+        "17",
+        "41",
+        "4"
+      ]
+    },
+    {
+      "id": "4",
+      "recommendIds": [
+        "39",
+        "33",
+        "29",
+        "17",
+        "12"
+      ]
+    },
+    {
+      "id": "5",
+      "recommendIds": [
+        "20",
+        "40",
+        "36",
+        "37",
+        "26"
+      ]
+    },
+    {
+      "id": "7",
+      "recommendIds": [
+        "37",
+        "17",
+        "31",
+        "28",
+        "15"
+      ]
+    },
+    {
+      "id": "8",
+      "recommendIds": [
+        "15",
+        "21",
+        "39",
+        "12",
+        "17"
+      ]
+    },
+    {
+      "id": "9",
+      "recommendIds": [
+        "22",
+        "39",
+        "4",
+        "45",
+        "23"
+      ]
+    },
+    {
+      "id": "10",
+      "recommendIds": [
+        "1",
+        "36",
+        "27",
+        "18",
+        "23"
+      ]
+    },
+    {
+      "id": "11",
+      "recommendIds": [
+        "18",
+        "45",
+        "23",
+        "1",
+        "32"
+      ]
+    },
+    {
+      "id": "12",
+      "recommendIds": [
+        "32",
+        "21",
+        "38",
+        "29",
+        "26"
+      ]
+    },
+    {
+      "id": "13",
+      "recommendIds": [
+        "28",
+        "40",
+        "34",
+        "20",
+        "44"
+      ]
+    },
+    {
+      "id": "15",
+      "recommendIds": [
+        "21",
+        "8",
+        "38",
+        "41",
+        "23"
+      ]
+    },
+    {
+      "id": "17",
+      "recommendIds": [
+        "29",
+        "33",
+        "39",
+        "4",
+        "24"
+      ]
+    },
+    {
+      "id": "18",
+      "recommendIds": [
+        "45",
+        "23",
+        "27",
+        "11",
+        "35"
+      ]
+    },
+    {
+      "id": "20",
+      "recommendIds": [
+        "5",
+        "13",
+        "31",
+        "28",
+        "40"
+      ]
+    },
+    {
+      "id": "21",
+      "recommendIds": [
+        "38",
+        "32",
+        "12",
+        "41",
+        "25"
+      ]
+    },
+    {
+      "id": "22",
+      "recommendIds": [
+        "9",
+        "43",
+        "30",
+        "26",
+        "4"
+      ]
+    },
+    {
+      "id": "23",
+      "recommendIds": [
+        "18",
+        "45",
+        "11",
+        "36",
+        "9"
+      ]
+    },
+    {
+      "id": "24",
+      "recommendIds": [
+        "3",
+        "29",
+        "17",
+        "33",
+        "25"
+      ]
+    },
+    {
+      "id": "25",
+      "recommendIds": [
+        "38",
+        "21",
+        "41",
+        "32",
+        "15"
+      ]
+    },
+    {
+      "id": "26",
+      "recommendIds": [
+        "30",
+        "42",
+        "35",
+        "29",
+        "12"
+      ]
+    },
+    {
+      "id": "27",
+      "recommendIds": [
+        "18",
+        "45",
+        "17",
+        "35",
+        "10"
+      ]
+    },
+    {
+      "id": "28",
+      "recommendIds": [
+        "44",
+        "13",
+        "34",
+        "37",
+        "20"
+      ]
+    },
+    {
+      "id": "29",
+      "recommendIds": [
+        "17",
+        "26",
+        "4",
+        "12",
+        "24"
+      ]
+    },
+    {
+      "id": "30",
+      "recommendIds": [
+        "26",
+        "42",
+        "29",
+        "22",
+        "35"
+      ]
+    },
+    {
+      "id": "31",
+      "recommendIds": [
+        "20",
+        "17",
+        "7",
+        "5",
+        "45"
+      ]
+    },
+    {
+      "id": "32",
+      "recommendIds": [
+        "12",
+        "21",
+        "38",
+        "25",
+        "23"
+      ]
+    },
+    {
+      "id": "33",
+      "recommendIds": [
+        "17",
+        "3",
+        "4",
+        "39",
+        "29"
+      ]
+    },
+    {
+      "id": "34",
+      "recommendIds": [
+        "28",
+        "13",
+        "44",
+        "31",
+        "20"
+      ]
+    },
+    {
+      "id": "35",
+      "recommendIds": [
+        "42",
+        "26",
+        "18",
+        "9",
+        "30"
+      ]
+    },
+    {
+      "id": "36",
+      "recommendIds": [
+        "10",
+        "23",
+        "18",
+        "5",
+        "45"
+      ]
+    },
+    {
+      "id": "37",
+      "recommendIds": [
+        "7",
+        "28",
+        "44",
+        "5",
+        "13"
+      ]
+    },
+    {
+      "id": "38",
+      "recommendIds": [
+        "21",
+        "32",
+        "25",
+        "12",
+        "28"
+      ]
+    },
+    {
+      "id": "39",
+      "recommendIds": [
+        "4",
+        "9",
+        "17",
+        "33",
+        "21"
+      ]
+    },
+    {
+      "id": "40",
+      "recommendIds": [
+        "13",
+        "5",
+        "20",
+        "26",
+        "30"
+      ]
+    },
+    {
+      "id": "41",
+      "recommendIds": [
+        "21",
+        "25",
+        "38",
+        "15",
+        "3"
+      ]
+    },
+    {
+      "id": "42",
+      "recommendIds": [
+        "35",
+        "26",
+        "30",
+        "9",
+        "18"
+      ]
+    },
+    {
+      "id": "43",
+      "recommendIds": [
+        "22",
+        "41",
+        "26",
+        "30",
+        "9"
+      ]
+    },
+    {
+      "id": "44",
+      "recommendIds": [
+        "28",
+        "40",
+        "37",
+        "13",
+        "34"
+      ]
+    },
+    {
+      "id": "45",
+      "recommendIds": [
+        "18",
+        "11",
+        "23",
+        "9",
+        "1"
+      ]
+    }
+  ],
+  "ratings": [
+    {
+      "productId": "2",
+      "orderId": null,
+      "userId": "user1745321530724",
+      "score": 5,
+      "comment": "aa",
+      "id": "2"
+    },
+    {
+      "productId": "9",
+      "orderId": null,
+      "userId": "user1745321530724",
+      "score": 5,
+      "comment": "nice",
+      "id": "4"
+    },
+    {
+      "id": "2044",
+      "productId": "3",
+      "orderId": null,
+      "userId": "user1745321530724",
+      "score": 5,
+      "comment": "ok"
+    }
+  ],
+  "orderConfirmations": [
+    {
+      "id": "1",
+      "order_id": "ORD002",
+      "confirmed": false
+    },
+    {
+      "id": "5dc5",
+      "order_id": "ORD958",
+      "confirmed": true
+    },
+    {
+      "id": "e0d8",
+      "order_id": "ORD958",
+      "confirmed": false
+    },
+    {
+      "id": "1500",
+      "order_id": "ORD315",
+      "confirmed": false
+    },
+    {
+      "id": "0eeb",
+      "order_id": "ORD315",
+      "confirmed": false
+    },
+    {
+      "id": "7c5f",
+      "order_id": "ORD224",
+      "confirmed": false
+    },
+    {
+      "id": "5bdc",
+      "order_id": "ORD224",
+      "confirmed": false
+    },
+    {
+      "id": "2103",
+      "order_id": "ORD136",
+      "confirmed": false
+    },
+    {
+      "id": "3f01",
+      "order_id": "ORD136",
+      "confirmed": false
+    },
+    {
+      "id": "7637",
+      "order_id": "ORD107",
+      "confirmed": false
+    },
+    {
+      "id": "2b07",
+      "order_id": "ORD107",
+      "confirmed": false
+    },
+    {
+      "id": "59d0",
+      "order_id": "ORD470",
+      "confirmed": false
+    },
+    {
+      "id": "5ba7",
+      "order_id": "ORD470",
+      "confirmed": false
+    },
+    {
+      "id": "2402",
+      "order_id": "ORD245",
+      "confirmed": false
+    },
+    {
+      "id": "f039",
+      "order_id": "ORD380",
+      "confirmed": false
+    },
+    {
+      "id": "47db",
+      "order_id": "ORD245",
+      "confirmed": false
+    },
+    {
+      "id": "8206",
+      "order_id": "ORD380",
+      "confirmed": false
+    },
+    {
+      "id": "d32f",
+      "order_id": "ORD874",
+      "confirmed": false
+    },
+    {
+      "id": "bb36",
+      "order_id": "ORD650",
+      "confirmed": false
+    },
+    {
+      "id": "db94",
+      "order_id": "ORD874",
+      "confirmed": false
+    },
+    {
+      "id": "ec99",
+      "order_id": "ORD650",
+      "confirmed": false
+    },
+    {
+      "id": "b9a9",
+      "order_id": "ORD413",
+      "confirmed": false
+    },
+    {
+      "id": "4314",
+      "order_id": "ORD838",
+      "confirmed": false
+    },
+    {
+      "id": "a051",
+      "order_id": "ORD413",
+      "confirmed": false
+    },
+    {
+      "id": "71ea",
+      "order_id": "ORD838",
+      "confirmed": false
+    },
+    {
+      "id": "384b",
+      "order_id": "ORD146",
+      "confirmed": false
+    },
+    {
+      "id": "38e8",
+      "order_id": "ORD146",
+      "confirmed": false
+    },
+    {
+      "id": "82ee",
+      "order_id": "ORD570",
+      "confirmed": false
+    },
+    {
+      "id": "7f19",
+      "order_id": "ORD170",
+      "confirmed": false
+    },
+    {
+      "id": "a0f6",
+      "order_id": "ORD570",
+      "confirmed": false
+    },
+    {
+      "id": "b565",
+      "order_id": "ORD170",
+      "confirmed": false
+    },
+    {
+      "id": "04f3",
+      "order_id": "ORD516",
+      "confirmed": false
+    },
+    {
+      "id": "965c",
+      "order_id": "ORD203",
+      "confirmed": false
+    },
+    {
+      "id": "f758",
+      "order_id": "ORD516",
+      "confirmed": false
+    },
+    {
+      "id": "13e8",
+      "order_id": "ORD203",
+      "confirmed": false
+    },
+    {
+      "id": "e467",
+      "order_id": "ORD979",
+      "confirmed": false
+    },
+    {
+      "id": "f495",
+      "order_id": "ORD953",
+      "confirmed": false
+    },
+    {
+      "id": "4a81",
+      "order_id": "ORD979",
+      "confirmed": false
+    },
+    {
+      "id": "acdf",
+      "order_id": "ORD953",
+      "confirmed": false
+    },
+    {
+      "id": "f8f5",
+      "order_id": "ORD740",
+      "confirmed": false
+    },
+    {
+      "id": "8710",
+      "order_id": "ORD915",
+      "confirmed": false
+    },
+    {
+      "id": "efbd",
+      "order_id": "ORD740",
+      "confirmed": false
+    },
+    {
+      "id": "b3a4",
+      "order_id": "ORD915",
+      "confirmed": false
+    },
+    {
+      "id": "718f",
+      "order_id": "ORD363",
+      "confirmed": false
+    },
+    {
+      "id": "d780",
+      "order_id": "ORD457",
+      "confirmed": false
+    },
+    {
+      "id": "aaca",
+      "order_id": "ORD363",
+      "confirmed": false
+    },
+    {
+      "id": "8169",
+      "order_id": "ORD457",
+      "confirmed": false
+    },
+    {
+      "id": "9848",
+      "order_id": "ORD466",
+      "confirmed": false
+    },
+    {
+      "id": "f8b7",
+      "order_id": "ORD932",
+      "confirmed": false
+    },
+    {
+      "id": "34ec",
+      "order_id": "ORD466",
+      "confirmed": false
+    },
+    {
+      "id": "3da7",
+      "order_id": "ORD932",
+      "confirmed": false
+    },
+    {
+      "id": "8f4b",
+      "order_id": "ORD677",
+      "confirmed": false
+    },
+    {
+      "id": "5940",
+      "order_id": "ORD399",
+      "confirmed": false
+    },
+    {
+      "id": "6b45",
+      "order_id": "ORD677",
+      "confirmed": false
+    },
+    {
+      "id": "28e3",
+      "order_id": "ORD399",
+      "confirmed": false
+    },
+    {
+      "id": "c08b",
+      "order_id": "ORD855",
+      "confirmed": false
+    },
+    {
+      "id": "b10a",
+      "order_id": "ORD701",
+      "confirmed": false
+    },
+    {
+      "id": "d839",
+      "order_id": "ORD855",
+      "confirmed": false
+    },
+    {
+      "id": "ac69",
+      "order_id": "ORD327",
+      "confirmed": false
+    },
+    {
+      "id": "c910",
+      "order_id": "ORD701",
+      "confirmed": false
+    },
+    {
+      "id": "9c67",
+      "order_id": "ORD327",
+      "confirmed": false
+    },
+    {
+      "id": "f878",
+      "order_id": "ORD201",
+      "confirmed": false
+    },
+    {
+      "id": "e0ec",
+      "order_id": "ORD130",
+      "confirmed": false
+    },
+    {
+      "id": "c615",
+      "order_id": "ORD201",
+      "confirmed": false
+    },
+    {
+      "id": "a31d",
+      "order_id": "ORD130",
+      "confirmed": false
+    },
+    {
+      "id": "d42f",
+      "order_id": "ORD960",
+      "confirmed": false
+    },
+    {
+      "id": "f55b",
+      "order_id": "ORD137",
+      "confirmed": false
+    },
+    {
+      "id": "8005",
+      "order_id": "ORD960",
+      "confirmed": false
+    },
+    {
+      "id": "4237",
+      "order_id": "ORD137",
+      "confirmed": false
+    },
+    {
+      "id": "1cde",
+      "order_id": "ORD118",
+      "confirmed": false
+    },
+    {
+      "id": "6435",
+      "order_id": "ORD381",
+      "confirmed": false
+    },
+    {
+      "id": "582b",
+      "order_id": "ORD118",
+      "confirmed": false
+    },
+    {
+      "id": "5232",
+      "order_id": "ORD381",
+      "confirmed": false
+    },
+    {
+      "id": "ddf1",
+      "order_id": "ORD368",
+      "confirmed": false
+    },
+    {
+      "id": "14da",
+      "order_id": "ORD368",
+      "confirmed": false
+    },
+    {
+      "id": "1e19",
+      "order_id": "ORD881",
+      "confirmed": false
+    },
+    {
+      "id": "882c",
+      "order_id": "ORD881",
+      "confirmed": false
+    },
+    {
+      "id": "99cd",
+      "order_id": "ORD121",
+      "confirmed": true
+    },
+    {
+      "id": "d1b8",
+      "order_id": "ORD121",
+      "confirmed": false
+    },
+    {
+      "id": "978f",
+      "order_id": "ORD753",
+      "confirmed": false
+    },
+    {
+      "id": "e405",
+      "order_id": "ORD753",
+      "confirmed": false
+    },
+    {
+      "id": "726c",
+      "order_id": "ORD531",
+      "confirmed": true
+    },
+    {
+      "id": "640a",
+      "order_id": "ORD728",
+      "confirmed": false
+    },
+    {
+      "id": "3fa8",
+      "order_id": "ORD902",
+      "confirmed": true
+    },
+    {
+      "id": "bbe8",
+      "order_id": "ORD902",
+      "confirmed": false
+    },
+    {
+      "id": "3ad5",
+      "order_id": "ORD794",
+      "confirmed": false
+    },
+    {
+      "id": "e674",
+      "order_id": "ORD794",
+      "confirmed": false
+    },
+    {
+      "id": "d592",
+      "order_id": "ORD963",
+      "confirmed": false
+    },
+    {
+      "id": "b131",
+      "order_id": "ORD963",
+      "confirmed": false
+    },
+    {
+      "id": "b887",
+      "order_id": "ORD546",
+      "confirmed": true
+    },
+    {
+      "id": "a1d5",
+      "order_id": "ORD546",
+      "confirmed": false
+    },
+    {
+      "id": "6c66",
+      "order_id": "ORD424",
+      "confirmed": true
+    },
+    {
+      "id": "aab3",
+      "order_id": "ORD424",
+      "confirmed": false
+    }
+  ],
+  "coupons": [
+    {
+      "id": "CP001",
+      "name": "Giảm 10% cho đơn đầu tiên",
+      "discount": 10,
+      "status": 0
+    },
+    {
+      "id": "CP002",
+      "name": "Giảm 15% cuối tuần",
+      "discount": 15,
+      "status": 1
+    },
+    {
+      "id": "CP003",
+      "name": "Giảm 20% cho đơn trên 500K",
+      "discount": 20,
+      "status": 1
+    },
+    {
+      "id": "CP004",
+      "name": "Giảm 5% mọi đơn hàng",
+      "discount": 5,
+      "status": 1
+    },
+    {
+      "id": "CP005",
+      "name": "Ưu đãi 25% khách VIP",
+      "discount": 25,
+      "status": 1
     }
   ]
 }
